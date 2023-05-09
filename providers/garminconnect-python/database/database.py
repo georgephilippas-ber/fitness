@@ -15,7 +15,7 @@ mongodb_atlas_password: str = "85D3qpDm5Ycfq4f6"
 mongodb_atlas_cluster_name: str = "cluster0"
 
 
-class DatabaseProvider:
+class DatabaseManager:
     mongoClient: MongoClient
     database: str
 
@@ -45,3 +45,9 @@ class DatabaseProvider:
         for activity in activities:
             self.get_collection("ActivitiesManager").update_one({"user_id": activity.user_id, "id": activity.id},
                                                                 {"$set": asdict(activity)}, upsert=True)
+
+    def get_latest_daily_activity(self, user_id: int) -> Optional[DailyActivityType]:
+        pass
+
+    def get_latest_activity(self, user_id: int) -> Optional[ActivityInterfaceBase]:
+        pass

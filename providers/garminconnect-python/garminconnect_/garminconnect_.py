@@ -60,7 +60,7 @@ class GarminConnect:
                 print(e)
                 return None
 
-    def activities_period_dataclass(self, user_id: int, beginning: datetime = datetime.now() - timedelta(days=360),
+    def activities_period_dataclass(self, user_id: int, beginning: datetime = datetime.now() - timedelta(days=365),
                                     end: datetime = datetime.now()) -> Optional[List[ActivityInterfaceBase]]:
         raw_activities = self.activities_period_dictionary(beginning, end)
 
