@@ -1,36 +1,12 @@
+from dataclasses import asdict
+from datetime import datetime
 from typing import Optional
 
 from pymongo import MongoClient
-from pymongo.database import Database, Collection
+from pymongo.database import Database
 
-from dataclasses import dataclass, asdict
-
-from datetime import datetime
+from schema.daily_activity import DailyActivityType
 from time_.time_feature import today, When
-
-
-@dataclass
-class ActiveZoneMinutesType:
-    fatBurnActiveZoneMinutes: float
-    cardioActiveZoneMinutes: float
-    peakActiveZoneMinutes: float
-    activeZoneMinutes: float
-
-
-@dataclass
-class DailyActivityType:
-    id: str
-    user_id: int
-    referenceDate: int
-    activity_calories: int
-    calories: int
-    calories_BMR: int
-    distance: int
-    elevation: float
-    floors: float
-    steps: int
-    active_zone_minutes: ActiveZoneMinutesType
-
 
 mongodb_atlas_username: str = "georgephilippas-ber"
 mongodb_atlas_password: str = "85D3qpDm5Ycfq4f6"
