@@ -8,9 +8,7 @@ if __name__ == "__main__":
 
     databaseProvider = DatabaseProvider()
 
-    # print(databaseProvider.update_activity(garminConnect.activity_dataclass(-2)))
-
-    print(garminConnect.activities_latest_dictionary())
-    print(garminConnect.activities_period_dictionary())
+    databaseProvider.update_daily_activity(garminConnect.activity_dataclass(-2))
+    databaseProvider.update_activities(garminConnect.activities_period_dataclass(-2))
 
     print(garminConnect.disconnect())

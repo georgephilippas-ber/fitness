@@ -1,12 +1,14 @@
 from dataclasses import asdict
 from datetime import datetime
-from typing import Optional
+from typing import Optional, List
 
 from pymongo import MongoClient
 from pymongo.database import Database
 
 from schema.daily_activity import DailyActivityType
-from time_.time_feature import today, When
+from time_feature.time_feature import today, When
+
+from schema.activities import ActivityInterfaceBase
 
 mongodb_atlas_username: str = "georgephilippas-ber"
 mongodb_atlas_password: str = "85D3qpDm5Ycfq4f6"
@@ -29,7 +31,7 @@ class DatabaseProvider:
     def get_collection(self, collection: str):
         return self.get_database().get_collection(collection)
 
-    def update_activity(self, daily_activity: DailyActivityType) -> bool:
+    def update_daily_activity(self, daily_activity: DailyActivityType) -> bool:
         daily_activity.referenceDate = int(
             today(datetime.fromtimestamp(daily_activity.referenceDate / 1.e3), When.BEGINNING).timestamp() * 1.e3)
 
@@ -38,3 +40,8 @@ class DatabaseProvider:
             {"$set": asdict(daily_activity)}, upsert=True)
 
         return update_result.modified_count > 0 or update_result.upserted_id is not None
+
+    def update_activities(self, activities: List[ActivityInterfaceBase]) -> None:
+        for activity in activities:
+            self.get_collection("ActivitiesManager").update_one({"user_id": activity.user_id, "id": activity.id},
+                                                                {"$set": asdict(activity)}, upsert=True)

@@ -8,7 +8,8 @@ from garminconnect import GarminConnectAuthenticationError, GarminConnectConnect
     GarminConnectTooManyRequestsError, Garmin
 
 from datetime import datetime, timedelta
-from database.database import DailyActivityType, ActiveZoneMinutesType
+from schema.daily_activity import DailyActivityType, ActiveZoneMinutesType
+from schema.activities import ActivityInterfaceBase, to_activity
 
 
 def connect(email: str, password: str) -> Optional[Garmin]:
@@ -59,6 +60,15 @@ class GarminConnect:
                 print(e)
                 return None
 
+    def activities_period_dataclass(self, user_id: int, beginning: datetime = datetime.now() - timedelta(days=360),
+                                    end: datetime = datetime.now()) -> Optional[List[ActivityInterfaceBase]]:
+        raw_activities = self.activities_period_dictionary(beginning, end)
+
+        if raw_activities:
+            return [to_activity(user_id, raw_activity) for raw_activity in raw_activities]
+        else:
+            return None
+
     def daily_activity_dictionary(self, date: datetime = datetime.now()) -> Optional[Dict]:
         if self.garmin:
             try:
@@ -93,14 +103,3 @@ class GarminConnect:
             return daily_activity
         else:
             return None
-
-
-'''
-            # ACTIVITIES
-            elif i == "n":
-                # Get activities data from start and limit
-                display_json(f"api.get_activities({start}, {limit})", api.get_activities(start, limit)) # 0=start, 1=limit
-            elif i == "o":
-                # Get last activity
-                display_json("api.get_last_activity()", api.get_last_activity())
-'''

@@ -4396,8 +4396,8 @@
             "typeKey": "cycling",
             "parentTypeId": 17,
             "isHidden": false,
-            "trimmable": true,
-            "restricted": false
+            "restricted": false,
+            "trimmable": true
         },
         "eventType": {
             "typeId": 9,
@@ -4596,15 +4596,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "parent": false,
-        "favorite": false,
-        "decoDive": false,
         "purposeful": false,
         "pr": false,
         "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
-        "atpActivity": false
+        "atpActivity": false,
+        "favorite": false,
+        "decoDive": false,
+        "parent": false
     },
     {
         "activityId": 9603777242,
@@ -4617,8 +4617,8 @@
             "typeKey": "cycling",
             "parentTypeId": 17,
             "isHidden": false,
-            "trimmable": true,
-            "restricted": false
+            "restricted": false,
+            "trimmable": true
         },
         "eventType": {
             "typeId": 9,
@@ -4817,15 +4817,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "parent": false,
-        "favorite": false,
-        "decoDive": false,
         "purposeful": false,
         "pr": false,
         "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
-        "atpActivity": false
+        "atpActivity": false,
+        "favorite": false,
+        "decoDive": false,
+        "parent": false
     },
     {
         "activityId": 9590260543,
@@ -4838,8 +4838,8 @@
             "typeKey": "cycling",
             "parentTypeId": 17,
             "isHidden": false,
-            "trimmable": true,
-            "restricted": false
+            "restricted": false,
+            "trimmable": true
         },
         "eventType": {
             "typeId": 9,
@@ -5036,15 +5036,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "parent": false,
-        "favorite": false,
-        "decoDive": false,
         "purposeful": false,
         "pr": false,
         "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
-        "atpActivity": false
+        "atpActivity": false,
+        "favorite": false,
+        "decoDive": false,
+        "parent": false
     },
     {
         "activityId": 9590057006,
@@ -5057,8 +5057,8 @@
             "typeKey": "cycling",
             "parentTypeId": 17,
             "isHidden": false,
-            "trimmable": true,
-            "restricted": false
+            "restricted": false,
+            "trimmable": true
         },
         "eventType": {
             "typeId": 9,
@@ -5255,15 +5255,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "parent": false,
-        "favorite": false,
-        "decoDive": false,
         "purposeful": false,
         "pr": false,
         "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
-        "atpActivity": false
+        "atpActivity": false,
+        "favorite": false,
+        "decoDive": false,
+        "parent": false
     },
     {
         "activityId": 9578638312,
@@ -5276,8 +5276,8 @@
             "typeKey": "walking",
             "parentTypeId": 17,
             "isHidden": false,
-            "trimmable": true,
-            "restricted": false
+            "restricted": false,
+            "trimmable": true
         },
         "eventType": {
             "typeId": 9,
@@ -5474,15 +5474,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "parent": false,
-        "favorite": false,
-        "decoDive": false,
         "purposeful": false,
         "pr": false,
         "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
-        "atpActivity": false
+        "atpActivity": false,
+        "favorite": false,
+        "decoDive": false,
+        "parent": false
     },
     {
         "activityId": 9560914103,
@@ -5495,8 +5495,8 @@
             "typeKey": "walking",
             "parentTypeId": 17,
             "isHidden": false,
-            "trimmable": true,
-            "restricted": false
+            "restricted": false,
+            "trimmable": true
         },
         "eventType": {
             "typeId": 9,
@@ -5693,15 +5693,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "parent": false,
-        "favorite": false,
-        "decoDive": false,
         "purposeful": false,
         "pr": false,
         "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
-        "atpActivity": false
+        "atpActivity": false,
+        "favorite": false,
+        "decoDive": false,
+        "parent": false
     },
     {
         "activityId": 9558482903,
@@ -5714,8 +5714,8 @@
             "typeKey": "walking",
             "parentTypeId": 17,
             "isHidden": false,
-            "trimmable": true,
-            "restricted": false
+            "restricted": false,
+            "trimmable": true
         },
         "eventType": {
             "typeId": 9,
@@ -5912,15 +5912,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "parent": false,
-        "favorite": false,
-        "decoDive": false,
         "purposeful": false,
         "pr": false,
         "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
-        "atpActivity": false
+        "atpActivity": false,
+        "favorite": false,
+        "decoDive": false,
+        "parent": false
     },
     {
         "activityId": 9551933724,
@@ -5933,8 +5933,8 @@
             "typeKey": "cycling",
             "parentTypeId": 17,
             "isHidden": false,
-            "trimmable": true,
-            "restricted": false
+            "restricted": false,
+            "trimmable": true
         },
         "eventType": {
             "typeId": 9,
@@ -6133,15 +6133,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "parent": false,
-        "favorite": false,
-        "decoDive": false,
         "purposeful": false,
         "pr": false,
         "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
-        "atpActivity": false
+        "atpActivity": false,
+        "favorite": false,
+        "decoDive": false,
+        "parent": false
     },
     {
         "activityId": 9542430135,
@@ -6154,8 +6154,8 @@
             "typeKey": "walking",
             "parentTypeId": 17,
             "isHidden": false,
-            "trimmable": true,
-            "restricted": false
+            "restricted": false,
+            "trimmable": true
         },
         "eventType": {
             "typeId": 9,
@@ -6352,15 +6352,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "parent": false,
-        "favorite": false,
-        "decoDive": false,
         "purposeful": false,
         "pr": false,
         "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
-        "atpActivity": false
+        "atpActivity": false,
+        "favorite": false,
+        "decoDive": false,
+        "parent": false
     },
     {
         "activityId": 9512863685,
@@ -6373,8 +6373,8 @@
             "typeKey": "walking",
             "parentTypeId": 17,
             "isHidden": false,
-            "trimmable": true,
-            "restricted": false
+            "restricted": false,
+            "trimmable": true
         },
         "eventType": {
             "typeId": 9,
@@ -6571,15 +6571,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "parent": false,
-        "favorite": false,
-        "decoDive": false,
         "purposeful": false,
         "pr": false,
         "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
-        "atpActivity": false
+        "atpActivity": false,
+        "favorite": false,
+        "decoDive": false,
+        "parent": false
     },
     {
         "activityId": 9506623758,
@@ -6592,8 +6592,8 @@
             "typeKey": "walking",
             "parentTypeId": 17,
             "isHidden": false,
-            "trimmable": true,
-            "restricted": false
+            "restricted": false,
+            "trimmable": true
         },
         "eventType": {
             "typeId": 9,
@@ -6790,15 +6790,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "parent": false,
-        "favorite": false,
-        "decoDive": false,
         "purposeful": false,
         "pr": false,
         "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
-        "atpActivity": false
+        "atpActivity": false,
+        "favorite": false,
+        "decoDive": false,
+        "parent": false
     },
     {
         "activityId": 9506156940,
@@ -6811,8 +6811,8 @@
             "typeKey": "walking",
             "parentTypeId": 17,
             "isHidden": false,
-            "trimmable": true,
-            "restricted": false
+            "restricted": false,
+            "trimmable": true
         },
         "eventType": {
             "typeId": 9,
@@ -7009,15 +7009,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "parent": false,
-        "favorite": false,
-        "decoDive": false,
         "purposeful": false,
         "pr": false,
         "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
-        "atpActivity": false
+        "atpActivity": false,
+        "favorite": false,
+        "decoDive": false,
+        "parent": false
     },
     {
         "activityId": 9505203210,
@@ -7030,8 +7030,8 @@
             "typeKey": "walking",
             "parentTypeId": 17,
             "isHidden": false,
-            "trimmable": true,
-            "restricted": false
+            "restricted": false,
+            "trimmable": true
         },
         "eventType": {
             "typeId": 9,
@@ -7228,15 +7228,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "parent": false,
-        "favorite": false,
-        "decoDive": false,
         "purposeful": false,
         "pr": false,
         "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
-        "atpActivity": false
+        "atpActivity": false,
+        "favorite": false,
+        "decoDive": false,
+        "parent": false
     },
     {
         "activityId": 9499536884,
@@ -7249,8 +7249,8 @@
             "typeKey": "walking",
             "parentTypeId": 17,
             "isHidden": false,
-            "trimmable": true,
-            "restricted": false
+            "restricted": false,
+            "trimmable": true
         },
         "eventType": {
             "typeId": 9,
@@ -7447,15 +7447,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "parent": false,
-        "favorite": false,
-        "decoDive": false,
         "purposeful": false,
         "pr": false,
         "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
-        "atpActivity": false
+        "atpActivity": false,
+        "favorite": false,
+        "decoDive": false,
+        "parent": false
     },
     {
         "activityId": 9498863389,
@@ -7468,8 +7468,8 @@
             "typeKey": "walking",
             "parentTypeId": 17,
             "isHidden": false,
-            "trimmable": true,
-            "restricted": false
+            "restricted": false,
+            "trimmable": true
         },
         "eventType": {
             "typeId": 9,
@@ -7666,15 +7666,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "parent": false,
-        "favorite": false,
-        "decoDive": false,
         "purposeful": false,
         "pr": false,
         "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
-        "atpActivity": false
+        "atpActivity": false,
+        "favorite": false,
+        "decoDive": false,
+        "parent": false
     },
     {
         "activityId": 9496188436,
@@ -7687,8 +7687,8 @@
             "typeKey": "walking",
             "parentTypeId": 17,
             "isHidden": false,
-            "trimmable": true,
-            "restricted": false
+            "restricted": false,
+            "trimmable": true
         },
         "eventType": {
             "typeId": 9,
@@ -7885,15 +7885,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "parent": false,
-        "favorite": false,
-        "decoDive": false,
         "purposeful": false,
         "pr": false,
         "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
-        "atpActivity": false
+        "atpActivity": false,
+        "favorite": false,
+        "decoDive": false,
+        "parent": false
     },
     {
         "activityId": 9486216022,
@@ -7906,8 +7906,8 @@
             "typeKey": "walking",
             "parentTypeId": 17,
             "isHidden": false,
-            "trimmable": true,
-            "restricted": false
+            "restricted": false,
+            "trimmable": true
         },
         "eventType": {
             "typeId": 9,
@@ -8104,15 +8104,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "parent": false,
-        "favorite": false,
-        "decoDive": false,
         "purposeful": false,
         "pr": false,
         "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
-        "atpActivity": false
+        "atpActivity": false,
+        "favorite": false,
+        "decoDive": false,
+        "parent": false
     },
     {
         "activityId": 9482206184,
@@ -8125,8 +8125,8 @@
             "typeKey": "walking",
             "parentTypeId": 17,
             "isHidden": false,
-            "trimmable": true,
-            "restricted": false
+            "restricted": false,
+            "trimmable": true
         },
         "eventType": {
             "typeId": 9,
@@ -8323,15 +8323,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "parent": false,
-        "favorite": false,
-        "decoDive": false,
         "purposeful": false,
         "pr": false,
         "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
-        "atpActivity": false
+        "atpActivity": false,
+        "favorite": false,
+        "decoDive": false,
+        "parent": false
     },
     {
         "activityId": 9482029564,
@@ -8344,8 +8344,8 @@
             "typeKey": "walking",
             "parentTypeId": 17,
             "isHidden": false,
-            "trimmable": true,
-            "restricted": false
+            "restricted": false,
+            "trimmable": true
         },
         "eventType": {
             "typeId": 9,
@@ -8542,15 +8542,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "parent": false,
-        "favorite": false,
-        "decoDive": false,
         "purposeful": false,
         "pr": false,
         "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
-        "atpActivity": false
+        "atpActivity": false,
+        "favorite": false,
+        "decoDive": false,
+        "parent": false
     },
     {
         "activityId": 9481766487,
@@ -8563,8 +8563,8 @@
             "typeKey": "walking",
             "parentTypeId": 17,
             "isHidden": false,
-            "trimmable": true,
-            "restricted": false
+            "restricted": false,
+            "trimmable": true
         },
         "eventType": {
             "typeId": 9,
@@ -8761,15 +8761,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "parent": false,
-        "favorite": false,
-        "decoDive": false,
         "purposeful": false,
         "pr": false,
         "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
-        "atpActivity": false
+        "atpActivity": false,
+        "favorite": false,
+        "decoDive": false,
+        "parent": false
     },
     {
         "activityId": 9479884349,
@@ -8980,15 +8980,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
         "favorite": false,
         "decoDive": false,
-        "parent": false
+        "parent": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false
     },
     {
         "activityId": 9475574934,
@@ -9199,15 +9199,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
         "favorite": false,
         "decoDive": false,
-        "parent": false
+        "parent": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false
     },
     {
         "activityId": 9473070688,
@@ -9418,15 +9418,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
         "favorite": false,
         "decoDive": false,
-        "parent": false
+        "parent": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false
     },
     {
         "activityId": 9472926951,
@@ -9637,15 +9637,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
         "favorite": false,
         "decoDive": false,
-        "parent": false
+        "parent": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false
     },
     {
         "activityId": 9466297139,
@@ -9858,15 +9858,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
         "favorite": false,
         "decoDive": false,
-        "parent": false
+        "parent": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false
     },
     {
         "activityId": 9466221436,
@@ -10077,15 +10077,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
         "favorite": false,
         "decoDive": false,
-        "parent": false
+        "parent": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false
     },
     {
         "activityId": 9462767860,
@@ -10296,15 +10296,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
         "favorite": false,
         "decoDive": false,
-        "parent": false
+        "parent": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false
     },
     {
         "activityId": 9460735430,
@@ -10515,15 +10515,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
         "favorite": false,
         "decoDive": false,
-        "parent": false
+        "parent": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false
     },
     {
         "activityId": 9460520756,
@@ -10734,15 +10734,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
         "favorite": false,
         "decoDive": false,
-        "parent": false
+        "parent": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false
     },
     {
         "activityId": 9460014455,
@@ -10953,15 +10953,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
         "favorite": false,
         "decoDive": false,
-        "parent": false
+        "parent": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false
     },
     {
         "activityId": 9452725829,
@@ -11172,15 +11172,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
         "favorite": false,
         "decoDive": false,
-        "parent": false
+        "parent": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false
     },
     {
         "activityId": 9452562955,
@@ -11391,15 +11391,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
         "favorite": false,
         "decoDive": false,
-        "parent": false
+        "parent": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false
     },
     {
         "activityId": 9447390450,
@@ -11610,15 +11610,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
         "favorite": false,
         "decoDive": false,
-        "parent": false
+        "parent": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false
     },
     {
         "activityId": 9445761665,
@@ -11829,15 +11829,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
         "favorite": false,
         "decoDive": false,
-        "parent": false
+        "parent": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false
     },
     {
         "activityId": 9445713461,
@@ -12048,15 +12048,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
         "favorite": false,
         "decoDive": false,
-        "parent": false
+        "parent": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false
     },
     {
         "activityId": 9436204957,
@@ -12267,15 +12267,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
         "favorite": false,
         "decoDive": false,
-        "parent": false
+        "parent": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false
     },
     {
         "activityId": 9436070206,
@@ -12486,15 +12486,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
         "favorite": false,
         "decoDive": false,
-        "parent": false
+        "parent": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false
     },
     {
         "activityId": 9401052511,
@@ -12705,15 +12705,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
         "favorite": false,
         "decoDive": false,
-        "parent": false
+        "parent": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false
     },
     {
         "activityId": 9350527666,
@@ -12924,15 +12924,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
         "favorite": false,
         "decoDive": false,
-        "parent": false
+        "parent": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false
     },
     {
         "activityId": 9341714652,
@@ -13143,15 +13143,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
         "favorite": false,
         "decoDive": false,
-        "parent": false
+        "parent": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false
     },
     {
         "activityId": 9335001534,
@@ -13362,15 +13362,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false,
+        "parent": false,
         "favorite": false,
-        "decoDive": false,
-        "parent": false
+        "decoDive": false
     },
     {
         "activityId": 8878265732,
@@ -13581,15 +13581,15 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false,
+        "parent": false,
         "favorite": false,
-        "decoDive": false,
-        "parent": false
+        "decoDive": false
     },
     {
         "activityId": 8878124450,
@@ -13800,14 +13800,14 @@
         "gameName": null,
         "differenceBodyBattery": null,
         "gameType": null,
-        "pr": false,
-        "purposeful": false,
-        "manualActivity": false,
         "autoCalcCalories": false,
         "elevationCorrected": false,
         "atpActivity": false,
+        "purposeful": false,
+        "manualActivity": false,
+        "pr": false,
+        "parent": false,
         "favorite": false,
-        "decoDive": false,
-        "parent": false
+        "decoDive": false
     }
 ]
