@@ -7,7 +7,7 @@ from requests.exceptions import HTTPError
 from garminconnect import GarminConnectAuthenticationError, GarminConnectConnectionError, \
     GarminConnectTooManyRequestsError, Garmin
 
-from datetime import datetime
+from datetime import datetime, timedelta
 from database.database import DailyActivityType, ActiveZoneMinutesType
 
 
@@ -35,7 +35,31 @@ class GarminConnect:
         else:
             return False
 
-    def activity_dictionary(self, date: datetime = datetime.now()) -> Optional[Dict]:
+    def activities_latest_dictionary(self) -> Optional[Dict]:
+        if self.garmin:
+            try:
+                dict_ = self.garmin.get_last_activity()
+                with open("JSON/activities_latest.json", "w") as file_:
+                    file_.write(json.dumps(dict_, indent=4))
+                return dict_
+            except (HTTPError, GarminConnectConnectionError, GarminConnectTooManyRequestsError) as e:
+                print(e)
+                return None
+
+    def activities_period_dictionary(self, beginning: datetime = datetime.now() - timedelta(days=360),
+                                     end: datetime = datetime.now()) -> Optional[List[Dict]]:
+        if self.garmin:
+            try:
+                dict_ = self.garmin.get_activities_by_date(beginning.strftime('%Y-%m-%d'), end.strftime('%Y-%m-%d'))
+
+                with open("JSON/activities_period.json", "w") as file_:
+                    file_.write(json.dumps(dict_, indent=4))
+                return dict_
+            except (HTTPError, GarminConnectConnectionError, GarminConnectTooManyRequestsError, AttributeError) as e:
+                print(e)
+                return None
+
+    def daily_activity_dictionary(self, date: datetime = datetime.now()) -> Optional[Dict]:
         if self.garmin:
             try:
                 dict_ = self.garmin.get_stats(date.isoformat())
@@ -44,10 +68,10 @@ class GarminConnect:
                 return dict_
             except (HTTPError, GarminConnectConnectionError, GarminConnectTooManyRequestsError) as e:
                 print(e)
-                return dict()
+                return None
 
     def activity_dataclass(self, user_id: int, date: datetime = datetime.now()) -> Optional[DailyActivityType]:
-        dict_ = self.activity_dictionary(date)
+        dict_ = self.daily_activity_dictionary(date)
 
         if dict_:
             active_zone_minutes = ActiveZoneMinutesType(fatBurnActiveZoneMinutes=dict_["activeSeconds"] / 60,
@@ -69,3 +93,14 @@ class GarminConnect:
             return daily_activity
         else:
             return None
+
+
+'''
+            # ACTIVITIES
+            elif i == "n":
+                # Get activities data from start and limit
+                display_json(f"api.get_activities({start}, {limit})", api.get_activities(start, limit)) # 0=start, 1=limit
+            elif i == "o":
+                # Get last activity
+                display_json("api.get_last_activity()", api.get_last_activity())
+'''
