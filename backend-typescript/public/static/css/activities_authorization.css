@@ -1,0 +1,15 @@
+body
+{
+    background-color: #95b5e8;
+    padding: 1em;
+}
+
+.container
+{
+    background-color: aliceblue;
+    border: 2px solid black;
+    border-radius: 2em;
+
+    margin: 1em;
+    width: fit-content;
+}

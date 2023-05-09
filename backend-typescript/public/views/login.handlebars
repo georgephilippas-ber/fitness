@@ -1,0 +1,127 @@
+<!-- HTML/BODY -->
+<div class="mt-6 flex min-h-full items-center justify-center py-12 px-4 sm:px-6 lg:px-8">
+    <div class="w-full max-w-md space-y-8">
+        <div>
+            <img class="mx-auto h-12 w-auto" src="{{logo}}"
+                 alt="logo">
+            <h2 class="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">Sign in to your account</h2>
+            <!--
+            <p class="mt-2 text-center text-sm text-gray-600">
+                Or
+                <a href="/login" class="font-medium text-indigo-600 hover:text-indigo-500">create an account</a> with
+                us
+            </p>
+            -->
+        </div>
+        <form class="mt-8 space-y-6" onsubmit="return false;">
+            <input type="hidden" name="remember" value="true">
+            <div class="-space-y-px rounded-md shadow-sm">
+                <div>
+                    <label for="identifier" class="sr-only">Email address</label>
+                    <input id="identifier" name="email" type="text" autocomplete="identifier" required
+                           class="m-1.5 relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                           placeholder="username or e-mail address">
+                </div>
+                <div>
+                    <label for="password" class="sr-only">Password</label>
+                    <input id="password" name="password" type="password" autocomplete="password" required
+                           class="m-1.5 relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
+                           placeholder="Password">
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between">
+                <div class="flex items-center">
+                    <input id="remember-me" name="remember-me" type="checkbox"
+                           class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                    <label for="remember-me" class="ml-2 block text-sm text-gray-900">Remember me</label>
+                </div>
+
+                <div class="text-sm">
+                    <a href="#" class="font-medium text-indigo-600 hover:text-indigo-500">Forgot your password?</a>
+                </div>
+            </div>
+
+            <div>
+                <button id="login" type="submit"
+                        class="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+          <span class="absolute inset-y-0 left-0 flex items-center pl-3">
+            <!-- Heroicon name: mini/lock-closed -->
+            <svg class="h-5 w-5 text-indigo-500 group-hover:text-indigo-400" xmlns="http://www.w3.org/2000/svg"
+                 viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+              <path fill-rule="evenodd"
+                    d="M10 1a4.5 4.5 0 00-4.5 4.5V9H5a2 2 0 00-2 2v6a2 2 0 002 2h10a2 2 0 002-2v-6a2 2 0 00-2-2h-.5V5.5A4.5 4.5 0 0010 1zm3 8V5.5a3 3 0 10-6 0V9h6z"
+                    clip-rule="evenodd"/>
+            </svg>
+          </span>
+                    Sign in
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<div style="display: none" id="notification-login-error"
+     class="fixed bg-white/60 backdrop-blur-xl z-20 max-w-md right-5 bottom-5 rounded-lg p-6 shadow ml-5">
+    <div style="display: flex; align-items: center; margin-bottom: 0.45em">
+        <img style="width: 2em; margin-right: 0.80em" alt="cancel" src="/public/static/assets/icons/ui/cancel.png"/>
+        <div class="text-sm text-slate-700 font-medium">Login failed</div>
+    </div>
+    <div id="message-login-error" class="text-xs">
+        the credentials you provided were invalid or a network error occurred
+    </div>
+</div>
+
+<!-- HTML/BODY -->
+
+<script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+<script>
+    const notification_login_error = document.getElementById("notification-login-error");
+    const message_login_error = document.getElementById("message-login-error");
+
+    let credentials =
+            {
+                identifier: document.getElementById("identifier").value,
+                password: document.getElementById("password").value
+            }
+
+    document.getElementById("identifier").addEventListener("change", (event) => {
+        credentials.identifier = event.target.value;
+    });
+    document.getElementById("password").addEventListener("change", (event) => {
+        credentials.password = event.target.value;
+    });
+
+    document.getElementById("login").addEventListener("click", () => {
+        if (credentials.identifier && credentials.password)
+            axios.get("/authentication/login", {
+                params: credentials
+            }).then(value => {
+//                axios.defaults.headers.common["Authenticated-User"] = value.token;
+                window.location = value.data.page || "/index";
+            }).catch(reason => {
+                if (reason.response) {
+                    if (reason.response?.data?.outcome) {
+                        switch (reason.response.data.outcome) {
+                            case "not_found":
+                            case "incorrect_password":
+                                message_login_error.innerHTML = "<p>incorrect login credentials</p>"
+                                break;
+                            case "unverified":
+                            case "inactive":
+                                message_login_error.innerHTML = "<p>user inactive or not verified</p>";
+                                break;
+                            default:
+                                message_login_error.innerHTML = reason.response.data.outcome;
+                        }
+                    } else
+                        message_login_error.innerHTML = reason.message;
+                } else
+                    message_login_error.innerHTML = reason.message;
+
+                notification_login_error.style.display = "inherit";
+
+                setTimeout(() => notification_login_error.style.display = "none", 2048);
+            });
+    });
+</script>

@@ -1,0 +1,79 @@
+### Send POST request with json body
+POST http://localhost:4096/activity/statistics
+Content-Type: application/json
+
+{
+  "user_id": -2,
+  "activity_name": "all"
+}
+
+### Send POST request with json body
+POST http://localhost:4096/activity/statistics
+Content-Type: application/json
+
+{
+  "user_id": -2,
+  "activity_name": "all"
+}
+
+### Send POST request with json body
+POST http://localhost:2048/intake/update
+Content-Type: application/json
+
+{
+  "user_id": -2
+}
+
+### Send POST request with json body
+POST http://localhost:4096/activities/intake/all
+Content-Type: application/json
+Authenticated-User: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjotMiwicm9sZSI6InVzZXIiLCJpYXQiOjE2ODA5NDAwNTMsImV4cCI6MTY4MDk0NzI1M30.iMXMt3BWKgZlMXw9nBVvIK-OSaQ-xHP5V9sNjddVulg
+
+{
+}
+
+### Send POST request with json body
+POST http://localhost:4096/activities/daily-metrics
+Content-Type: application/json
+Authenticated-User: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjotMiwicm9sZSI6InVzZXIiLCJpYXQiOjE2ODA5NzkxMzAsImV4cCI6MTY4MDk4NjMzMH0.cBjsAKn0sFNk6PKk7ANnebzioGOEcBry8Jm2z1FJXxE
+
+{
+}
+
+###
+POST http://localhost:2048/get
+Content-Type: application/json
+
+{
+  "user_id": -2
+}
+
+###
+GET http://localhost:2048/status?update_id=4892227069084628968513096ff0173f
+Content-Type: application/json
+Authenticated-User: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjotMiwicm9sZSI6InVzZXIiLCJpYXQiOjE2ODA5NzkxMzAsImV4cCI6MTY4MDk4NjMzMH0.cBjsAKn0sFNk6PKk7ANnebzioGOEcBry8Jm2z1FJXxE
+
+###
+GET http://localhost:4096/update/status?update_id=e91c0401-2686-4eef-80f7-e44934ec3abf
+Content-Type: application/json
+
+
+###
+POST http://localhost:4096/update/update
+Content-Type: application/json
+Authenticated-User: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjotMiwicm9sZSI6InVzZXIiLCJpYXQiOjE2ODE4OTMzOTYsImV4cCI6MTY4MTkwMDU5Nn0.vPaueXxef7RSUDE86UicfL19vWqfwgA_yuoNuek50FA
+
+
+###
+POST http://localhost:4096/report/report
+Content-Type: application/json
+Authenticated-User: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjotMiwicm9sZSI6InVzZXIiLCJpYXQiOjE2ODE3MTE1NzMsImV4cCI6MTY4MTcxODc3M30.B4J1Dq85SYv5g_0qu8SdW-OJ72NJqyh2f5Sg3XHMG00
+
+###
+POST http://localhost:4096/nutrition_search/query
+Content-Type: application/json
+
+{
+  "query": "strawberry",
+  "limit": 10
+}

@@ -1,0 +1,64 @@
+<html lang="en">
+<head>
+    <style>
+        .title
+        {
+            font-size: 3em;
+            margin: 0.35em 0 0.65em 0;
+        }
+
+        .title-users-count
+        {
+            font-size: 0.55em;
+            font-family: "DejaVu Sans Mono", monospace;
+        }
+
+        .users-container
+        {
+            display: flex;
+            flex-flow: row wrap;
+        }
+
+        .user-container
+        {
+            margin: 0.45em;
+            padding: 0.65em;
+
+            border-radius: 5px;
+            border: 1px solid #314692;
+            background-color: #95b5e8;
+
+            width: fit-content;
+        }
+
+        .name
+        {
+            font-size: 0.85em;
+            font-weight: bold;
+            margin-bottom: 0.15em;
+        }
+
+        .e-mail
+        {
+        }
+
+        a
+        {
+            color: inherit;
+            font-family: inherit;
+            text-decoration: none;
+        }
+    </style>
+    <title>
+        {{title}}
+    </title>
+</head>
+<body>
+<div class="title">
+    Registered Users <span class="title-users-count">({{users.length}})</span>
+</div>
+<div class="users-container">
+    {{{body}}}
+</div>
+</body>
+</html>

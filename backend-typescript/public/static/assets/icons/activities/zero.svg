@@ -1,0 +1,11 @@
+<svg height="512" viewBox="0 0 480 480" width="512" xmlns="http://www.w3.org/2000/svg">
+    <g id="Layer_2" data-name="Layer 2">
+        <g id="_01.numer_0" data-name="01.numer_0">
+            <g id="icon">
+                <rect id="background" fill="#d50000" height="480" rx="240" width="480"/>
+                <path d="m154.5 240c0-64.8 31.2-109.2 85.5-109.2s85.5 44.4 85.5 109.2-31.2 109.2-85.5 109.2-85.5-44.4-85.5-109.2zm123 0c0-40.5-12.3-62.4-37.5-62.4s-37.5 21.9-37.5 62.4 12.3 62.4 37.5 62.4 37.5-21.9 37.5-62.4z"
+                      fill="#fff"/>
+            </g>
+        </g>
+    </g>
+</svg>

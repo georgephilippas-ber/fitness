@@ -1,0 +1,37 @@
+[
+  {
+    "enabled": true,
+    "protected": true,
+    "allowed": "everyone",
+    "view": "index",
+    "layout": "index",
+    "endpoint": "/index",
+    "injection": {
+      "welcome": "welcome from JSON"
+    },
+    "page_characteristics": {
+      "title": "index for everyone",
+      "css_filenames": [
+        "tailwindcss/index"
+      ]
+    }
+  },
+  {
+    "enabled": true,
+    "protected": true,
+    "allowed": "everyone",
+    "view": "activities/authorization",
+    "layout": "index",
+    "endpoint": "/activities_authorization",
+    "injection": {
+      "welcome": "activities_authorization"
+    },
+    "page_characteristics": {
+      "title": "Authorization",
+      "css_filenames": [
+        "tailwindcss/index",
+        "activities_authorization"
+      ]
+    }
+  }
+]
