@@ -1,4 +1,5 @@
 import json
+import uuid
 from typing import Any, List, Dict, Optional
 
 from requests.exceptions import HTTPError
@@ -7,6 +8,7 @@ from garminconnect import GarminConnectAuthenticationError, GarminConnectConnect
     GarminConnectTooManyRequestsError, Garmin
 
 from datetime import datetime
+from database.database import DailyActivityType, ActiveZoneMinutesType
 
 
 def connect(email: str, password: str) -> Optional[Garmin]:
@@ -33,7 +35,7 @@ class GarminConnect:
         else:
             return False
 
-    def activity(self, date: datetime = datetime.now()) -> Optional[Dict]:
+    def activity_dictionary(self, date: datetime = datetime.now()) -> Optional[Dict]:
         if self.garmin:
             try:
                 dict_ = self.garmin.get_stats(date.isoformat())
@@ -43,3 +45,27 @@ class GarminConnect:
             except (HTTPError, GarminConnectConnectionError, GarminConnectTooManyRequestsError) as e:
                 print(e)
                 return dict()
+
+    def activity_dataclass(self, user_id: int, date: datetime = datetime.now()) -> Optional[DailyActivityType]:
+        dict_ = self.activity_dictionary(date)
+
+        if dict_:
+            active_zone_minutes = ActiveZoneMinutesType(fatBurnActiveZoneMinutes=dict_["activeSeconds"] / 60,
+                                                        cardioActiveZoneMinutes=dict_["highlyActiveSeconds"] / 60,
+                                                        peakActiveZoneMinutes=dict_["vigorousIntensityMinutes"],
+                                                        activeZoneMinutes=0)
+
+            daily_activity = DailyActivityType(id=uuid.uuid4().hex,
+                                               activity_calories=dict_["activeKilocalories"],
+                                               active_zone_minutes=active_zone_minutes,
+                                               referenceDate=int(date.now().timestamp() * 1.e3),
+                                               calories=dict_["totalKilocalories"],
+                                               distance=dict_["totalDistanceMeters"],
+                                               elevation=dict_["floorsAscendedInMeters"],
+                                               user_id=user_id, calories_BMR=dict_["bmrKilocalories"],
+                                               floors=dict_["floorsAscended"],
+                                               steps=dict_["totalSteps"])
+
+            return daily_activity
+        else:
+            return None
