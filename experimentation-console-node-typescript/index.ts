@@ -1,7 +1,7 @@
-import {distance} from "./fuzzy-search/fuzzy-search";
+import {levenshteinDistance} from "./fuzzy-search/fuzzy-search";
 import {faker} from "@faker-js/faker";
 
-const array = Array(10).fill(0).map(value => ({
+const array = Array(400).fill(0).map(value => ({
     company: faker.company.name(),
     product: faker.commerce.productName(),
     color: faker.color.human(),
@@ -12,4 +12,6 @@ const array = Array(10).fill(0).map(value => ({
 
 console.log(array);
 
-console.log(distance("lion", array, "animal", 3));
+let f = levenshteinDistance(["lion", "azure", "frozen"], array, ["animal", "color", "product"], 5);
+
+console.log(array[f[0][0]])

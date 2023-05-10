@@ -3,11 +3,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.distance = void 0;
+exports.levenshteinDistance = void 0;
 const natural_1 = __importDefault(require("natural"));
-function distance(query, universe, key, max) {
-    return universe.map((value, index) => [index, natural_1.default.LevenshteinDistance(query.trim().toLowerCase(), value[key].toString())]).sort((a, b) => {
+function levenshteinDistance(queries, universe, keys, max) {
+    const distances = universe.map((value, index) => {
+        let distanceSum = 0;
+        for (let i = 0; i < queries.length; i++) {
+            const query = queries[i].trim().toLowerCase();
+            const key = keys[i];
+            const distance = natural_1.default.LevenshteinDistance(query, value[key].toString());
+            distanceSum += distance;
+        }
+        return [index, distanceSum];
+    });
+    const sortedDistances = distances.sort((a, b) => {
         return a[1] - b[1];
-    }).slice(0, max);
+    });
+    return sortedDistances.slice(0, max);
 }
-exports.distance = distance;
+exports.levenshteinDistance = levenshteinDistance;
