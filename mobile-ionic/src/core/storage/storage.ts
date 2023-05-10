@@ -2,4 +2,4 @@ import {Storage} from "@ionic/storage";
 
 const storage = new Storage();
 
-const storagePromise: Promise<Storage> = storage.create();
+export const storagePromise: Promise<Storage> = storage.create();
