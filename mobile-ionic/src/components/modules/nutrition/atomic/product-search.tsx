@@ -1,9 +1,7 @@
-import {IonButton, IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonInput} from "@ionic/react";
+import {IonCard, IonCardContent, IonCardHeader, IonCardTitle} from "@ionic/react";
 import {useState} from "react";
 
-import {fundamental_nutrients_type, product_type} from "@shared/common/schema/nutrition/nutrition";
-
-import natural from 'natural';
+import {fundamental_nutrients_type} from "@shared/common/schema/nutrition/nutrition";
 
 export type product_search_type =
     {

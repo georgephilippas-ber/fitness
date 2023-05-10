@@ -22,6 +22,8 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import {ProductSearch} from "./components/modules/nutrition/atomic/product-search";
+import {ProductCard} from "./components/modules/nutrition/atomic/product-card/product-card";
+import {fake_product} from "@shared/common/faker/nutrition";
 
 setupIonicReact();
 
@@ -41,7 +43,7 @@ setupIonicReact();
 // );
 
 function App() {
-    return <ProductSearch/>
+    return <ProductCard product={fake_product()}/>
 }
 
 export default App;

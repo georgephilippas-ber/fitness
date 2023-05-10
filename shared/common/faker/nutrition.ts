@@ -3,8 +3,7 @@ import {fundamental_nutrients_type, product_consumption_type, product_type} from
 import {day_fromMillis} from "../features/time/period/period";
 import {DateTime} from "luxon";
 
-export function fake_daily_consumption_fundamental_nutrients(): fundamental_nutrients_type
-{
+export function fake_daily_consumption_fundamental_nutrients(): fundamental_nutrients_type {
     return {
         sugar: faker.datatype.float({min: 0, max: 100.}),
         fiber: faker.datatype.float({min: 0, max: 56}),
@@ -16,8 +15,7 @@ export function fake_daily_consumption_fundamental_nutrients(): fundamental_nutr
     }
 }
 
-export function fake_product_consumption(products: product_type[], date: DateTime): product_consumption_type
-{
+export function fake_product_consumption(products: product_type[], date: DateTime): product_consumption_type {
     const product = faker.helpers.arrayElement(products);
 
     return {
@@ -28,18 +26,15 @@ export function fake_product_consumption(products: product_type[], date: DateTim
     }
 }
 
-export function fake_product_consumption_array(products: product_type[], cardinality: number = 0x20, date: DateTime = DateTime.now()): product_consumption_type[]
-{
+export function fake_product_consumption_array(products: product_type[], cardinality: number = 0x20, date: DateTime = DateTime.now()): product_consumption_type[] {
     return Array(cardinality).fill(0).map(value => fake_product_consumption(products, date));
 }
 
-export function fake_product_array(cardinality: number = 0x100): product_type[]
-{
+export function fake_product_array(cardinality: number = 0x100): product_type[] {
     return Array(cardinality).fill(0).map(value => fake_product());
 }
 
-export function fake_product(id: string = faker.datatype.uuid()): product_type
-{
+export function fake_product(id: string = faker.datatype.uuid()): product_type {
     return {
         id,
         serving_size: faker.datatype.float({min: 1.e1, max: 4.e1}),
