@@ -21,7 +21,7 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import {ProductSearch} from "./components/modules/nutrition/atomic/product-search";
+import {ProductSearch} from "./components/modules/nutrition/atomic/product-search/product-search";
 import {ProductCard} from "./components/modules/nutrition/atomic/product-card/product-card";
 import {fake_product} from "@shared/common/faker/nutrition";
 
@@ -44,10 +44,11 @@ setupIonicReact();
 
 function App() {
     return <>
-        <ProductCard hideCardContent product={fake_product()}/>
-        <ProductCard hideCardContent product={fake_product()}/>
-        <ProductCard hideCardHeader={true} product={fake_product()}/>
-        <ProductCard hideCardHeader={true} product={fake_product()}/>
+        <ProductSearch/>
+        {/*<ProductCard hideCardContent product={fake_product()}/>*/}
+        {/*<ProductCard hideCardContent product={fake_product()}/>*/}
+        {/*<ProductCard hideCardHeader={true} product={fake_product()}/>*/}
+        {/*<ProductCard hideCardHeader={true} product={fake_product()}/>*/}
     </>
 }
 

@@ -25,7 +25,7 @@ export type fundamental_nutrients_type =
     }
 
 export const fundamental_nutrients_keys: (keyof fundamental_nutrients_type)[] =
-    ["fat", "carbohydrates", "energy", "protein", "sodium", "sugar", "protein"];
+    ["fat", "carbohydrates", "energy", "protein", "sodium", "sugar", "fiber"];
 
 export const fundamental_nutrients_zero = (): fundamental_nutrients_type => ({
 
