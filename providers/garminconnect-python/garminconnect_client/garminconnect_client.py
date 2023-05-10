@@ -1,15 +1,14 @@
 import json
 import uuid
-from typing import Any, List, Dict, Optional
-
-from requests.exceptions import HTTPError
+from datetime import datetime, timedelta
+from typing import List, Dict, Optional
 
 from garminconnect import GarminConnectAuthenticationError, GarminConnectConnectionError, \
     GarminConnectTooManyRequestsError, Garmin
+from requests.exceptions import HTTPError
 
-from datetime import datetime, timedelta
-from schema.daily_activity import DailyActivityType, ActiveZoneMinutesType
 from schema.activities import ActivityInterfaceBase, to_activity
+from schema.daily_activity import DailyActivityType, ActiveZoneMinutesType
 
 
 def connect(email: str, password: str) -> Optional[Garmin]:
@@ -23,23 +22,36 @@ def connect(email: str, password: str) -> Optional[Garmin]:
 
 
 class GarminConnect:
-    garmin: Optional[Garmin]
+    __garmin: Optional[Garmin]
+    __is_connected: bool
 
     def __init__(self, email: str, password: str):
-        self.garmin = connect(email, password)
-        self.garmin.login()
+        self.__garmin = connect(email, password)
+
+        self.__is_connected = self.__garmin.login()
+
+    def connect(self) -> bool:
+        if self.__garmin:
+            self.__is_connected = self.__garmin.login()
+        else:
+            self.__is_connected = False
+
+        return self.__is_connected
 
     def disconnect(self) -> bool:
-        if self.garmin is not None:
-            self.garmin.logout()
+        if self.__garmin is not None:
+            self.__garmin.logout()
             return True
         else:
             return False
 
+    def is_connected(self):
+        return self.__is_connected
+
     def activities_latest_dictionary(self) -> Optional[Dict]:
-        if self.garmin:
+        if self.__garmin:
             try:
-                dict_ = self.garmin.get_last_activity()
+                dict_ = self.__garmin.get_last_activity()
                 with open("JSON/activities_latest.json", "w") as file_:
                     file_.write(json.dumps(dict_, indent=4))
                 return dict_
@@ -49,9 +61,9 @@ class GarminConnect:
 
     def activities_period_dictionary(self, beginning: datetime = datetime.now() - timedelta(days=360),
                                      end: datetime = datetime.now()) -> Optional[List[Dict]]:
-        if self.garmin:
+        if self.__garmin:
             try:
-                dict_ = self.garmin.get_activities_by_date(beginning.strftime('%Y-%m-%d'), end.strftime('%Y-%m-%d'))
+                dict_ = self.__garmin.get_activities_by_date(beginning.strftime('%Y-%m-%d'), end.strftime('%Y-%m-%d'))
 
                 with open("JSON/activities_period.json", "w") as file_:
                     file_.write(json.dumps(dict_, indent=4))
@@ -70,9 +82,9 @@ class GarminConnect:
             return None
 
     def daily_activity_dictionary(self, date: datetime = datetime.now()) -> Optional[Dict]:
-        if self.garmin:
+        if self.__garmin:
             try:
-                dict_ = self.garmin.get_stats(date.isoformat())
+                dict_ = self.__garmin.get_stats(date.isoformat())
                 with open("JSON/activity.json", "w") as file_:
                     file_.write(json.dumps(dict_, indent=4))
                 return dict_

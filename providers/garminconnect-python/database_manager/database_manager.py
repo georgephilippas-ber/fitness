@@ -1,18 +1,23 @@
 from dataclasses import asdict
 from datetime import datetime
+from enum import Enum
 from typing import Optional, List
 
-from pymongo import MongoClient
+from pymongo import MongoClient, DESCENDING
 from pymongo.database import Database
 
-from schema.daily_activity import DailyActivityType
-from time_feature.time_feature import today, When
-
 from schema.activities import ActivityInterfaceBase
+from schema.daily_activity import DailyActivityType
+from features.time_feature.time_feature import today, When
 
 mongodb_atlas_username: str = "georgephilippas-ber"
 mongodb_atlas_password: str = "85D3qpDm5Ycfq4f6"
 mongodb_atlas_cluster_name: str = "cluster0"
+
+
+class ManagerType(Enum):
+    DailyActivity = 0
+    Activities = 1
 
 
 class DatabaseManager:
@@ -46,8 +51,19 @@ class DatabaseManager:
             self.get_collection("ActivitiesManager").update_one({"user_id": activity.user_id, "id": activity.id},
                                                                 {"$set": asdict(activity)}, upsert=True)
 
-    def get_latest_daily_activity(self, user_id: int) -> Optional[DailyActivityType]:
-        pass
+    def get_latest_date(self, user_id: int, manager: ManagerType) -> Optional[datetime]:
+        match manager:
+            case ManagerType.DailyActivity:
+                collection = "ActivityManager"
+            case ManagerType.Activities:
+                collection = "ActivitiesManager"
+            case _:
+                collection = "ActivityManager"
 
-    def get_latest_activity(self, user_id: int) -> Optional[ActivityInterfaceBase]:
-        pass
+        documents_ = list(self.get_collection(collection).find({"user_id": user_id}).sort(
+            [("referenceDate", DESCENDING)]).limit(1))
+
+        if documents_:
+            return datetime.fromtimestamp(documents_[0].get("referenceDate") / 1.e3)
+        else:
+            return None
