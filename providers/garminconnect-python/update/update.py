@@ -25,10 +25,10 @@ class Update:
         latest_date = max(latest_date_candidate,
                           global_beginning) if latest_date_candidate is not None else global_beginning
 
-        current = max(latest_date, global_beginning)
+        current = latest_date
         counter = 0
         while current <= day(datetime.now(), When.END):
-            activity_ = self.__garmin_connect.activity_dataclass(user_id, current)
+            activity_ = self.__garmin_connect.daily_activity_dataclass(user_id, current)
             if activity_:
                 self.__database_manager.update_daily_activity(activity_)
                 counter += 1

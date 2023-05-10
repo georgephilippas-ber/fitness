@@ -48,20 +48,9 @@ class GarminConnect:
     def is_connected(self):
         return self.__is_connected
 
-    def activities_latest_dictionary(self) -> Optional[Dict]:
-        if self.__garmin:
-            try:
-                dict_ = self.__garmin.get_last_activity()
-                with open("JSON/activities_latest.json", "w") as file_:
-                    file_.write(json.dumps(dict_, indent=4))
-                return dict_
-            except (HTTPError, GarminConnectConnectionError, GarminConnectTooManyRequestsError) as e:
-                print(e)
-                return None
-
     def activities_period_dictionary(self, beginning: datetime = datetime.now() - timedelta(days=360),
                                      end: datetime = datetime.now()) -> Optional[List[Dict]]:
-        if self.__garmin:
+        if self.__is_connected:
             try:
                 dict_ = self.__garmin.get_activities_by_date(beginning.strftime('%Y-%m-%d'), end.strftime('%Y-%m-%d'))
 
@@ -71,6 +60,8 @@ class GarminConnect:
             except (HTTPError, GarminConnectConnectionError, GarminConnectTooManyRequestsError, AttributeError) as e:
                 print(e)
                 return None
+        else:
+            return None
 
     def activities_period_dataclass(self, user_id: int, beginning: datetime = datetime.now() - timedelta(days=365),
                                     end: datetime = datetime.now()) -> Optional[List[ActivityInterfaceBase]]:
@@ -82,7 +73,7 @@ class GarminConnect:
             return None
 
     def daily_activity_dictionary(self, date: datetime = datetime.now()) -> Optional[Dict]:
-        if self.__garmin:
+        if self.__is_connected:
             try:
                 dict_ = self.__garmin.get_stats(date.strftime('%Y-%m-%d'))
                 with open("JSON/activity.json", "w") as file_:
@@ -91,9 +82,13 @@ class GarminConnect:
             except (HTTPError, GarminConnectConnectionError, GarminConnectTooManyRequestsError) as e:
                 print(e)
                 return None
+        else:
+            return None
 
-    def activity_dataclass(self, user_id: int, date: datetime = datetime.now()) -> Optional[DailyActivityType]:
+    def daily_activity_dataclass(self, user_id: int, date: datetime = datetime.now()) -> Optional[DailyActivityType]:
         dict_ = self.daily_activity_dictionary(date)
+
+        # TODO: dict_.get("totalKilocalories") is not None: garminconnect invalid activities, most fields null, rewrite
 
         if dict_ and dict_.get("totalKilocalories") is not None:
             active_zone_minutes = ActiveZoneMinutesType(fatBurnActiveZoneMinutes=dict_.get("activeSeconds", 0.) / 60.,
