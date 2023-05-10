@@ -8,7 +8,7 @@ from pymongo.database import Database
 
 from schema.activities import ActivityInterfaceBase
 from schema.daily_activity import DailyActivityType
-from features.time_feature.time_feature import today, When
+from features.time_feature.time_feature import day, When
 
 mongodb_atlas_username: str = "georgephilippas-ber"
 mongodb_atlas_password: str = "85D3qpDm5Ycfq4f6"
@@ -38,7 +38,7 @@ class DatabaseManager:
 
     def update_daily_activity(self, daily_activity: DailyActivityType) -> bool:
         daily_activity.referenceDate = int(
-            today(datetime.fromtimestamp(daily_activity.referenceDate / 1.e3), When.BEGINNING).timestamp() * 1.e3)
+            day(datetime.fromtimestamp(daily_activity.referenceDate / 1.e3), When.BEGINNING).timestamp() * 1.e3)
 
         update_result = self.get_collection("ActivityManager").update_one(
             {"referenceDate": daily_activity.referenceDate, "user_id": daily_activity.user_id},

@@ -7,7 +7,7 @@ class When(Enum):
     END = 1
 
 
-def today(date: datetime, when: When):
+def day(date: datetime, when: When):
     if when == When.BEGINNING:
         return date.replace(hour=0, minute=0, second=0, microsecond=0)
     else:
@@ -15,4 +15,4 @@ def today(date: datetime, when: When):
 
 
 if __name__ == "__main__":
-    print(today(datetime.now(), When.END))
+    print(day(datetime.now(), When.END))

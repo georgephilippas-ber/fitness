@@ -76,7 +76,7 @@ class GarminConnect:
                                     end: datetime = datetime.now()) -> Optional[List[ActivityInterfaceBase]]:
         raw_activities = self.activities_period_dictionary(beginning, end)
 
-        if raw_activities:
+        if raw_activities is not None:
             return [to_activity(user_id, raw_activity) for raw_activity in raw_activities]
         else:
             return None
@@ -84,7 +84,7 @@ class GarminConnect:
     def daily_activity_dictionary(self, date: datetime = datetime.now()) -> Optional[Dict]:
         if self.__garmin:
             try:
-                dict_ = self.__garmin.get_stats(date.isoformat())
+                dict_ = self.__garmin.get_stats(date.strftime('%Y-%m-%d'))
                 with open("JSON/activity.json", "w") as file_:
                     file_.write(json.dumps(dict_, indent=4))
                 return dict_
@@ -95,10 +95,11 @@ class GarminConnect:
     def activity_dataclass(self, user_id: int, date: datetime = datetime.now()) -> Optional[DailyActivityType]:
         dict_ = self.daily_activity_dictionary(date)
 
-        if dict_:
-            active_zone_minutes = ActiveZoneMinutesType(fatBurnActiveZoneMinutes=dict_["activeSeconds"] / 60,
-                                                        cardioActiveZoneMinutes=dict_["highlyActiveSeconds"] / 60,
-                                                        peakActiveZoneMinutes=dict_["vigorousIntensityMinutes"],
+        if dict_ and dict_.get("totalKilocalories") is not None:
+            active_zone_minutes = ActiveZoneMinutesType(fatBurnActiveZoneMinutes=dict_.get("activeSeconds", 0.) / 60.,
+                                                        cardioActiveZoneMinutes=dict_.get("highlyActiveSeconds",
+                                                                                          0) / 60,
+                                                        peakActiveZoneMinutes=dict_.get("vigorousIntensityMinutes", 0),
                                                         activeZoneMinutes=0)
 
             daily_activity = DailyActivityType(id=uuid.uuid4().hex,
