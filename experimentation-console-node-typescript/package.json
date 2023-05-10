@@ -1,0 +1,18 @@
+{
+  "name": "experimentation-console-node-typescript",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@faker-js/faker": "^7.6.0",
+    "@types/natural": "^5.1.2",
+    "@types/node": "^20.1.2",
+    "natural": "^6.3.0"
+  }
+}
