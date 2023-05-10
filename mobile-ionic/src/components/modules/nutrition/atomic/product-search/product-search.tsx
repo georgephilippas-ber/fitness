@@ -30,8 +30,6 @@ export function ProductSearch({handleSearch}: { handleSearch?: (product_search: 
     }
 
     useEffect(() => {
-        console.log(sortCriterion, sortDirection);
-
         set_productSearch(prevState => {
             return {
                 ...prevState, sort: {

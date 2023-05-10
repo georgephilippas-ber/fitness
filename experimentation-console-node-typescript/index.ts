@@ -1,4 +1,4 @@
-import {levenshteinDistance, levenshteinDistanceSync} from "./fuzzy-search/fuzzy-search";
+import {levenshteinDistance} from "./fuzzy-search/fuzzy-search";
 import {faker} from "@faker-js/faker";
 
 const array = Array(20).fill(0).map(value => ({

@@ -1,7 +1,4 @@
-import {Redirect, Route} from 'react-router-dom';
-import {IonApp, IonRouterOutlet, setupIonicReact} from '@ionic/react';
-import {IonReactRouter} from '@ionic/react-router';
-import Home from './pages/Home';
+import {IonPage, setupIonicReact} from '@ionic/react';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -21,9 +18,8 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import {ProductSearch} from "./components/modules/nutrition/atomic/product-search/product-search";
-import {ProductCard} from "./components/modules/nutrition/atomic/product-card/product-card";
-import {fake_product} from "@shared/common/faker/nutrition";
+import {fake_product_array} from "@shared/common/faker/nutrition";
+import {ProductsListSearch} from "./components/modules/nutrition/atomic/products-list-search/products-list-search";
 
 setupIonicReact();
 
@@ -44,11 +40,9 @@ setupIonicReact();
 
 function App() {
     return <>
-        <ProductSearch/>
-        {/*<ProductCard hideCardContent product={fake_product()}/>*/}
-        {/*<ProductCard hideCardContent product={fake_product()}/>*/}
-        {/*<ProductCard hideCardHeader={true} product={fake_product()}/>*/}
-        {/*<ProductCard hideCardHeader={true} product={fake_product()}/>*/}
+        <IonPage>
+            <ProductsListSearch products={fake_product_array(0x100)}/>
+        </IonPage>
     </>
 }
 

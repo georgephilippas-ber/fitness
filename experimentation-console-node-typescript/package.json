@@ -13,6 +13,6 @@
     "@faker-js/faker": "^7.6.0",
     "@types/natural": "^5.1.2",
     "@types/node": "^20.1.2",
-    "natural": "^6.3.0"
+    "levenshtein-edit-distance": "^3.0.1"
   }
 }
