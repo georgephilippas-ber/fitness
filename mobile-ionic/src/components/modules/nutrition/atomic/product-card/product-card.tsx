@@ -54,6 +54,9 @@ export function FundamentalNutrients_IonCardContent({fundamental_nutrients, scal
 }) {
     return (
         <IonCardContent>
+            <div>
+                <em style={{fontSize: "0.85em"}}>value per 100g</em>
+            </div>
             <div className={"fundamental-nutrients-container"}>
                 <Value nutrient={"energy"} quantity={fundamental_nutrients.energy * scale} units={"kCal"}/>
                 <Value nutrient={"carbohydrates"} quantity={fundamental_nutrients.carbohydrates * scale} units={"g"}/>

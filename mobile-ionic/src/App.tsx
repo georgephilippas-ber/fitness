@@ -41,7 +41,7 @@ setupIonicReact();
 function App() {
     return <>
         <IonPage>
-            <ProductsListSearch products={fake_product_array(0x100)}/>
+            <ProductsListSearch products={fake_product_array(0x500)}/>
         </IonPage>
     </>
 }
