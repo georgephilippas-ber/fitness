@@ -6,9 +6,9 @@ import {
     IonCheckbox,
     IonInput, IonLabel,
     IonRadio, IonRadioGroup,
-    IonSelect, IonSelectOption
+    IonSelect, IonSelectOption, RadioGroupChangeEventDetail
 } from "@ionic/react";
-import {useState} from "react";
+import React, {FormEvent, FormEventHandler, useEffect, useState} from "react";
 
 import {fundamental_nutrients_keys, fundamental_nutrients_type} from "@shared/common/schema/nutrition/nutrition";
 
@@ -34,8 +34,38 @@ function empty_productSearch(): product_search_type {
     }
 }
 
-export function ProductSearch() {
+type sort_direction_type = "ascending" | "descending";
+
+export function ProductSearch({handleSearch}: { handleSearch?: (product_search: product_search_type) => void }) {
     const [productSearch, set_productSearch] = useState<product_search_type>(empty_productSearch());
+
+    const [sortDirection, set_sortDirection] = useState<sort_direction_type>("descending");
+    const [sortCriterion, set_sortCriterion] = useState<keyof fundamental_nutrients_type>("energy");
+
+    const handleSortDirectionChange = (event: CustomEvent<{ value: sort_direction_type }>): void => {
+        set_sortDirection(event.detail.value);
+    };
+
+    function handleSortCriterionChange(event: CustomEvent<{ value: keyof fundamental_nutrients_type }>) {
+        set_sortCriterion(event.detail.value);
+    }
+
+    useEffect(() => {
+        console.log(sortCriterion, sortDirection);
+
+        set_productSearch(prevState => {
+            return {
+                ...prevState, sort: {
+                    key: sortCriterion,
+                    direction: sortDirection
+                }
+            };
+        });
+    }, [sortDirection, sortCriterion]);
+
+    useEffect(() => {
+        handleSearch?.(productSearch);
+    }, [productSearch]);
 
     return (
         <IonCard>
@@ -45,18 +75,31 @@ export function ProductSearch() {
                 </IonCardTitle>
             </IonCardHeader>
             <IonCardContent>
-                <IonInput value={productSearch.barcode} label={"barcode"} labelPlacement={"floating"}/>
-                <IonInput value={productSearch.name} label={"name"} labelPlacement={"floating"}/>
-                <IonInput value={productSearch.food} label={"food"} labelPlacement={"floating"}/>
-                <IonInput value={productSearch.characteristics} label={"characteristics"} labelPlacement={"floating"}/>
+                <IonInput onIonInput={(e) => set_productSearch(prevState => {
+                    return {...prevState, barcode: e.detail.value || ""}
+                })} value={productSearch.barcode} label={"barcode"} labelPlacement={"floating"}/>
+                <IonInput onIonInput={(e) => set_productSearch(prevState => {
+                    return {...prevState, name: e.detail.value || ""}
+                })} value={productSearch.name} label={"name"} labelPlacement={"floating"}/>
+                <IonInput onIonInput={(e) => set_productSearch(prevState => {
+                    return {...prevState, food: e.detail.value || ""}
+                })} value={productSearch.food} label={"food"} labelPlacement={"floating"}/>
+                <IonInput onIonInput={(e) => set_productSearch(prevState => {
+                    return {...prevState, characteristics: e.detail.value || ""}
+                })} value={productSearch.characteristics} label={"characteristics"} labelPlacement={"floating"}/>
 
                 <div style={{display: "flex", alignItems: "flex-end", gap: "0.85em"}}>
                     <IonSelect style={{maxWidth: "10em"}} labelPlacement={"floating"} label={"sort by"}
-                               value={fundamental_nutrients_keys[0]}>
+                               value={sortCriterion} onIonChange={handleSortCriterionChange}>
                         {fundamental_nutrients_keys.sort().map(value => <IonSelectOption key={value}
                                                                                          value={value}>{value}</IonSelectOption>)}
                     </IonSelect>
-                    <IonRadioGroup style={{display: "flex", flexDirection: "row", gap: "0.85em", marginBottom: "0.60em"}}>
+                    <IonRadioGroup onIonChange={handleSortDirectionChange} value={sortDirection} style={{
+                        display: "flex",
+                        flexDirection: "row",
+                        gap: "0.85em",
+                        marginBottom: "0.60em"
+                    }}>
                         <div style={{display: "flex", flexDirection: "row", gap: "0.45em"}}>
                             <IonLabel>ascending</IonLabel>
                             <IonRadio slot="start" value="ascending" name="myRadioGroup"/>
