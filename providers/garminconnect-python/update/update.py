@@ -29,13 +29,14 @@ class Update:
         counter = 0
         while current <= day(datetime.now(), When.END):
             activity_ = self.__garmin_connect.daily_activity_dataclass(user_id, current)
+
             if activity_:
                 self.__database_manager.update_daily_activity(activity_)
                 counter += 1
 
             current += timedelta(days=1)
 
-        return counter, current
+        return counter, current - timedelta(days=1)
 
     def update_activities(self, user_id: int) -> int:
         latest_date_candidate = self.__database_manager.get_latest_date(user_id,

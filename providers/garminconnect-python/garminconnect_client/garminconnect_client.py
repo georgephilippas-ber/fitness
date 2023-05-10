@@ -31,7 +31,7 @@ class GarminConnect:
         self.__is_connected = self.__garmin.login()
 
     def connect(self) -> bool:
-        if self.__garmin:
+        if self.__garmin and not self.__is_connected:
             self.__is_connected = self.__garmin.login()
         else:
             self.__is_connected = False
@@ -39,7 +39,7 @@ class GarminConnect:
         return self.__is_connected
 
     def disconnect(self) -> bool:
-        if self.__garmin is not None:
+        if self.__garmin is not None and self.__is_connected:
             self.__garmin.logout()
             return True
         else:
@@ -100,7 +100,7 @@ class GarminConnect:
             daily_activity = DailyActivityType(id=uuid.uuid4().hex,
                                                activity_calories=dict_["activeKilocalories"],
                                                active_zone_minutes=active_zone_minutes,
-                                               referenceDate=int(date.now().timestamp() * 1.e3),
+                                               referenceDate=int(date.timestamp() * 1.e3),
                                                calories=dict_["totalKilocalories"],
                                                distance=dict_["totalDistanceMeters"],
                                                elevation=dict_["floorsAscendedInMeters"],
