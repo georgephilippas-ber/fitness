@@ -43,7 +43,12 @@ setupIonicReact();
 // );
 
 function App() {
-    return <ProductCard product={fake_product()}/>
+    return <>
+        <ProductCard hideCardContent product={fake_product()}/>
+        <ProductCard hideCardContent product={fake_product()}/>
+        <ProductCard hideCardHeader={true} product={fake_product()}/>
+        <ProductCard hideCardHeader={true} product={fake_product()}/>
+    </>
 }
 
 export default App;
