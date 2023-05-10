@@ -42,7 +42,7 @@ export type product_designation_type =
     {
         food: string;
         name: string;
-        company?: string;
+        company: string;
         characteristics: string[];
     }
 

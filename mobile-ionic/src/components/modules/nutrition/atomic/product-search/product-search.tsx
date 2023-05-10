@@ -3,38 +3,17 @@ import {
     IonCardContent,
     IonCardHeader,
     IonCardTitle,
-    IonCheckbox,
-    IonInput, IonLabel,
-    IonRadio, IonRadioGroup,
-    IonSelect, IonSelectOption, RadioGroupChangeEventDetail
+    IonInput,
+    IonLabel,
+    IonRadio,
+    IonRadioGroup,
+    IonSelect,
+    IonSelectOption
 } from "@ionic/react";
-import React, {FormEvent, FormEventHandler, useEffect, useState} from "react";
+import React, {useEffect, useState} from "react";
 
 import {fundamental_nutrients_keys, fundamental_nutrients_type} from "@shared/common/schema/nutrition/nutrition";
-
-export type product_search_type =
-    {
-        barcode: string;
-        food: string;
-        name: string;
-        characteristics: string;
-        sort?:
-            {
-                key: keyof fundamental_nutrients_type;
-                direction: "ascending" | "descending";
-            }
-    }
-
-function empty_productSearch(): product_search_type {
-    return {
-        food: "",
-        barcode: "",
-        name: "",
-        characteristics: ""
-    }
-}
-
-type sort_direction_type = "ascending" | "descending";
+import {empty_productSearch, product_search_type, sort_direction_type} from "./product-search-controller";
 
 export function ProductSearch({handleSearch}: { handleSearch?: (product_search: product_search_type) => void }) {
     const [productSearch, set_productSearch] = useState<product_search_type>(empty_productSearch());
