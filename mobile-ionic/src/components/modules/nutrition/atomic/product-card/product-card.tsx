@@ -1,28 +1,28 @@
 import {fundamental_nutrients_type, product_type} from "@shared/common/schema/nutrition/nutrition";
-import {
-    IonCard,
-    IonCardContent,
-    IonCardHeader,
-    IonCardSubtitle,
-    IonCardTitle,
-    IonCheckbox,
-    IonRadio
-} from "@ionic/react";
+import {IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle} from "@ionic/react";
 
 import "./product-card.css";
 import {ProductAddControls} from "../product-add-controls/product-add-controls";
+import {MouseEventHandler, useState} from "react";
 
-export function ProductCard({product, scale = 1, hideCardHeader = false, hideCardContent = false}: {
-    product: product_type,
-    scale?: number,
-    hideCardHeader?: boolean,
-    hideCardContent?: boolean
+export function ProductCard({product, hideCardHeader = false, hideCardContent = false, add}: {
+    product: product_type;
+    hideCardHeader?: boolean;
+    hideCardContent?: boolean;
+    add?: (id: string, quantity: number, servings: number) => void
 }) {
+
+    const [scaleState, set_scaleState] = useState<number>(1);
+
+    const [hideCardContent_state, set_hideCardContent_sate] = useState<boolean>(hideCardContent);
+
     return (
         <IonCard>
-            {!hideCardHeader && <ProductDescription_IonCardHeader product={product}/>}
-            {!hideCardContent && <FundamentalNutrients_IonCardContent scale={scale}
-                                                                      product={product}/>}
+            {!hideCardHeader && <ProductDescription_IonCardHeader
+                onHeaderClick={event => set_hideCardContent_sate(prevState => !prevState)} product={product} add={add}
+                change={(id, quantity) => set_scaleState(quantity / 100.)}/>}
+            {!hideCardContent_state && <FundamentalNutrients_IonCardContent scale={scaleState}
+                                                                            product={product}/>}
         </IonCard>
     )
 }
@@ -44,9 +44,14 @@ const Value = ({nutrient, quantity, units}: {
     )
 }
 
-export function ProductDescription_IonCardHeader({product}: { product: product_type }) {
+export function ProductDescription_IonCardHeader({product, change, add, onHeaderClick}: {
+    product: product_type,
+    change?: (id: string, quantity: number, servings: number) => void
+    add?: (id: string, quantity: number, servings: number) => void
+    onHeaderClick?: MouseEventHandler<HTMLIonCardHeaderElement>
+}) {
     return (
-        <IonCardHeader className={"product-description-container"}>
+        <IonCardHeader onClick={onHeaderClick} className={"product-description-container"}>
             <div>
                 <IonCardTitle>
                     {product.product_designation.name}
@@ -55,7 +60,7 @@ export function ProductDescription_IonCardHeader({product}: { product: product_t
                     {product.product_designation.food} - {product.serving_size.toFixed(1)} {product.units} per serving
                 </IonCardSubtitle>
             </div>
-            <ProductAddControls product={product}/>
+            <ProductAddControls product={product} change={change} add={add}/>
         </IonCardHeader>
     )
 }

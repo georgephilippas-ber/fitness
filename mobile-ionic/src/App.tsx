@@ -43,8 +43,11 @@ setupIonicReact();
 function App() {
     return <>
         <IonPage>
-            <ProductCard product={fake_product("10")}/>
-            <ProductAddControls product={fake_product("10")}/>
+            {/*<ProductCard product={fake_product("10")} add={(id, quantity, servings) => {*/}
+            {/*    console.log(id, quantity, servings)*/}
+            {/*}}/>*/}
+
+            <ProductsListSearch products={fake_product_array(20)}/>
         </IonPage>
     </>
 }

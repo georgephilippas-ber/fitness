@@ -1,7 +1,7 @@
 import {
     IonCard,
     IonCardContent,
-    IonCardHeader,
+    IonCardHeader, IonCardSubtitle,
     IonCardTitle,
     IonInput,
     IonLabel,
@@ -44,14 +44,18 @@ export function ProductSearch({handleSearch}: { handleSearch?: (product_search: 
         handleSearch?.(productSearch);
     }, [productSearch]);
 
+    const [searchContent_visible, set_searchContent_visble] = useState<boolean>(true);
+
     return (
         <IonCard>
-            <IonCardHeader>
+            <IonCardHeader onClick={() => set_searchContent_visble(prevState => !prevState)}>
                 <IonCardTitle>
                     Search
                 </IonCardTitle>
+                <IonCardSubtitle>
+                </IonCardSubtitle>
             </IonCardHeader>
-            <IonCardContent>
+            <IonCardContent style={{display: searchContent_visible ? "block" : "none"}}>
                 <IonInput onIonInput={(e) => set_productSearch(prevState => {
                     return {...prevState, barcode: e.detail.value || ""}
                 })} value={productSearch.barcode} label={"barcode"} labelPlacement={"floating"}/>
@@ -79,11 +83,11 @@ export function ProductSearch({handleSearch}: { handleSearch?: (product_search: 
                     }}>
                         <div style={{display: "flex", flexDirection: "row", gap: "0.45em"}}>
                             <IonLabel>ascending</IonLabel>
-                            <IonRadio slot="start" value="ascending" name="myRadioGroup"/>
+                            <IonRadio color={"medium"} slot="start" value="ascending" name="myRadioGroup"/>
                         </div>
                         <div style={{display: "flex", flexDirection: "row", gap: "0.45em"}}>
                             <IonLabel>descending</IonLabel>
-                            <IonRadio slot="start" value="descending" name="myRadioGroup"/>
+                            <IonRadio color={"medium"} slot="start" value="descending" name="myRadioGroup"/>
                         </div>
                     </IonRadioGroup>
                 </div>

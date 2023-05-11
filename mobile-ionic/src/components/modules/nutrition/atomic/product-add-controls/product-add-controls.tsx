@@ -1,21 +1,7 @@
-import {IonButton, IonIcon, IonInput} from "@ionic/react";
-import {
-    addCircle,
-    addCircleOutline,
-    barcode,
-    checkmark, checkmarkCircle, checkmarkCircleOutline,
-    playCircle,
-    removeCircle,
-    removeCircleOutline
-} from "ionicons/icons";
+import {IonIcon, IonInput} from "@ionic/react";
+import {addCircle, addCircleOutline, checkmarkCircleOutline, removeCircleOutline} from "ionicons/icons";
 import {useEffect, useState} from "react";
 import {product_type} from "@shared/common/schema/nutrition/nutrition";
-
-type consume_product_type =
-    {
-        product_id: string;
-        quantity: number;
-    }
 
 function validateQuantity(quantity: string | undefined | null): number | undefined {
     const parsed: number = parseFloat(quantity || "");
@@ -26,9 +12,10 @@ function validateQuantity(quantity: string | undefined | null): number | undefin
         return undefined;
 }
 
-export function ProductAddControls({product, add}: {
+export function ProductAddControls({product, add, change}: {
     product: product_type,
     add?: (id: string, quantity: number, servings: number) => void
+    change?: (id: string, quantity: number, servings: number) => void
 }) {
     const [addIcon, set_addIcon] = useState<string>(addCircleOutline);
     const [removeIcon, set_removeIcon] = useState<string>(removeCircleOutline);
@@ -60,9 +47,11 @@ export function ProductAddControls({product, add}: {
         set_servings(quantity / product.serving_size);
     }, [quantity])
 
-    function handleAdd() {
-        console.log(product.id, quantity, servings);
+    useEffect(() => {
+        change?.(product.id, quantity, servings);
+    }, [servings, quantity])
 
+    function handleAdd() {
         setTimeout(() => set_addSuccess(false), 1.0e3);
         set_addSuccess(true);
         add?.(product.id, quantity, servings);
@@ -92,18 +81,27 @@ export function ProductAddControls({product, add}: {
                 {product.units}
             </div>
             <div style={{fontSize: "2em"}}>
-                <IonIcon onClick={() => modifyServings("increase")}
+                <IonIcon onClick={event => {
+                    modifyServings("increase");
+                    event.stopPropagation();
+                }}
                          color={"gray"} size={"medium"} icon={addIcon}/>
             </div>
             <div style={{textAlign: "center", margin: "0 0.5em 0.40em"}}>
                 {servings.toFixed(1)} serving{servings !== 1.0 ? "s" : null}
             </div>
             <div style={{fontSize: "2em"}}>
-                <IonIcon onClick={() => modifyServings("decrease")}
+                <IonIcon onClick={event => {
+                    modifyServings("decrease");
+                    event.stopPropagation();
+                }}
                          color={"gray"} size={"medium"} icon={removeIcon}/>
             </div>
             <div style={{marginLeft: "1em", marginBottom: "0.1em"}}>
-                <IonIcon onClick={handleAdd} style={{fontSize: "2.65em"}} color={"gray"} size={"medium"}
+                <IonIcon onClick={event => {
+                    handleAdd();
+                    event.stopPropagation();
+                }} style={{fontSize: "2.65em"}} color={"gray"} size={"medium"}
                          icon={addCircle}></IonIcon>
             </div>
             <div style={{marginLeft: "1em", fontSize: "1.55em", visibility: addSuccess ? "visible" : "hidden"}}>
