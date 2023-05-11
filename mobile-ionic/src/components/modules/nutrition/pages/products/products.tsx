@@ -22,13 +22,17 @@ export function ProductsPage() {
                 case "insert":
                 case "update":
                 case "remove":
-                    productManager.all().then(value1 => set_available_products(value1));
+                    productManager.all().then(value1 => {
+                            set_available_products(value1);
+                            console.log(value1);
+                        }
+                    );
             }
         });
-
-        return () => {
-            subscription.unsubscribe();
-        }
+        //
+        // return () => {
+        //     subscription.unsubscribe();
+        // }
     }, []);
 
     return (
