@@ -21,6 +21,7 @@ import './theme/variables.css';
 import {fake_product, fake_product_array} from "@shared/common/faker/nutrition";
 import {ProductsListSearch} from "./components/modules/nutrition/atomic/products-list-search/products-list-search";
 import {ProductAddControls} from "./components/modules/nutrition/atomic/product-add-controls/product-add-controls";
+import {ProductCard} from "./components/modules/nutrition/atomic/product-card/product-card";
 
 setupIonicReact();
 
@@ -42,6 +43,7 @@ setupIonicReact();
 function App() {
     return <>
         <IonPage>
+            <ProductCard product={fake_product("10")}/>
             <ProductAddControls product={fake_product("10")}/>
         </IonPage>
     </>

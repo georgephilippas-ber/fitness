@@ -3,7 +3,7 @@ import {
     addCircle,
     addCircleOutline,
     barcode,
-    checkmark, checkmarkCircle,
+    checkmark, checkmarkCircle, checkmarkCircleOutline,
     playCircle,
     removeCircle,
     removeCircleOutline
@@ -93,21 +93,21 @@ export function ProductAddControls({product, add}: {
             </div>
             <div style={{fontSize: "2em"}}>
                 <IonIcon onClick={() => modifyServings("increase")}
-                         color={"tertiary"} size={"medium"} icon={addIcon}/>
+                         color={"gray"} size={"medium"} icon={addIcon}/>
             </div>
             <div style={{textAlign: "center", margin: "0 0.5em 0.40em"}}>
                 {servings.toFixed(1)} serving{servings !== 1.0 ? "s" : null}
             </div>
             <div style={{fontSize: "2em"}}>
                 <IonIcon onClick={() => modifyServings("decrease")}
-                         color={"tertiary"} size={"medium"} icon={removeIcon}/>
+                         color={"gray"} size={"medium"} icon={removeIcon}/>
             </div>
             <div style={{marginLeft: "1em", marginBottom: "0.1em"}}>
-                <IonIcon onClick={handleAdd} style={{fontSize: "2.5em"}} color={"primary"} size={"medium"}
-                         icon={playCircle}></IonIcon>
+                <IonIcon onClick={handleAdd} style={{fontSize: "2.65em"}} color={"gray"} size={"medium"}
+                         icon={addCircle}></IonIcon>
             </div>
-            <div style={{marginLeft: "1em", display: addSuccess ? "initial" : "none"}}>
-                <IonIcon color={"success"} icon={checkmarkCircle}/>
+            <div style={{marginLeft: "1em", fontSize: "1.55em", visibility: addSuccess ? "visible" : "hidden"}}>
+                <IonIcon color={"gray"} icon={checkmarkCircleOutline}/>
             </div>
         </div>
     )

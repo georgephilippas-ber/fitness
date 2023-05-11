@@ -10,6 +10,7 @@ import {
 } from "@ionic/react";
 
 import "./product-card.css";
+import {ProductAddControls} from "../product-add-controls/product-add-controls";
 
 export function ProductCard({product, scale = 1, hideCardHeader = false, hideCardContent = false}: {
     product: product_type,
@@ -45,13 +46,16 @@ const Value = ({nutrient, quantity, units}: {
 
 export function ProductDescription_IonCardHeader({product}: { product: product_type }) {
     return (
-        <IonCardHeader>
-            <IonCardTitle>
-                {product.product_designation.name}
-            </IonCardTitle>
-            <IonCardSubtitle>
-                {product.product_designation.food} - {product.serving_size.toFixed(1)} {product.units} per serving
-            </IonCardSubtitle>
+        <IonCardHeader className={"product-description-container"}>
+            <div>
+                <IonCardTitle>
+                    {product.product_designation.name}
+                </IonCardTitle>
+                <IonCardSubtitle>
+                    {product.product_designation.food} - {product.serving_size.toFixed(1)} {product.units} per serving
+                </IonCardSubtitle>
+            </div>
+            <ProductAddControls product={product}/>
         </IonCardHeader>
     )
 }
