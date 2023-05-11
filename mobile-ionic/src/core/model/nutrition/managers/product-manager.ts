@@ -8,8 +8,3 @@ export class ProductManager extends UniqueManager<product_type, "id"> {
     }
 }
 
-export class ProductConsumptionManager extends UniqueManager<product_consumption_type, "id"> {
-    constructor(storagePromise: Promise<Storage>) {
-        super(storagePromise, "ProductConsumptionManager", "id");
-    }
-}

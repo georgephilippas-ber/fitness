@@ -1,0 +1,7 @@
+.product-consumption-journal-entry {
+    display: grid;
+    grid-template-columns: 40em 2fr 2fr;
+    border: 2px solid black;
+    grid-column-gap: 2em;
+    background: red;
+}

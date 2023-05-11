@@ -1,4 +1,4 @@
-import {IonPage, setupIonicReact} from '@ionic/react';
+import {IonList, IonPage, setupIonicReact} from '@ionic/react';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -18,11 +18,16 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import {fake_product, fake_product_array} from "@shared/common/faker/nutrition";
+import {fake_product, fake_product_array, fake_product_consumption} from "@shared/common/faker/nutrition";
 import {ProductsListSearch} from "./components/modules/nutrition/atomic/products-list-search/products-list-search";
 import {ProductAddControls} from "./components/modules/nutrition/atomic/product-add-controls/product-add-controls";
 import {ProductCard} from "./components/modules/nutrition/atomic/product-card/product-card";
 import {ProductsPage} from "./components/modules/nutrition/pages/products/products";
+import {
+    ProductConsumptionJournalEntry
+} from "./components/modules/nutrition/atomic/product-consumption-journal-entry/product-consumption-journal-entry";
+import {DateTime} from "luxon";
+import {faker} from "@faker-js/faker";
 
 setupIonicReact();
 
@@ -41,9 +46,21 @@ setupIonicReact();
 //     </IonApp>
 // );
 
+const products = fake_product_array(0x10);
+
 function App() {
     return <>
-        <ProductsPage/>
+        {/*<ProductsPage/>*/}
+        <IonList>
+            <ProductConsumptionJournalEntry product={faker.helpers.arrayElement(products)}
+                                            product_consumption={fake_product_consumption(products, DateTime.now())}/>
+            <ProductConsumptionJournalEntry product={faker.helpers.arrayElement(products)}
+                                            product_consumption={fake_product_consumption(products, DateTime.now())}/>
+            <ProductConsumptionJournalEntry product={faker.helpers.arrayElement(products)}
+                                            product_consumption={fake_product_consumption(products, DateTime.now())}/>
+            <ProductConsumptionJournalEntry product={faker.helpers.arrayElement(products)}
+                                            product_consumption={fake_product_consumption(products, DateTime.now())}/>
+        </IonList>
     </>
 }
 
