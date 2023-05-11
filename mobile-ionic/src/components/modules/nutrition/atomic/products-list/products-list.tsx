@@ -1,9 +1,15 @@
 import {product_type} from "@shared/common/schema/nutrition/nutrition";
-import {IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonContent, IonToast} from "@ionic/react";
+import {IonCard, IonCardHeader, IonCardSubtitle, IonContent, IonToast} from "@ionic/react";
 import {ProductCard} from "../product-card/product-card";
 import {useState} from "react";
 
-export function ProductsList({products}: { products: product_type[] }) {
+import {Virtuoso} from 'react-virtuoso';
+
+
+export function ProductsList({products, add_handler}: {
+    products: product_type[],
+    add_handler?: product_state_updater_type
+}) {
     const [productAdded_toast, set_productAdded_toast] = useState<[string, number, number] | undefined>(undefined)
 
     return (
@@ -16,11 +22,15 @@ export function ProductsList({products}: { products: product_type[] }) {
                 </IonCardHeader>
             </IonCard>
             <IonContent>
-                {products.map(value => <ProductCard add={(id, quantity, servings) => {
-                    set_productAdded_toast([id, quantity, servings])
-                }} hideCardHeader={false} hideCardContent={true} key={value.id}
-                                                    product={value}/>)}
+                <Virtuoso style={{height: "100%"}} totalCount={products.length} data={products}
+                          itemContent={(index, data) => {
+                              return <ProductCard add={(id, quantity, servings) => {
+                                  add_handler?.(id, quantity, servings);
 
+                                  set_productAdded_toast([id, quantity, servings]);
+                              }} hideCardHeader={false} hideCardContent={true} key={data.id}
+                                                  product={data}/>
+                          }}/>
                 <IonToast
                     message={"added " + productAdded_toast?.[2]?.toFixed(1) + " serving(s) of " + products.filter(value => value.id === productAdded_toast?.[0])?.[0]?.product_designation.name}
                     isOpen={!!productAdded_toast}

@@ -3,8 +3,12 @@ import {ProductsList} from "../products-list/products-list";
 import {product_type} from "@shared/common/schema/nutrition/nutrition";
 import {useState} from "react";
 import {search} from "../product-search/product-search-controller";
+import {product_state_updater_type} from "../../../../schema/schema";
 
-export function ProductsListSearch({products}: { products: product_type[] }) {
+export function ProductsListSearch({products, add_handler}: {
+    products: product_type[],
+    add_handler?: product_state_updater_type
+}) {
     const [productsState, set_productsState] = useState<product_type[]>(products);
 
     return (
@@ -14,7 +18,7 @@ export function ProductsListSearch({products}: { products: product_type[] }) {
                     set_productsState(value.sort((a, b) => (a.fundamental_nutrients[product_search.sort.key] - b.fundamental_nutrients[product_search.sort.key]) * (product_search.sort.direction === "ascending" ? 1 : -1)))
                 })
             }}/>
-            <ProductsList products={productsState}/>
+            <ProductsList add_handler={add_handler} products={productsState}/>
         </>
     )
 }
