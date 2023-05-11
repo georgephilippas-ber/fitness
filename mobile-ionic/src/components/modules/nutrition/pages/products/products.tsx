@@ -1,10 +1,11 @@
 import {IonPage, IonSegment, IonSegmentButton} from "@ionic/react";
 import {useEffect, useState} from "react";
-import {ProductsListSearch} from "../../atomic/products-list-search/products-list-search";
-import {fake_product_array} from "@shared/common/faker/nutrition";
 import {SearchSegment} from "./segments/search";
-import {productManager} from "../../../../../core/instances";
+import {productConsumptionManager, productManager} from "../../../../../core/instances";
 import {product_type} from "@shared/common/schema/nutrition/nutrition";
+import {product_state_updater_type} from "../../../../schema/schema";
+import {faker} from "@faker-js/faker";
+import {DateTime} from "luxon";
 
 export function ProductsPage() {
     const [selectedTab, setSelectedTab] = useState('journal-tab');
@@ -24,16 +25,24 @@ export function ProductsPage() {
                 case "remove":
                     productManager.all().then(value1 => {
                             set_available_products(value1);
-                            console.log(value1);
                         }
                     );
             }
         });
-        //
-        // return () => {
-        //     subscription.unsubscribe();
-        // }
+
+        return () => {
+            subscription.unsubscribe();
+        }
     }, []);
+
+    const add_handler: product_state_updater_type = async (id, quantity, servings) => {
+        await productConsumptionManager.insert([{
+            product_id: id,
+            quantity,
+            id: faker.datatype.uuid(),
+            referenceDate: DateTime.now().toMillis()
+        }]);
+    };
 
     return (
         <IonPage>
@@ -48,7 +57,7 @@ export function ProductsPage() {
                     Register
                 </IonSegmentButton>
             </IonSegment>
-            {selectedTab === "search-tab" && <SearchSegment products={available_products}/>}
+            {selectedTab === "search-tab" && <SearchSegment add_handler={add_handler} products={available_products}/>}
         </IonPage>
     )
 }

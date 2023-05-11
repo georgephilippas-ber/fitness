@@ -1,10 +1,15 @@
 import {UniqueManager} from "../../../managers/manager";
 import {Storage} from "@ionic/storage";
-import {product_type} from "@shared/common/schema/nutrition/nutrition";
-
+import {product_consumption_type, product_type} from "@shared/common/schema/nutrition/nutrition";
 
 export class ProductManager extends UniqueManager<product_type, "id"> {
     constructor(storagePromise: Promise<Storage>) {
-        super(storagePromise, "ProductsCollection", "id")
+        super(storagePromise, "ProductManager", "id")
+    }
+}
+
+export class ProductConsumptionManager extends UniqueManager<product_consumption_type, "id"> {
+    constructor(storagePromise: Promise<Storage>) {
+        super(storagePromise, "ProductConsumptionManager", "id");
     }
 }

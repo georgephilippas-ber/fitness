@@ -29,14 +29,14 @@ export class UniqueManager<T, K extends keyof T> extends Manager<T> {
         return all_ || [];
     }
 
-    async insert(element: T): Promise<subject_values_type> {
+    async insert(elements: T[]): Promise<subject_values_type> {
         const all_ = await this.all();
 
-        const filtered_ = all_.filter(value => value[this.unique] !== element[this.unique]);
+        const filtered_ = all_.filter(value => !(elements.map(value1 => value1[this.unique]).includes(value[this.unique])));
 
         const storage = await this.storagePromise;
 
-        await storage.set(this.collection, [...filtered_, element]);
+        await storage.set(this.collection, [...filtered_, ...elements]);
 
         if (filtered_.length < all_.length) {
             this.behaviourSubject.next("update");
