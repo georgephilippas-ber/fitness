@@ -18,8 +18,9 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import {fake_product_array} from "@shared/common/faker/nutrition";
+import {fake_product, fake_product_array} from "@shared/common/faker/nutrition";
 import {ProductsListSearch} from "./components/modules/nutrition/atomic/products-list-search/products-list-search";
+import {ProductAddControls} from "./components/modules/nutrition/atomic/product-add-controls/product-add-controls";
 
 setupIonicReact();
 
@@ -41,7 +42,7 @@ setupIonicReact();
 function App() {
     return <>
         <IonPage>
-            <ProductsListSearch products={fake_product_array(0x500)}/>
+            <ProductAddControls product={fake_product("10")}/>
         </IonPage>
     </>
 }
