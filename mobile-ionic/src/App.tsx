@@ -46,6 +46,7 @@ setupIonicReact();
 function App() {
     return (
         <>
+            <ProductsPage/>
         </>
     )
 }

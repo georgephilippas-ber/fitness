@@ -6,7 +6,7 @@ import {
     IonInput,
     IonLabel,
     IonRadio,
-    IonRadioGroup,
+    IonRadioGroup, IonSearchbar,
     IonSelect,
     IonSelectOption
 } from "@ionic/react";
@@ -59,15 +59,15 @@ export function ProductSearch({handleSearch}: { handleSearch?: (product_search: 
                 <IonInput onIonInput={(e) => set_productSearch(prevState => {
                     return {...prevState, barcode: e.detail.value || ""}
                 })} value={productSearch.barcode} label={"barcode"} labelPlacement={"floating"}/>
-                <IonInput onIonInput={(e) => set_productSearch(prevState => {
+                <IonSearchbar placeholder={"name"} onIonInput={(e) => set_productSearch(prevState => {
                     return {...prevState, name: e.detail.value || ""}
-                })} value={productSearch.name} label={"name"} labelPlacement={"floating"}/>
-                <IonInput onIonInput={(e) => set_productSearch(prevState => {
+                })} value={productSearch.name} animated={true}/>
+                <IonSearchbar placeholder={"food"} onIonInput={(e) => set_productSearch(prevState => {
                     return {...prevState, food: e.detail.value || ""}
-                })} value={productSearch.food} label={"food"} labelPlacement={"floating"}/>
-                <IonInput onIonInput={(e) => set_productSearch(prevState => {
+                })} value={productSearch.food}/>
+                <IonSearchbar placeholder={"characteristics"} onIonInput={(e) => set_productSearch(prevState => {
                     return {...prevState, characteristics: e.detail.value || ""}
-                })} value={productSearch.characteristics} label={"characteristics"} labelPlacement={"floating"}/>
+                })} value={productSearch.characteristics}/>
 
                 <div style={{display: "flex", alignItems: "flex-end", gap: "0.85em"}}>
                     <IonSelect style={{maxWidth: "10em"}} labelPlacement={"floating"} label={"sort by"}
