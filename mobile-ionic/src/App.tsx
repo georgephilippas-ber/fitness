@@ -1,4 +1,15 @@
-import {IonList, IonPage, setupIonicReact} from '@ionic/react';
+import {
+    IonBackButton, IonBackdrop, IonButton,
+    IonButtons, IonCard, IonCardContent, IonCheckbox, IonChip,
+    IonContent, IonFooter,
+    IonHeader,
+    IonItem, IonLabel,
+    IonList,
+    IonListHeader, IonModal,
+    IonPage,
+    IonTitle, IonToolbar,
+    setupIonicReact
+} from '@ionic/react';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -28,8 +39,18 @@ import {
 } from "./components/modules/nutrition/atomic/product-consumption-journal-entry/product-consumption-journal-entry";
 import {DateTime} from "luxon";
 import {faker} from "@faker-js/faker";
+import {useState} from "react";
 
 setupIonicReact();
+
+function App() {
+    return (
+        <>
+        </>
+    )
+}
+
+export default App;
 
 // const App: React.FC = () => (
 //     <IonApp>
@@ -45,23 +66,3 @@ setupIonicReact();
 //         </IonReactRouter>
 //     </IonApp>
 // );
-
-const products = fake_product_array(0x10);
-
-function App() {
-    return <>
-        {/*<ProductsPage/>*/}
-        <IonList>
-            <ProductConsumptionJournalEntry product={faker.helpers.arrayElement(products)}
-                                            product_consumption={fake_product_consumption(products, DateTime.now())}/>
-            <ProductConsumptionJournalEntry product={faker.helpers.arrayElement(products)}
-                                            product_consumption={fake_product_consumption(products, DateTime.now())}/>
-            <ProductConsumptionJournalEntry product={faker.helpers.arrayElement(products)}
-                                            product_consumption={fake_product_consumption(products, DateTime.now())}/>
-            <ProductConsumptionJournalEntry product={faker.helpers.arrayElement(products)}
-                                            product_consumption={fake_product_consumption(products, DateTime.now())}/>
-        </IonList>
-    </>
-}
-
-export default App;
