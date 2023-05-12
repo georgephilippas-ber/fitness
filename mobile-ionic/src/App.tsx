@@ -20,12 +20,14 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import React from "react";
 import {OpenFoodFactsView} from "./components/experimental/openfoodfacts-view";
+import {NutriScore} from "./assets/Nutri-Score/NutriScore";
 
 setupIonicReact();
 
 function App() {
     return (
-        <OpenFoodFactsView barcode={"737628064502"}/>
+        <NutriScore category={"A"}/>
+        // <OpenFoodFactsView barcode={"737628064502"}/>
         // <ProductsPage/>
     )
 }
