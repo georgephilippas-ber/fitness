@@ -6,6 +6,26 @@ import nutriscore_category_e from "./Nutri-score-E.svg";
 
 export type nutriscore_categories_type = "A" | "B" | "C" | "D" | "E";
 
+export function fromScore(score: number): nutriscore_categories_type {
+    switch (score) {
+        case 1:
+            return "E";
+        case 2:
+            return "D";
+        case 3:
+            return "C";
+        case 4:
+            return "B";
+        case 5:
+            return "A";
+        default:
+            if (score > 5)
+                return "A";
+            else
+                return "E";
+    }
+}
+
 function nutriscore_svg(category: nutriscore_categories_type): string {
     switch (category) {
         case "A":
