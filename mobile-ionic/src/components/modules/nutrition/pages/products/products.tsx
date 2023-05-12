@@ -2,10 +2,11 @@ import {IonPage, IonSegment, IonSegmentButton} from "@ionic/react";
 import {useEffect, useState} from "react";
 import {SearchSegment} from "./segments/search";
 import {productConsumptionManager, productManager} from "../../../../../core/instances";
-import {product_type} from "@shared/common/schema/nutrition/nutrition";
+import {product_consumption_type, product_type} from "@shared/common/schema/nutrition/nutrition";
 import {product_state_updater_type} from "../../../../schema/schema";
 import {faker} from "@faker-js/faker";
 import {DateTime} from "luxon";
+import {JournalSegment} from "./segments/journal";
 
 export function ProductsPage() {
     const [selectedTab, setSelectedTab] = useState('journal-tab');
@@ -15,9 +16,10 @@ export function ProductsPage() {
     };
 
     const [available_products, set_available_products] = useState<product_type[]>([]);
+    const [consumption, set_consumption] = useState<product_consumption_type[]>([]);
 
     useEffect(() => {
-        const subscription = productManager.subject().subscribe(value => {
+        const productManager_subscription = productManager.subject().subscribe(value => {
             switch (value) {
                 case "subscribe":
                 case "insert":
@@ -30,8 +32,22 @@ export function ProductsPage() {
             }
         });
 
+        const productConsumptionManager_subscription = productConsumptionManager.subject().subscribe(value => {
+            switch (value) {
+                case "subscribe":
+                case "insert":
+                case "update":
+                case "remove":
+                    productConsumptionManager.all().then(value1 => {
+                            set_consumption(value1);
+                        }
+                    );
+            }
+        });
+
         return () => {
-            subscription.unsubscribe();
+            productManager_subscription.unsubscribe();
+            productConsumptionManager_subscription.unsubscribe();
         }
     }, []);
 
@@ -58,6 +74,8 @@ export function ProductsPage() {
                 </IonSegmentButton>
             </IonSegment>
             {selectedTab === "search-tab" && <SearchSegment add_handler={add_handler} products={available_products}/>}
+            {selectedTab === "journal-tab" &&
+                <JournalSegment product_consumption_array={consumption} products={available_products}/>}
         </IonPage>
     )
 }

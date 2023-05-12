@@ -23,19 +23,13 @@ import React from "react";
 import {
     ProductConsumptionJournalList
 } from "./components/modules/nutrition/atomic/product-consumption-journal-list/product-consumption-journal-list";
+import {ProductsPage} from "./components/modules/nutrition/pages/products/products";
 
 setupIonicReact();
 
-const fakeProducts = fake_product_array(0x10);
-const fakeProductConsumption = fake_product_consumption_array(fakeProducts, 68);
-
 function App() {
     return (
-        <IonPage>
-            <IonContent>
-                <ProductConsumptionJournalList product_consumption_array={fakeProductConsumption} products={fakeProducts}/>
-            </IonContent>
-        </IonPage>
+        <ProductsPage/>
     )
 }
 

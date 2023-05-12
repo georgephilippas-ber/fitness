@@ -16,7 +16,7 @@ export function ProductConsumptionJournalList({product_consumption_array, produc
 }) {
     return (
         <IonList>
-            {getPairs(product_consumption_array, products).map(value => {
+            {getPairs(product_consumption_array, products).sort((a, b) => a[0].referenceDate - b[0].referenceDate).map(value => {
                 return <ProductConsumptionJournalEntry key={value[0].id} product={value[1]}
                                                        product_consumption={value[0]}/>
             })}

@@ -26,7 +26,7 @@ export function ProductConsumptionJournalEntry({product, product_consumption}: {
                 {(product.fundamental_nutrients.energy * scale_).toFixed(1)}
             </div>
             <div className={"time"}>
-                {DateTime.fromMillis(referenceDate_state).toLocaleString(DateTime.TIME_SIMPLE)}
+                {DateTime.fromMillis(product_consumption.referenceDate).toLocaleString(DateTime.TIME_SIMPLE)}
             </div>
         </div>
     );
