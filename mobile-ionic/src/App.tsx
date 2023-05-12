@@ -28,11 +28,11 @@ setupIonicReact();
 
 function App() {
     return (
-        // <div>
-        //     <NutriScore category={fromScore(faker.datatype.number({min: -1, max: 7}))}/>
-        // </div>
+        <div>
+            <NutriScore category={fromScore(faker.datatype.number({min: -15, max: 40}), "solid")}/>
+        </div>
         // // <OpenFoodFactsView barcode={"737628064502"}/>
-        <ProductsPage/>
+        // <ProductsPage/>
     )
 }
 

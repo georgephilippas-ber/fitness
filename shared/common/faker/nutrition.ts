@@ -8,7 +8,7 @@ export function fake_daily_consumption_fundamental_nutrients(): fundamental_nutr
         sugar: faker.datatype.float({min: 0, max: 100.}),
         fiber: faker.datatype.float({min: 0, max: 56}),
         carbohydrates: faker.datatype.float({min: 200., max: 250.}),
-        salt: faker.datatype.float({min: 2., max: 2.6}),
+        sodium: faker.datatype.float({min: 2., max: 2.6}),
         protein: faker.datatype.float({min: 50., max: 150}),
         fat: faker.datatype.float({min: 50., max: 100.}),
         energy: faker.datatype.float({min: 1.e3, max: 2.5e3})
@@ -53,7 +53,7 @@ export function fake_product(id: string = faker.datatype.uuid()): product_type {
                 fiber: faker.datatype.float({min: 3., max: 20.}),
                 carbohydrates: faker.datatype.float({min: 4, max: 1.e2}),
                 protein: faker.datatype.float({min: 1.e1, max: 6.e1}),
-                salt: faker.datatype.float({min: 0.1, max: 5.}),
+                sodium: faker.datatype.float({min: 0.1, max: 5.}),
                 sugar: faker.datatype.float({min: 1., max: 20.})
             }
     }

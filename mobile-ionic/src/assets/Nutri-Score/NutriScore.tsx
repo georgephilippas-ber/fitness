@@ -6,24 +6,22 @@ import nutriscore_category_e from "./Nutri-score-E.svg";
 
 export type nutriscore_categories_type = "A" | "B" | "C" | "D" | "E";
 
-export function fromScore(score: number): nutriscore_categories_type {
-    switch (score) {
-        case 1:
-            return "E";
-        case 2:
-            return "D";
-        case 3:
-            return "C";
-        case 4:
-            return "B";
-        case 5:
-            return "A";
-        default:
-            if (score > 5)
-                return "A";
-            else
-                return "E";
-    }
+const nutriscore_categories: nutriscore_categories_type[] = ["A", "B", "C", "D", "E"];
+
+export function fromScore(score: number, type: "solid" | "beverage"): nutriscore_categories_type {
+    const limits_solid: number[] = [-1, 2, 10, 18, 40];
+    const limits_beverage: number[] = [0, 1, 5, 9, 40];
+
+    if (type === "solid") {
+        for (let i = 0; i < limits_solid.length; i++)
+            if (score <= limits_solid[i])
+                return nutriscore_categories[i];
+    } else
+        for (let i = 0; i < limits_beverage.length; i++)
+            if (score <= limits_beverage[i])
+                return nutriscore_categories[i];
+
+    return "E";
 }
 
 function nutriscore_svg(category: nutriscore_categories_type): string {
