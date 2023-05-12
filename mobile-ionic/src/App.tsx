@@ -19,20 +19,20 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import React from "react";
-import {OpenFoodFactsView} from "./components/experimental/openfoodfacts-view";
-import {fromScore, NutriScore} from "./assets/Nutri-Score/NutriScore";
+import {NutriScore} from "./assets/Nutri-Score/NutriScore";
 import {faker} from "@faker-js/faker";
+import {fromScore} from "@shared/common/schema/nutrition/nutrition";
 import {ProductsPage} from "./components/modules/nutrition/pages/products/products";
 
 setupIonicReact();
 
 function App() {
     return (
-        <div>
-            <NutriScore category={fromScore(faker.datatype.number({min: -15, max: 40}), "solid")}/>
-        </div>
+        // <div>
+        //     <NutriScore category={fromScore(faker.datatype.number({min: -15, max: 40}), "solid")}/>
+        // </div>
         // // <OpenFoodFactsView barcode={"737628064502"}/>
-        // <ProductsPage/>
+        <ProductsPage/>
     )
 }
 

@@ -1,5 +1,10 @@
 import {faker} from "@faker-js/faker";
-import {fundamental_nutrients_type, product_consumption_type, product_type} from "../schema/nutrition/nutrition";
+import {
+    fundamental_nutrients_type,
+    nutriscore_categories, nutriscore_categories_type,
+    product_consumption_type,
+    product_type
+} from "../schema/nutrition/nutrition";
 import {day_fromMillis} from "../features/time/period/period";
 import {DateTime} from "luxon";
 
@@ -55,6 +60,14 @@ export function fake_product(id: string = faker.datatype.uuid()): product_type {
                 protein: faker.datatype.float({min: 1.e1, max: 6.e1}),
                 sodium: faker.datatype.float({min: 0.1, max: 5.}),
                 sugar: faker.datatype.float({min: 1., max: 20.})
+            },
+        evaluation:
+            {
+                nutriscore:
+                    {
+                        category: faker.helpers.arrayElement(nutriscore_categories),
+                        score: faker.datatype.number({min: -15., max: 40})
+                    },
             }
     }
 }
