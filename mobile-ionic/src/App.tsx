@@ -1,15 +1,4 @@
-import {
-    IonBackButton, IonBackdrop, IonButton,
-    IonButtons, IonCard, IonCardContent, IonCheckbox, IonChip,
-    IonContent, IonFooter,
-    IonHeader,
-    IonItem, IonLabel,
-    IonList,
-    IonListHeader, IonModal,
-    IonPage,
-    IonTitle, IonToolbar,
-    setupIonicReact
-} from '@ionic/react';
+import {IonContent, IonPage, setupIonicReact} from '@ionic/react';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -29,25 +18,24 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import {fake_product, fake_product_array, fake_product_consumption} from "@shared/common/faker/nutrition";
-import {ProductsListSearch} from "./components/modules/nutrition/atomic/products-list-search/products-list-search";
-import {ProductAddControls} from "./components/modules/nutrition/atomic/product-add-controls/product-add-controls";
-import {ProductCard} from "./components/modules/nutrition/atomic/product-card/product-card";
-import {ProductsPage} from "./components/modules/nutrition/pages/products/products";
+import {fake_product_array, fake_product_consumption_array} from "@shared/common/faker/nutrition";
+import React from "react";
 import {
-    ProductConsumptionJournalEntry
-} from "./components/modules/nutrition/atomic/product-consumption-journal-entry/product-consumption-journal-entry";
-import {DateTime} from "luxon";
-import {faker} from "@faker-js/faker";
-import {useState} from "react";
+    ProductConsumptionJournalList
+} from "./components/modules/nutrition/atomic/product-consumption-journal-list/product-consumption-journal-list";
 
 setupIonicReact();
 
+const fakeProducts = fake_product_array(0x10);
+const fakeProductConsumption = fake_product_consumption_array(fakeProducts, 68);
+
 function App() {
     return (
-        <>
-            <ProductsPage/>
-        </>
+        <IonPage>
+            <IonContent>
+                <ProductConsumptionJournalList product_consumption_array={fakeProductConsumption} products={fakeProducts}/>
+            </IonContent>
+        </IonPage>
     )
 }
 

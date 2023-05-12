@@ -1,3 +1,30 @@
 .product-consumption-journal-entry {
+    font-size: 0.85em;
     display: flex;
+    margin: 0.55em;
+    padding: 0.45em;
+    gap: 0.5em;
+    align-items: center;
+}
+
+.product-consumption-journal-entry .servings {
+    flex-grow: 2;
+    text-align: center;
+}
+
+
+.product-consumption-journal-entry .name {
+    flex-grow: 10;
+    text-align: left;
+}
+
+.product-consumption-journal-entry .energy {
+    flex-grow: 4;
+    text-align: right;
+}
+
+
+.product-consumption-journal-entry .time {
+    flex-grow: 3;
+    text-align: right;
 }

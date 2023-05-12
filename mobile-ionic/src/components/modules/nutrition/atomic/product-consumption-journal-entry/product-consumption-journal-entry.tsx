@@ -2,25 +2,8 @@ import {product_consumption_type, product_type} from "@shared/common/schema/nutr
 import {useState} from "react";
 
 import "./product-consumption-journal-entry.css";
-import {IonBackdrop, IonButton, IonDatetime, IonModal} from "@ionic/react";
+import {DateTime} from "luxon";
 
-
-function Modal({open, onDidDismiss}: { open: boolean, onDidDismiss: () => void }) {
-    return (
-        <IonModal onDidDismiss={() => onDidDismiss()} isOpen={open}>
-
-            <div style={{position: "relative", zIndex: 100}}>
-                <IonDatetime presentation={"month"}/>
-                <IonButton style={{position: "absolute", zIndex: 300}} onClick={(e) => {
-                    console.log("clicked");
-                    // e.stopPropagation();
-                    onDidDismiss();
-                }}>Ok</IonButton>
-
-            </div>
-            <IonBackdrop></IonBackdrop>
-        </IonModal>)
-}
 
 export function ProductConsumptionJournalEntry({product, product_consumption}: {
     product: product_type,
@@ -28,13 +11,23 @@ export function ProductConsumptionJournalEntry({product, product_consumption}: {
 }) {
     const [referenceDate_state, set_referenceDate_state] = useState<number>(product_consumption.referenceDate);
 
-    const [modalOpen, set_modalOpen] = useState<boolean>(false);
+    const scale_ = product_consumption.quantity / 100.;
+    const servings_ = product_consumption.quantity / product.serving_size;
 
     return (
-        <div>
-            <IonButton onClick={() => set_modalOpen(true)}>Modal</IonButton>
-            {modalOpen &&
-                <Modal open={true} onDidDismiss={() => set_modalOpen(false)}/>}
+        <div className={"product-consumption-journal-entry"}>
+            <div className={"servings"}>
+                {servings_.toFixed(1)}
+            </div>
+            <div className={"name"}>
+                {product.product_designation.name}
+            </div>
+            <div className={"energy"}>
+                {(product.fundamental_nutrients.energy * scale_).toFixed(1)}
+            </div>
+            <div className={"time"}>
+                {DateTime.fromMillis(referenceDate_state).toLocaleString(DateTime.TIME_SIMPLE)}
+            </div>
         </div>
     );
 }
