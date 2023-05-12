@@ -84,8 +84,8 @@ export function FundamentalNutrients_IonCardContent({product, scale}: {
                 <Value nutrient={"protein"} quantity={product.fundamental_nutrients.protein * scale} units={"g"}/>
                 <Value nutrient={"fiber"} quantity={product.fundamental_nutrients.fiber * scale} units={"g"}/>
                 <Value nutrient={"sugar"} quantity={product.fundamental_nutrients.sugar * scale} units={"g"}/>
-                <Value nutrient={"sodium"} quantity={product.fundamental_nutrients.sodium * 1.0e3 * scale}
-                       units={"mg"}/>
+                <Value nutrient={"salt"} quantity={product.fundamental_nutrients.salt * scale}
+                       units={"g"}/>
             </div>
         </IonCardContent>
     )

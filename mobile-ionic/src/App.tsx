@@ -21,17 +21,18 @@ import './theme/variables.css';
 import React from "react";
 import {OpenFoodFactsView} from "./components/experimental/openfoodfacts-view";
 import {fromScore, NutriScore} from "./assets/Nutri-Score/NutriScore";
+import {faker} from "@faker-js/faker";
+import {ProductsPage} from "./components/modules/nutrition/pages/products/products";
 
 setupIonicReact();
 
 function App() {
     return (
-        <div>
-            <NutriScore category={fromScore(100)}/>
-            <NutriScore category={fromScore(-1)}/>
-        </div>
-        // <OpenFoodFactsView barcode={"737628064502"}/>
-        // <ProductsPage/>
+        // <div>
+        //     <NutriScore category={fromScore(faker.datatype.number({min: -1, max: 7}))}/>
+        // </div>
+        // // <OpenFoodFactsView barcode={"737628064502"}/>
+        <ProductsPage/>
     )
 }
 
