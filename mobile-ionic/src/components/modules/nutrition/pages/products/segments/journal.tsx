@@ -2,7 +2,8 @@ import {product_consumption_type, product_type} from "@shared/common/schema/nutr
 import {
     ProductConsumptionJournalList
 } from "../../../atomic/product-consumption-journal-list/product-consumption-journal-list";
-import {IonContent, IonLabel} from "@ionic/react";
+import {IonCard, IonCardContent, IonContent, IonLabel} from "@ionic/react";
+import {faker} from "@faker-js/faker";
 
 export function JournalSegment({products, product_consumption_array}: {
     products: product_type[],
@@ -10,10 +11,14 @@ export function JournalSegment({products, product_consumption_array}: {
 }) {
     return (
         <IonContent>
-            {product_consumption_array.length &&
+            {product_consumption_array.length ?
                 <ProductConsumptionJournalList product_consumption_array={product_consumption_array}
-                                               products={products}/>}
-            {!product_consumption_array.length && <IonLabel>!product_consumption_array</IonLabel>}
+                                               products={products}/> :
+                <IonCard style={{
+                    width: "80vw",
+                    margin: "2.65em auto",
+                }}><IonCardContent>{faker.lorem.lines(20)}</IonCardContent></IonCard>}
         </IonContent>
     )
 }
+

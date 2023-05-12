@@ -61,7 +61,7 @@ export function ProductSearch({handleSearch}: { handleSearch?: (product_search: 
                 })} value={productSearch.barcode} label={"barcode"} labelPlacement={"floating"}/>
                 <IonSearchbar placeholder={"name"} onIonInput={(e) => set_productSearch(prevState => {
                     return {...prevState, name: e.detail.value || ""}
-                })} value={productSearch.name} animated={true}/>
+                })} value={productSearch.name}/>
                 <IonSearchbar placeholder={"food"} onIonInput={(e) => set_productSearch(prevState => {
                     return {...prevState, food: e.detail.value || ""}
                 })} value={productSearch.food}/>
