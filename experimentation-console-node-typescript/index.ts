@@ -1,15 +1,26 @@
-import {levenshteinDistance} from "./fuzzy-search/fuzzy-search";
-import {faker} from "@faker-js/faker";
+import {readdirSync, readFileSync} from "fs";
+import path from "path";
+import {findKeyPaths} from "./object-path/object-path";
+import {openfoodfacts} from "./openfoodfacts/openfoodfacts";
 
-const array = Array(20).fill(0).map(value => ({
-    company: faker.company.name(),
-    product: faker.commerce.productName(),
-    color: faker.color.human(),
-    animal: faker.animal.type(),
-}));
+function fromJSON(filename: string): any {
+    return JSON.parse(readFileSync(path.join(__dirname, "openfoodfacts", filename), "utf-8"));
+}
 
-console.log(array);
+const key_: string = "image_front_url";
 
-levenshteinDistance(["lion", "azure", "frozen"], array, ["animal", "color", "product"], 5).then(value => {
-    console.log(array[value[0][0]])
+
+const filenames: string[] = readdirSync(path.join(__dirname, "openfoodfacts")).filter(value => value.endsWith(".json"));
+
+const results_ = filenames.map(value => {
+    return fromJSON(value)
+}).map(value => findKeyPaths(value, key_));
+
+const percentage_ = results_.filter(value => value.length).length / filenames.length * 1.0e2;
+
+results_.forEach(value => {
+    if (value.length)
+        console.log(value[0]);
 });
+
+console.log(filenames.length, percentage_.toFixed(2));

@@ -1,4 +1,4 @@
-import {IonContent, IonPage, setupIonicReact} from '@ionic/react';
+import {setupIonicReact} from '@ionic/react';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -18,18 +18,15 @@ import '@ionic/react/css/display.css';
 
 /* Theme variables */
 import './theme/variables.css';
-import {fake_product_array, fake_product_consumption_array} from "@shared/common/faker/nutrition";
 import React from "react";
-import {
-    ProductConsumptionJournalList
-} from "./components/modules/nutrition/atomic/product-consumption-journal-list/product-consumption-journal-list";
-import {ProductsPage} from "./components/modules/nutrition/pages/products/products";
+import {OpenFoodFactsView} from "./components/experimental/openfoodfacts-view";
 
 setupIonicReact();
 
 function App() {
     return (
-        <ProductsPage/>
+        <OpenFoodFactsView barcode={"737628064502"}/>
+        // <ProductsPage/>
     )
 }
 
