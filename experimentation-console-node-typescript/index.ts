@@ -7,7 +7,7 @@ function fromJSON(filename: string): any {
     return JSON.parse(readFileSync(path.join(__dirname, "openfoodfacts", filename), "utf-8"));
 }
 
-const key_: string = "image_front_url";
+const key_: string = "nutriscore_data";
 
 
 const filenames: string[] = readdirSync(path.join(__dirname, "openfoodfacts")).filter(value => value.endsWith(".json"));
@@ -20,7 +20,7 @@ const percentage_ = results_.filter(value => value.length).length / filenames.le
 
 results_.forEach(value => {
     if (value.length)
-        console.log(value[0]);
+        console.log(value);
 });
 
 console.log(filenames.length, percentage_.toFixed(2));
