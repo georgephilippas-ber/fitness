@@ -14,12 +14,12 @@ export function ProductCard({product, hideCardHeader = false, hideCardContent = 
 
     const [scaleState, set_scaleState] = useState<number>(1);
 
-    const [hideCardContent_state, set_hideCardContent_sate] = useState<boolean>(hideCardContent);
+    const [hideCardContent_state, set_hideCardContent_state] = useState<boolean>(hideCardContent);
 
     return (
         <IonCard>
             {!hideCardHeader && <ProductDescription_IonCardHeader
-                onHeaderClick={event => set_hideCardContent_sate(prevState => !prevState)} product={product} add={add}
+                onHeaderClick={event => set_hideCardContent_state(prevState => !prevState)} product={product} add={add}
                 change={(id, quantity) => set_scaleState(quantity / 100.)}/>}
             {!hideCardContent_state && <FundamentalNutrients_IonCardContent scale={scaleState}
                                                                             product={product}/>}
@@ -54,7 +54,7 @@ export function ProductDescription_IonCardHeader({product, change, add, onHeader
         <IonCardHeader onClick={onHeaderClick} className={"product-description-container"}>
             <div>
                 <IonCardTitle>
-                    {product.product_designation.name}
+                    {product.product_designation.name} {product.id.startsWith("foundation") ? " - " + product.product_designation.characteristics.join(", ") : null}
                 </IonCardTitle>
                 <IonCardSubtitle>
                     {product.product_designation.food} - {product.serving_size.toFixed(1)} {product.units} per serving

@@ -6,9 +6,13 @@ export function product_quantity_units(): product_quantity_units_type[] {
 
 export type evaluation_type =
     {
-        nutriscore:
+        nutriscore?:
             {
                 category: nutriscore_categories_type;
+                score: number;
+            };
+        foundation?:
+            {
                 score: number;
             }
     }
