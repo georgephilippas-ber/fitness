@@ -1,6 +1,5 @@
-import {IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonInput, IonTitle} from "@ionic/react";
+import {IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonInput} from "@ionic/react";
 import {useEffect, useState} from "react";
-import {barcode} from "ionicons/icons";
 
 export function BarcodeEntry({onValidBarcode}: { onValidBarcode: (barcode: string) => void }) {
     const [barcodeField, set_barcodeField] = useState<string>("");
@@ -9,11 +8,13 @@ export function BarcodeEntry({onValidBarcode}: { onValidBarcode: (barcode: strin
 
     useEffect(() => {
         switch (barcodeField.length) {
-            case 8: //EAN-8
-            case 12: //UPC
-            case 13: //EAN-13
+            case 8: // EAN-8
+            case 12: // UPC
+            case 13: // EAN-13
                 onValidBarcode(barcodeField);
                 break;
+            default:
+                onValidBarcode("");
         }
 
     }, [barcodeField])

@@ -21,6 +21,7 @@ import './theme/variables.css';
 import React from "react";
 import {ProductsPage} from "./components/modules/nutrition/pages/products/products";
 import {BarcodeEntry} from "./components/modules/nutrition/atomic/barcode-entry/barcode-entry";
+import {RegisterSegment} from "./components/modules/nutrition/pages/products/segments/register";
 
 setupIonicReact();
 
@@ -32,7 +33,7 @@ function App() {
         // // <OpenFoodFactsView barcode={"737628064502"}/>
         // <ProductsPage/>
 
-        <BarcodeEntry onValidBarcode={barcode => console.log(barcode)}/>
+       <RegisterSegment/>
     )
 }
 
