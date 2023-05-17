@@ -19,10 +19,8 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import React from "react";
-import {NutriScore} from "./assets/Nutri-Score/NutriScore";
-import {faker} from "@faker-js/faker";
-import {fromScore} from "@shared/common/schema/nutrition/nutrition";
 import {ProductsPage} from "./components/modules/nutrition/pages/products/products";
+import {BarcodeEntry} from "./components/modules/nutrition/atomic/barcode-entry/barcode-entry";
 
 setupIonicReact();
 
@@ -32,7 +30,9 @@ function App() {
         //     <NutriScore category={fromScore(faker.datatype.number({min: -15, max: 40}), "solid")}/>
         // </div>
         // // <OpenFoodFactsView barcode={"737628064502"}/>
-        <ProductsPage/>
+        // <ProductsPage/>
+
+        <BarcodeEntry onValidBarcode={barcode => console.log(barcode)}/>
     )
 }
 
