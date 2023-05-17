@@ -44,6 +44,13 @@ const Value = ({nutrient, quantity, units}: {
     )
 }
 
+function foundationServingDetails(product: product_type): string | undefined {
+    if (product.serving_description) {
+        return "(" + [product.serving_description.amount.toFixed(0), product.serving_description.units].join(" ") + ")";
+    } else
+        return undefined;
+}
+
 export function ProductDescription_IonCardHeader({product, change, add, onHeaderClick}: {
     product: product_type,
     change?: (id: string, quantity: number, servings: number) => void
@@ -57,7 +64,8 @@ export function ProductDescription_IonCardHeader({product, change, add, onHeader
                     {product.product_designation.name} {product.id.startsWith("foundation") ? " - " + product.product_designation.characteristics.join(", ") : null}
                 </IonCardTitle>
                 <IonCardSubtitle>
-                    {product.product_designation.food} - {product.serving_size.toFixed(1)} {product.units} per serving
+                    {product.product_designation.food} - {product.serving_size.toFixed(1)} {product.units} per
+                    serving {product.id.startsWith("foundation") ? foundationServingDetails(product) : null}
                 </IonCardSubtitle>
             </div>
             <ProductAddControls product={product} change={change} add={add}/>

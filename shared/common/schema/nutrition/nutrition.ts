@@ -23,6 +23,10 @@ export type product_type =
         fundamental_nutrients: fundamental_nutrients_type;
         product_designation: product_designation_type;
         serving_size: number;
+        serving_description?: {
+            amount: number,
+            units: string,
+        };
         evaluation: evaluation_type;
         units: product_quantity_units_type;
     }

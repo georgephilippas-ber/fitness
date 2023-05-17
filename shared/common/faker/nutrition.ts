@@ -43,6 +43,10 @@ export function fake_product(id: string = faker.datatype.uuid()): product_type {
     return {
         id,
         serving_size: faker.datatype.float({min: 1.e1, max: 4.e1}),
+        serving_description: {
+            amount: 1,
+            units: "item"
+        },
         product_designation:
             {
                 name: faker.commerce.productName(),
