@@ -8,4 +8,5 @@ export type product_input_type =
         serving: string;
         product_designation: string;
         fundamental_nutrients: string;
+        product_evaluation: string;
     }
