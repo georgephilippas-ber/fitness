@@ -79,6 +79,8 @@ export function OpenFoodFacts({barcode, handleProductInput}: {
             axios.get(getURL(barcode)).then(value => {
                 set_data(JSON.stringify(to_OpenFoodFacts_product(value.data)));
             });
+        else
+            set_data("");
     }, [barcode]);
 
     return (
