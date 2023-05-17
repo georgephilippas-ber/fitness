@@ -7,7 +7,7 @@ import {nutriscore_categories_type} from "@shared/common/schema/nutrition/nutrit
 
 
 function nutriscore_svg(category: nutriscore_categories_type): string {
-    switch (category) {
+    switch (category.toUpperCase()) {
         case "A":
             return nutriscore_category_a;
         case "B":
@@ -17,6 +17,8 @@ function nutriscore_svg(category: nutriscore_categories_type): string {
         case "D":
             return nutriscore_category_d;
         case "E":
+            return nutriscore_category_e;
+        default:
             return nutriscore_category_e;
     }
 }

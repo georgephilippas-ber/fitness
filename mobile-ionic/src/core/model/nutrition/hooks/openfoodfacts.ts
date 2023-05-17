@@ -1,9 +1,7 @@
-import {IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonLabel, IonText} from "@ionic/react";
+import {product_input_type} from "../../../../components/schema/schema";
 import {useEffect, useState} from "react";
 import axios from "axios";
-import {product_input_type} from "../../../schema/schema";
-import {NutriScore} from "../../../../assets/Nutri-Score/NutriScore";
-import {nutriscore_categories, nutriscore_categories_type} from "@shared/common/schema/nutrition/nutrition";
+import {nutriscore_categories_type} from "@shared/common/schema/nutrition/nutrition";
 
 function getURL(barcode: string): string {
     return `https://world.openfoodfacts.org/api/v0/product/${barcode}.json`
@@ -66,57 +64,37 @@ function to_product_input(OpenFoodFacts_product: OpenFoodFacts_product_type): pr
     return {
         product_designation: [OpenFoodFacts_product.product_name, OpenFoodFacts_product.ingredients_hierarchy?.[0], OpenFoodFacts_product.brands, ...OpenFoodFacts_product.categories_hierarchy.sort((a, b) => a.length - b.length).slice(undefined, 3)].join(", "),
         serving: OpenFoodFacts_product.serving_size,
-        fundamental_nutrients: "",
-        product_evaluation: ""
+        fundamental_nutrients: [OpenFoodFacts_product.energy_100g, OpenFoodFacts_product.carbohydrates_100g, OpenFoodFacts_product.proteins_100g, OpenFoodFacts_product["saturated-fat_100g"], OpenFoodFacts_product.fiber_100g, OpenFoodFacts_product.sugars_100g, OpenFoodFacts_product.sodium_100g].join(" "),
+        product_evaluation: [(-OpenFoodFacts_product.nutriscore_score + 40) / 55, "nutriscore"].join(" ")
     }
 }
 
-export function OpenFoodFacts({barcode, handleProductInput}: {
-    barcode: string,
-    handleProductInput?: (product_input: product_input_type) => void
-}) {
-    const [OpenFoodFacts_product, set_OpenFoodFacts_product] = useState<OpenFoodFacts_product_type | undefined>(undefined);
+export function useOpenFoodFacts(barcode: string): [product_input_type | undefined, [number, nutriscore_categories_type] | undefined] {
+    const [product_input, set_product_input] = useState<product_input_type | undefined>(undefined);
 
-    const [product_input, set_product_input] = useState<product_input_type>({
-        fundamental_nutrients: "",
-        serving: "",
-        product_designation: "",
-        product_evaluation: "",
-    });
+    const [nutriscore, set_nutriscore] = useState<[number, nutriscore_categories_type] | undefined>(undefined);
 
     useEffect(() => {
-        if (barcode)
+        if (barcode) {
             axios.get(getURL(barcode)).then(value => {
-                const OpenFoodFacts_product: OpenFoodFacts_product_type | undefined = to_OpenFoodFacts_product(value.data);
-
-                console.log(to_OpenFoodFacts_product(value.data));
+                const OpenFoodFacts_product = to_OpenFoodFacts_product(value.data);
 
                 if (OpenFoodFacts_product) {
-                    console.log(to_product_input(OpenFoodFacts_product));
                     set_product_input(to_product_input(OpenFoodFacts_product));
-                    set_OpenFoodFacts_product(OpenFoodFacts_product);
+                    set_nutriscore([OpenFoodFacts_product.nutriscore_score, OpenFoodFacts_product.nutriscore_grade as nutriscore_categories_type]);
+                } else {
+                    set_product_input(undefined);
+                    set_nutriscore(undefined);
                 }
-            }).catch(value => {
-                console.log("product not found");
+            }).catch(reason => {
+                set_product_input(undefined);
+                set_nutriscore(undefined);
             });
-        else
-            set_OpenFoodFacts_product(undefined);
+        } else {
+            set_product_input(undefined);
+            set_nutriscore(undefined);
+        }
     }, [barcode]);
 
-    return OpenFoodFacts_product ? <IonCard>
-        <IonCardContent>
-            <IonCardHeader>
-                <IonCardSubtitle>
-                    openfoodfacts
-                </IonCardSubtitle>
-            </IonCardHeader>
-            <IonText color={"primary"}>
-                <h1>nutriscore</h1>
-            </IonText>
-            {nutriscore_categories.includes(OpenFoodFacts_product.nutriscore_grade.toUpperCase() as nutriscore_categories_type) ?
-                <NutriScore
-                    category={OpenFoodFacts_product.nutriscore_grade.toUpperCase() as nutriscore_categories_type || "E"}/> : null}
-            {OpenFoodFacts_product.quantity} {OpenFoodFacts_product.serving_quantity} {OpenFoodFacts_product.quantity} {OpenFoodFacts_product.serving_size}
-        </IonCardContent>
-    </IonCard> : null
+    return [product_input, nutriscore];
 }
