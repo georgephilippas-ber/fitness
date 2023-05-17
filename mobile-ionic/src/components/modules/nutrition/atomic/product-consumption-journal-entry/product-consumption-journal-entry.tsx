@@ -20,7 +20,7 @@ export function ProductConsumptionJournalEntry({product, product_consumption}: {
                 {servings_.toFixed(1)}
             </div>
             <div className={"name"}>
-                {product.product_designation.name}
+                {product.product_designation.name} {product.id.startsWith("foundation") ? "(" + product.product_designation.characteristics.join(", ") + ")": null}
             </div>
             <div className={"energy"}>
                 {(product.fundamental_nutrients.energy * scale_).toFixed(1)}
