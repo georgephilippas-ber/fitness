@@ -24,9 +24,8 @@ function search(key: string): [number, number, any] {
     return [filenames.length, percentage_, results_];
 }
 
-console.log(util.inspect(search("saturated-fat_100g")[1], {depth: null}));
+console.log(util.inspect(search("saturated-fat_100g")[2], {depth: null}));
 console.log(util.inspect(search("proteins_100g")[1], {depth: null}));
-console.log(util.inspect(search("saturated-fat_100g")[1], {depth: null}));
 console.log(util.inspect(search("carbohydrates_100g")[1], {depth: null}));
 console.log(util.inspect(search("sodium_100g")[1], {depth: null}));
 console.log(util.inspect(search("fiber_100g")[1], {depth: null}));
