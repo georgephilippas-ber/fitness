@@ -43,20 +43,19 @@ export class DietaryProfile
         return this.pairs_byPeriod(new Period(day_fromMillis(referenceDate, "beginning").toMillis(), day_fromMillis(referenceDate, "end").toMillis()))
     }
 
-
-    private getServings_pair(pair: product_consumption_pair_type): number
+    private servings_pair(pair: product_consumption_pair_type): number
     {
         return pair[0].quantity / pair[1].serving_size;
     }
 
-    private getNutrient_pair(nutrient: keyof fundamental_nutrients_type, pair: product_consumption_pair_type)
+    private fundamental_nutrient_pair(fundamental_nutrient: keyof fundamental_nutrients_type, pair: product_consumption_pair_type)
     {
-        return pair[1].fundamental_nutrients[nutrient] / 100. * pair[0].quantity
+        return pair[1].fundamental_nutrients[fundamental_nutrient] / 100. * pair[0].quantity
     }
 
     public servings(referenceDate: number)
     {
-        return this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.getServings_pair(currentValue), 0.);
+        return this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.servings_pair(currentValue), 0.);
     }
 
     public quantity(referenceDate: number)
@@ -66,12 +65,12 @@ export class DietaryProfile
 
     public energy(referenceDate: number)
     {
-        return this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.getNutrient_pair("energy", currentValue), 0.);
+        return this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.fundamental_nutrient_pair("energy", currentValue), 0.);
     }
 
     public protein(referenceDate: number, percentage: boolean = false)
     {
-        const protein_ = this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.getNutrient_pair("protein", currentValue), 0.);
+        const protein_ = this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.fundamental_nutrient_pair("protein", currentValue), 0.);
 
         if (percentage)
             return division_finiteOrZero(protein_, this.quantity(referenceDate));
@@ -81,7 +80,7 @@ export class DietaryProfile
 
     public carbohydrates(referenceDate: number, percentage: boolean = false)
     {
-        const carbohydrates_ = this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.getNutrient_pair("carbohydrates", currentValue), 0.);
+        const carbohydrates_ = this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.fundamental_nutrient_pair("carbohydrates", currentValue), 0.);
 
         if (percentage)
             return division_finiteOrZero(carbohydrates_, this.quantity(referenceDate));
@@ -91,7 +90,7 @@ export class DietaryProfile
 
     public fat(referenceDate: number, percentage: boolean = false)
     {
-        const fat_ = this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.getNutrient_pair("fat", currentValue), 0.);
+        const fat_ = this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.fundamental_nutrient_pair("fat", currentValue), 0.);
 
         if (percentage)
             return division_finiteOrZero(fat_, this.quantity(referenceDate));
@@ -101,7 +100,7 @@ export class DietaryProfile
 
     public fiber(referenceDate: number, percentage: boolean = false)
     {
-        const fiber_ = this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.getNutrient_pair("fiber", currentValue), 0.);
+        const fiber_ = this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.fundamental_nutrient_pair("fiber", currentValue), 0.);
 
         if (percentage)
             return division_finiteOrZero(fiber_, this.quantity(referenceDate));
@@ -111,11 +110,11 @@ export class DietaryProfile
 
     public sugar(referenceDate: number)
     {
-        return this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.getNutrient_pair("sugar", currentValue), 0.);
+        return this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.fundamental_nutrient_pair("sugar", currentValue), 0.);
     }
 
     public sodium(referenceDate: number)
     {
-        return this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.getNutrient_pair("sodium", currentValue), 0.);
+        return this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.fundamental_nutrient_pair("sodium", currentValue), 0.);
     }
 }
