@@ -21,18 +21,17 @@ export function JournalSegment({products, product_consumption_array}: {
     products: product_type[],
     product_consumption_array: product_consumption_type[]
 }) {
-
-    const [category_, set_category_] = useState<nutriscore_categories_type>("E");
+    const [dietScore, set_dietScore] = useState<number | undefined>(undefined);
 
     useEffect(() => {
         const scores_ = getPairs(product_consumption_array, products).map(value => value[1].evaluation.nutriscore?.score || value[1].evaluation.foundation?.score || value[1]?.evaluation.subjective?.score || 0.)
 
-        set_category_(fromScore(average(scores_) || Infinity, "solid"));
+        set_dietScore(average(scores_));
     }, []);
 
     return (<>
             <div style={{display: "flex", alignItems: "center", gap: "1em", margin: "1em"}}>
-                <NutriScore height={"4em"} category={category_}/>
+                {dietScore}
             </div>
             <IonContent>
                 {product_consumption_array.length ?

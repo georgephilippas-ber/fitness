@@ -62,7 +62,7 @@ function to_OpenFoodFacts_product(data: any): OpenFoodFacts_product_type | undef
 
 function to_product_input(OpenFoodFacts_product: OpenFoodFacts_product_type): product_input_type {
     return {
-        product_designation: [OpenFoodFacts_product.product_name, OpenFoodFacts_product.ingredients_hierarchy?.[0], OpenFoodFacts_product.brands, ...OpenFoodFacts_product.categories_hierarchy.sort((a, b) => a.length - b.length).slice(undefined, 3)].join(", "),
+        product_designation: [OpenFoodFacts_product.ingredients_hierarchy?.[0], OpenFoodFacts_product.product_name, OpenFoodFacts_product.brands, ...OpenFoodFacts_product.categories_hierarchy.sort((a, b) => a.length - b.length).slice(undefined, 3)].join(", "),
         serving: OpenFoodFacts_product.serving_size,
         fundamental_nutrients: [OpenFoodFacts_product.energy_100g, OpenFoodFacts_product.carbohydrates_100g, OpenFoodFacts_product.proteins_100g, OpenFoodFacts_product["saturated-fat_100g"], OpenFoodFacts_product.fiber_100g, OpenFoodFacts_product.sugars_100g, OpenFoodFacts_product.sodium_100g].join(" "),
         product_evaluation: [((-OpenFoodFacts_product.nutriscore_score + 40) / 55).toFixed(1), "nutriscore"].join(" ")
