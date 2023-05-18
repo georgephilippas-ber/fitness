@@ -11,11 +11,26 @@ import {day_fromMillis, Period} from "@shared/common/features/time/period/period
 type product_consumption_pair_type = [product_consumption_type, product_type];
 
 
+function division_finiteOrZero(numerator: number, denominator: number)
+{
+    return denominator !== 0 ? numerator / denominator : 0.;
+}
+
 export class DietaryProfile
 {
-    constructor(private products: product_type[], private product_consumption: product_consumption_type[])
+    constructor(private products: product_type[] = [], private product_consumption: product_consumption_type[] = [])
     {
 
+    }
+
+    public setProducts(products: product_type[])
+    {
+        this.products = products;
+    }
+
+    public setProductConsumption(product_consumption: product_consumption_type[])
+    {
+        this.product_consumption = product_consumption;
     }
 
     private pairs_byPeriod(period: Period): [product_consumption_type, product_type][]
@@ -54,24 +69,44 @@ export class DietaryProfile
         return this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.getNutrient_pair("energy", currentValue), 0.);
     }
 
-    public protein(referenceDate: number)
+    public protein(referenceDate: number, percentage: boolean = false)
     {
-        return this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.getNutrient_pair("protein", currentValue), 0.);
+        const protein_ = this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.getNutrient_pair("protein", currentValue), 0.);
+
+        if (percentage)
+            return division_finiteOrZero(protein_, this.quantity(referenceDate));
+        else
+            return protein_;
     }
 
-    public carbohydrates(referenceDate: number)
+    public carbohydrates(referenceDate: number, percentage: boolean = false)
     {
-        return this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.getNutrient_pair("carbohydrates", currentValue), 0.);
+        const carbohydrates_ = this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.getNutrient_pair("carbohydrates", currentValue), 0.);
+
+        if (percentage)
+            return division_finiteOrZero(carbohydrates_, this.quantity(referenceDate));
+        else
+            return carbohydrates_;
     }
 
-    public fat(referenceDate: number)
+    public fat(referenceDate: number, percentage: boolean = false)
     {
-        return this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.getNutrient_pair("fat", currentValue), 0.);
+        const fat_ = this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.getNutrient_pair("fat", currentValue), 0.);
+
+        if (percentage)
+            return division_finiteOrZero(fat_, this.quantity(referenceDate));
+        else
+            return fat_;
     }
 
-    public fiber(referenceDate: number)
+    public fiber(referenceDate: number, percentage: boolean = false)
     {
-        return this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.getNutrient_pair("fiber", currentValue), 0.);
+        const fiber_ = this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.getNutrient_pair("fiber", currentValue), 0.);
+
+        if (percentage)
+            return division_finiteOrZero(fiber_, this.quantity(referenceDate));
+        else
+            return fiber_;
     }
 
     public sugar(referenceDate: number)
