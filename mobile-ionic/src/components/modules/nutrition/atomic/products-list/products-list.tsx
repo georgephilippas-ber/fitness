@@ -4,7 +4,7 @@ import {ProductCard} from "../product-card/product-card";
 import {useState} from "react";
 
 import {Virtuoso} from 'react-virtuoso';
-import {product_state_updater_type} from "../../../../schema/schema";
+import {product_state_updater_type} from "../../../../../model/schema/schema";
 
 export function ProductsList({products, add_handler}: {
     products: product_type[],

@@ -3,7 +3,7 @@ import {ProductsList} from "../products-list/products-list";
 import {product_type} from "@shared/common/schema/nutrition/nutrition";
 import {useState} from "react";
 import {search} from "../product-search/product-search-controller";
-import {product_state_updater_type} from "../../../../schema/schema";
+import {product_state_updater_type} from "../../../../../model/schema/schema";
 
 export function ProductsListSearch({products, add_handler}: {
     products: product_type[],

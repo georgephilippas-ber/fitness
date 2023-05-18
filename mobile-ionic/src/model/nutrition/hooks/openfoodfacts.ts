@@ -1,4 +1,4 @@
-import {product_input_type} from "../../../../components/schema/schema";
+import {product_input_type} from "../../schema/schema";
 import {useEffect, useState} from "react";
 import axios from "axios";
 import {nutriscore_categories_type} from "@shared/common/schema/nutrition/nutrition";

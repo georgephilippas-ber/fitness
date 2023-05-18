@@ -1,4 +1,4 @@
-import {UniqueManager} from "../../../managers/manager";
+import {UniqueManager} from "../../../core/managers/manager";
 import {product_consumption_type} from "@shared/common/schema/nutrition/nutrition";
 import {Storage} from "@ionic/storage";
 

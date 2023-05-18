@@ -1,7 +1,7 @@
 import {storageClearPromise, storagePromise} from "./storage/storage";
 
-import {ProductManager} from "./model/nutrition/managers/product-manager";
-import {ProductConsumptionManager} from "./model/nutrition/managers/product-consumption-manager";
+import {ProductManager} from "../model/nutrition/managers/product-manager";
+import {ProductConsumptionManager} from "../model/nutrition/managers/product-consumption-manager";
 
 import {fake_product_array} from "@shared/common/faker/nutrition";
 import {foundation_products} from "../assets/data/foundation";

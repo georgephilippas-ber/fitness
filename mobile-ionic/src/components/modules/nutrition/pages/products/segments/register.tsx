@@ -1,9 +1,8 @@
 import {BarcodeEntry} from "../../../atomic/barcode-entry/barcode-entry";
 import {useEffect, useState} from "react";
-import {useOpenFoodFacts} from "../../../../../../core/model/nutrition/hooks/openfoodfacts";
+import {useOpenFoodFacts} from "../../../../../../model/nutrition/hooks/openfoodfacts";
 import {NutriScore} from "../../../../../../assets/Nutri-Score/NutriScore";
-import {fromScore} from "@shared/common/schema/nutrition/nutrition";
-import {IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle} from "@ionic/react";
+import {IonCard, IonCardContent, IonCardHeader, IonCardSubtitle} from "@ionic/react";
 
 
 export function RegisterSegment() {
