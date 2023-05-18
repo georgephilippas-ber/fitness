@@ -25,7 +25,7 @@ export function JournalSegment({products, product_consumption_array}: {
     const [category_, set_category_] = useState<nutriscore_categories_type>("E");
 
     useEffect(() => {
-        const scores_ = getPairs(product_consumption_array, products).map(value => value[1].evaluation.nutriscore?.score || value[1].evaluation.foundation?.score || 0.)
+        const scores_ = getPairs(product_consumption_array, products).map(value => value[1].evaluation.nutriscore?.score || value[1].evaluation.foundation?.score || value[1]?.evaluation.subjective?.score || 0.)
 
         set_category_(fromScore(average(scores_) || Infinity, "solid"));
     }, []);
