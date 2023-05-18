@@ -61,6 +61,10 @@ export function ProductsPage() {
         }]);
     };
 
+    async function onRegisterProduct(product: product_type) {
+        await productManager.insert([product]);
+    }
+
     return (
         <IonPage>
             <IonSegment value={selectedTab} onIonChange={handleTabChange}>
@@ -77,7 +81,7 @@ export function ProductsPage() {
             {selectedTab === "search-tab" && <SearchSegment add_handler={add_handler} products={available_products}/>}
             {selectedTab === "journal-tab" &&
                 <JournalSegment product_consumption_array={consumption} products={available_products}/>}
-            {selectedTab === "register-tab" && <RegisterSegment onRegisterProduct={product => console.log(product)}/>}
+            {selectedTab === "register-tab" && <RegisterSegment onRegisterProduct={onRegisterProduct}/>}
         </IonPage>
     )
 }

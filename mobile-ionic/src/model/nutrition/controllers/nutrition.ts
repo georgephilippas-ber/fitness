@@ -25,11 +25,27 @@ function processServing(valueString: string): [number, product_quantity_units_ty
     const quantity_ = parseFiniteFloat(quantity_string);
     const units_ = units_string.trim().toLowerCase().replace(/\b(gram|grams?|gr)\b/gi, "g").replace(/\b(mls|milliliters?)\b/gi, "ml");
 
+    const toServing = (serving_description: string): { amount: number, units: string } => {
+        const regex = /\((\d+)\s*[, ]\s*([^\)]+)\)/;
+        const match = serving_description.match(regex);
+
+        const amount: number = parseFloat(match?.[1] || "");
+        const units: string = (match?.[2] || "").trim().toLowerCase() || "item";
+
+        if (isFinite(amount))
+            return {
+                amount,
+                units
+            }
+        else
+            return {
+                amount: 1,
+                units
+            }
+    }
+
     if (quantity_ && product_quantity_units().includes(units_ as any))
-        return [quantity_, units_ as product_quantity_units_type, {
-            amount: faker.datatype.number({min: 1, max: 6}),
-            units: faker.commerce.product()
-        }];
+        return [quantity_, units_ as product_quantity_units_type, toServing(serving_description_string)];
     else
         return undefined;
 }
