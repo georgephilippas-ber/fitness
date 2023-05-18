@@ -15,6 +15,10 @@ export type evaluation_type =
             {
                 score: number;
             }
+        subjective?:
+            {
+                score: number;
+            }
     }
 
 export type product_type =

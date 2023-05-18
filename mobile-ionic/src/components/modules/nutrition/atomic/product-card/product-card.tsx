@@ -5,10 +5,11 @@ import "./product-card.css";
 import {ProductAddControls} from "../product-add-controls/product-add-controls";
 import {MouseEventHandler, useState} from "react";
 
-export function ProductCard({product, hideCardHeader = false, hideCardContent = false, add}: {
+export function ProductCard({product, hideCardHeader = false, hideCardContent = false, hideControls = false, add}: {
     product: product_type;
     hideCardHeader?: boolean;
     hideCardContent?: boolean;
+    hideControls?: boolean;
     add?: (id: string, quantity: number, servings: number) => void
 }) {
 
@@ -18,9 +19,10 @@ export function ProductCard({product, hideCardHeader = false, hideCardContent = 
 
     return (
         <IonCard>
-            {!hideCardHeader && <ProductDescription_IonCardHeader
-                onHeaderClick={event => set_hideCardContent_state(prevState => !prevState)} product={product} add={add}
-                change={(id, quantity) => set_scaleState(quantity / 100.)}/>}
+            {!hideCardHeader && <ProductDescription_IonCardHeader hideControls={hideControls}
+                                                                  onHeaderClick={event => set_hideCardContent_state(prevState => !prevState)}
+                                                                  product={product} add={add}
+                                                                  change={(id, quantity) => set_scaleState(quantity / 100.)}/>}
             {!hideCardContent_state && <FundamentalNutrients_IonCardContent scale={scaleState}
                                                                             product={product}/>}
         </IonCard>
@@ -51,11 +53,12 @@ function foundationServingDetails(product: product_type): string | undefined {
         return undefined;
 }
 
-export function ProductDescription_IonCardHeader({product, change, add, onHeaderClick}: {
+export function ProductDescription_IonCardHeader({product, change, add, onHeaderClick, hideControls}: {
     product: product_type,
     change?: (id: string, quantity: number, servings: number) => void
     add?: (id: string, quantity: number, servings: number) => void
-    onHeaderClick?: MouseEventHandler<HTMLIonCardHeaderElement>
+    onHeaderClick?: MouseEventHandler<HTMLIonCardHeaderElement>,
+    hideControls?: boolean
 }) {
     return (
         <IonCardHeader onClick={onHeaderClick} className={"product-description-container"}>
@@ -68,7 +71,8 @@ export function ProductDescription_IonCardHeader({product, change, add, onHeader
                     serving {product.id.startsWith("foundation") ? foundationServingDetails(product) : null}
                 </IonCardSubtitle>
             </div>
-            <ProductAddControls product={product} change={change} add={add}/>
+            {!hideControls ?
+                <ProductAddControls product={product} change={change} add={add}/> : null}
         </IonCardHeader>
     )
 }

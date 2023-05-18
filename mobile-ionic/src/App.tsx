@@ -1,4 +1,4 @@
-import {setupIonicReact} from '@ionic/react';
+import {IonPage, setupIonicReact} from '@ionic/react';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -32,8 +32,9 @@ function App() {
         // </div>
         // // <OpenFoodFactsView barcode={"737628064502"}/>
         // <ProductsPage/>
-
-       <RegisterSegment/>
+        <IonPage>
+            <RegisterSegment/>
+        </IonPage>
     )
 }
 
