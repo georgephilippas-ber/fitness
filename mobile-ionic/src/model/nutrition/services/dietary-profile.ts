@@ -6,6 +6,7 @@ import {
 import {
     getPairs
 } from "../../../components/modules/nutrition/atomic/product-consumption-journal-list/product-consumption-journal-list-controller";
+import {day_fromMillis, Period} from "@shared/common/features/time/period/period";
 
 type product_consumption_pair_type = [product_consumption_type, product_type];
 
@@ -16,10 +17,16 @@ export class DietaryProfile
 
     }
 
-    private pairs(): [product_consumption_type, product_type][]
+    private pairs_byPeriod(period: Period): [product_consumption_type, product_type][]
     {
-        return getPairs(this.product_consumption, this.products);
+        return getPairs(this.product_consumption, this.products).filter(value => value[0].referenceDate >= period.getBeginning() && value[0].referenceDate <= period.getEnd());
     }
+
+    private pairs_byReferenceDate(referenceDate: number): [product_consumption_type, product_type][]
+    {
+        return this.pairs_byPeriod(new Period(day_fromMillis(referenceDate, "beginning").toMillis(), day_fromMillis(referenceDate, "end").toMillis()))
+    }
+
 
     private getServings_pair(pair: product_consumption_pair_type): number
     {
