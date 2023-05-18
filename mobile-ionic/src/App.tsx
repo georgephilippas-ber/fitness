@@ -32,9 +32,7 @@ function App() {
         // </div>
         // // <OpenFoodFactsView barcode={"737628064502"}/>
         // <ProductsPage/>
-        <IonPage>
-            <RegisterSegment/>
-        </IonPage>
+        <ProductsPage/>
     )
 }
 

@@ -7,6 +7,7 @@ import {product_state_updater_type} from "../../../../../model/schema/schema";
 import {faker} from "@faker-js/faker";
 import {DateTime} from "luxon";
 import {JournalSegment} from "./segments/journal";
+import {RegisterSegment} from "./segments/register";
 
 export function ProductsPage() {
     const [selectedTab, setSelectedTab] = useState('journal-tab');
@@ -76,6 +77,7 @@ export function ProductsPage() {
             {selectedTab === "search-tab" && <SearchSegment add_handler={add_handler} products={available_products}/>}
             {selectedTab === "journal-tab" &&
                 <JournalSegment product_consumption_array={consumption} products={available_products}/>}
+            {selectedTab === "register-tab" && <RegisterSegment onRegisterProduct={product => console.log(product)}/>}
         </IonPage>
     )
 }

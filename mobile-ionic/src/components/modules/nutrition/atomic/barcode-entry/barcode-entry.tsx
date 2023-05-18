@@ -1,8 +1,11 @@
 import {IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonInput} from "@ionic/react";
 import {useEffect, useState} from "react";
 
-export function BarcodeEntry({onValidBarcode}: { onValidBarcode: (barcode: string) => void }) {
-    const [barcodeField, set_barcodeField] = useState<string>("");
+export function BarcodeEntry({initialValue, onValidBarcode}: {
+    initialValue?: string,
+    onValidBarcode: (barcode: string) => void
+}) {
+    const [barcodeField, set_barcodeField] = useState<string>(initialValue || "");
 
     const [update, forceUpdate] = useState<number>(0);
 
@@ -18,6 +21,10 @@ export function BarcodeEntry({onValidBarcode}: { onValidBarcode: (barcode: strin
         }
 
     }, [barcodeField])
+
+    useEffect(() => {
+        set_barcodeField(initialValue || "");
+    }, [initialValue])
 
     return (
         <IonCard>

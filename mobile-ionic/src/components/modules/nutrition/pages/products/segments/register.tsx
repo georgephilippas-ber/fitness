@@ -6,7 +6,7 @@ import {
     IonCardSubtitle,
     IonCardTitle,
     IonContent,
-    IonInput
+    IonInput, IonToast
 } from "@ionic/react";
 
 import {BarcodeEntry} from "../../../atomic/barcode-entry/barcode-entry";
@@ -81,8 +81,15 @@ export function ProductInputEdit({product_input, onProductInputChange}: {
     )
 }
 
-export function RegisterSegment({barcodeProp = ""}: { barcodeProp?: string }) {
-    const [barcodeState, set_barcodeState] = useState<string>(barcodeProp);
+export function RegisterSegment({initialBarcode, onRegisterProduct}: {
+    initialBarcode?: string,
+    onRegisterProduct?: (product: product_type) => void
+}) {
+
+    const [registerProduct_toast, set_registerProduct_toast] = useState<boolean>(false)
+
+
+    const [barcodeState, set_barcodeState] = useState<string | undefined>(initialBarcode);
 
     const [product_input_OpenFoodFacts, score] = useOpenFoodFacts(barcodeState);
 
@@ -94,6 +101,10 @@ export function RegisterSegment({barcodeProp = ""}: { barcodeProp?: string }) {
         product_designation: "",
         fundamental_nutrients: ""
     });
+
+    useEffect(() => {
+        set_barcodeState(initialBarcode);
+    }, [initialBarcode])
 
     useEffect(() => {
         if (product_input_OpenFoodFacts && parseProduct(product_input_OpenFoodFacts)) {
@@ -116,7 +127,7 @@ export function RegisterSegment({barcodeProp = ""}: { barcodeProp?: string }) {
 
     return (
         <IonContent>
-            <BarcodeEntry onValidBarcode={barcode => set_barcodeState(barcode)}/>
+            <BarcodeEntry initialValue={initialBarcode} onValidBarcode={barcode => set_barcodeState(barcode)}/>
             {product_input_OpenFoodFacts ?
                 <IonCard>
                     <IonCardHeader>
@@ -136,9 +147,22 @@ export function RegisterSegment({barcodeProp = ""}: { barcodeProp?: string }) {
                               product_input={product_input}/>
             <IonCard>
                 <IonCardContent>
-                    <IonButton color={product ? "primary" : "danger"} expand={"block"}>Register</IonButton>
+                    <IonButton disabled={!product} onClick={() => {
+                        if (product) {
+                            onRegisterProduct?.(product);
+                            set_registerProduct_toast(true);
+                        }
+                    }
+                    }
+
+                               color={product ? "primary" : "danger"}
+                               expand={"block"}>Register</IonButton>
                 </IonCardContent>
             </IonCard>
+            <IonToast
+                message={"registered " + product?.product_designation.name}
+                isOpen={!!registerProduct_toast}
+                onDidDismiss={() => set_registerProduct_toast(false)} duration={1_750}/>
         </IonContent>
     )
 }

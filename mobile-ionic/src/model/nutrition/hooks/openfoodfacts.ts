@@ -69,7 +69,7 @@ function to_product_input(OpenFoodFacts_product: OpenFoodFacts_product_type): pr
     }
 }
 
-export function useOpenFoodFacts(barcode: string): [product_input_type | undefined, [number, nutriscore_categories_type] | undefined] {
+export function useOpenFoodFacts(barcode?: string): [product_input_type | undefined, [number, nutriscore_categories_type] | undefined] {
     const [product_input, set_product_input] = useState<product_input_type | undefined>(undefined);
 
     const [nutriscore, set_nutriscore] = useState<[number, nutriscore_categories_type] | undefined>(undefined);
