@@ -7,9 +7,11 @@ import {
     getPairs
 } from "../../../components/modules/nutrition/atomic/product-consumption-journal-list/product-consumption-journal-list-controller";
 import {day_fromMillis, Period} from "@shared/common/features/time/period/period";
+import {ProductManager} from "../managers/product-manager";
+import {ProductConsumptionManager} from "../managers/product-consumption-manager";
+import {registerPlugin} from "@capacitor/core";
 
 type product_consumption_pair_type = [product_consumption_type, product_type];
-
 
 function division_finiteOrZero(numerator: number, denominator: number)
 {
@@ -116,5 +118,20 @@ export class DietaryProfile
     public sodium(referenceDate: number)
     {
         return this.pairs_dayByReferenceDate(referenceDate).reduce((previousValue, currentValue) => previousValue + this.fundamental_nutrient_pair("sodium", currentValue), 0.);
+    }
+}
+
+export async function getDietaryProfile(referenceDate: number, productManager: ProductManager, productConsumptionManager: ProductConsumptionManager): Promise<fundamental_nutrients_type>
+{
+    const dietaryProfile: DietaryProfile = new DietaryProfile(await productManager.all(), await productConsumptionManager.all());
+
+    return {
+        energy: dietaryProfile.energy(referenceDate),
+        sugar: dietaryProfile.sugar(referenceDate),
+        sodium: dietaryProfile.sodium(referenceDate),
+        fat: dietaryProfile.fat(referenceDate),
+        carbohydrates: dietaryProfile.carbohydrates(referenceDate),
+        protein: dietaryProfile.protein(referenceDate),
+        fiber: dietaryProfile.fiber(referenceDate)
     }
 }

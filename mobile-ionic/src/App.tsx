@@ -1,4 +1,4 @@
-import {IonPage, setupIonicReact} from '@ionic/react';
+import {IonButton, IonPage, IonRouterOutlet, setupIonicReact} from '@ionic/react';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -20,19 +20,44 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import React from "react";
 import {ProductsPage} from "./components/modules/nutrition/pages/products/products";
-import {BarcodeEntry} from "./components/modules/nutrition/atomic/barcode-entry/barcode-entry";
-import {RegisterSegment} from "./components/modules/nutrition/pages/products/segments/register";
+import {NutritionDashboard} from "./components/modules/nutrition/pages/nutrition-dashboard/nutrition-dashboard";
+import {IonReactRouter} from "@ionic/react-router";
+import {Route} from "react-router";
+import {useHistory} from "react-router-dom";
 
 setupIonicReact();
 
-function App() {
+export function Home()
+{
+    const history = useHistory();
+
     return (
-        // <div>
-        //     <NutriScore category={fromScore(faker.datatype.number({min: -15, max: 40}), "solid")}/>
-        // </div>
-        // // <OpenFoodFactsView barcode={"737628064502"}/>
-        // <ProductsPage/>
-        <ProductsPage/>
+        <IonPage>
+            <IonButton onClick={() => history.push("/products")}>Products</IonButton>
+            <IonButton onClick={() => history.push("/nutrition-dashboard")}>Dashboard</IonButton>
+        </IonPage>
+    )
+}
+
+
+function App()
+{
+    return (
+        <IonReactRouter>
+            <IonRouterOutlet>
+                <Route exact={true} path={"/"}>
+                    <Home/>
+                </Route>
+                <Route exact={true} path={"/products"}>
+                    <ProductsPage/>
+                </Route>
+                <Route exact={true} path={"/nutrition-dashboard"}>
+                    <NutritionDashboard/>
+                </Route>
+            </IonRouterOutlet>
+        </IonReactRouter>
+
+
     )
 }
 
