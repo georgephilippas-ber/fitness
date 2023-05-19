@@ -23,7 +23,7 @@ export function DietaryProfilePieChartCard({fundamental_nutrients}: {
         },
         title: {
             floating: false,
-            text: '<h1>Dietary Profile</h1>',
+            text: '<h2>Dietary Profile - Macronutrients</h2>',
             useHTML: true,
             align: "center",
             style: {
@@ -47,9 +47,17 @@ export function DietaryProfilePieChartCard({fundamental_nutrients}: {
         ],
     };
 
-    return <IonCard>
-        <IonCardContent>
-            <HighchartsReact highcharts={Highcharts} options={options}/>
-        </IonCardContent>
-    </IonCard>
+    return <>
+        <IonCard>
+            <IonCardContent>
+                <HighchartsReact highcharts={Highcharts} options={options}/>
+            </IonCardContent>
+        </IonCard>
+        <IonCard>
+            <IonCardContent style={{display: "flex", flexDirection: "column"}}>
+                <HighchartsReact highcharts={Highcharts} options={options}/>
+                <HighchartsReact highcharts={Highcharts} options={options}/>
+            </IonCardContent>
+        </IonCard>
+    </>
 }
