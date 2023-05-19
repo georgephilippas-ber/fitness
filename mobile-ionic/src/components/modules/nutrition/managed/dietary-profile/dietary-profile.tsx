@@ -5,15 +5,24 @@ import {DateTime} from "luxon";
 import {productConsumptionManager, productManager} from "../../../../../core/instances";
 import {DietaryProfilePieChartCard} from "../../atomic/charts/charts";
 
+//TODO: making this component managed means it has to rely on actual data and not the managers
 export function DietaryProfile()
 {
     const [dietaryProfile, set_dietaryProfile] = useState<fundamental_nutrients_type | undefined>(undefined);
 
+
     useEffect(() =>
     {
-        getDietaryProfile(DateTime.now().toMillis(), productManager, productConsumptionManager).then(value =>
+        const productManager_subscription = productManager.subject().subscribe(async value =>
         {
-            set_dietaryProfile(value);
+            getDietaryProfile(DateTime.now().toMillis(), await productManager.all(), await productConsumptionManager.all()).then(value1 =>
+                set_dietaryProfile(value1));
+        });
+
+        const productConsumptionManager_subscription = productConsumptionManager.subject().subscribe(async value =>
+        {
+            getDietaryProfile(DateTime.now().toMillis(), await productManager.all(), await productConsumptionManager.all()).then(value1 =>
+                set_dietaryProfile(value1));
         });
     }, [])
 

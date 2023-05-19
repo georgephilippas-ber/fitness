@@ -22,7 +22,7 @@ export class DietaryProfile
 {
     constructor(private products: product_type[] = [], private product_consumption: product_consumption_type[] = [])
     {
-
+        console.log(product_consumption);
     }
 
     public setProducts(products: product_type[])
@@ -121,9 +121,9 @@ export class DietaryProfile
     }
 }
 
-export async function getDietaryProfile(referenceDate: number, productManager: ProductManager, productConsumptionManager: ProductConsumptionManager): Promise<fundamental_nutrients_type>
+export async function getDietaryProfile(referenceDate: number, products: product_type[], productConsumption: product_consumption_type[]): Promise<fundamental_nutrients_type | undefined>
 {
-    const dietaryProfile: DietaryProfile = new DietaryProfile(await productManager.all(), await productConsumptionManager.all());
+    const dietaryProfile: DietaryProfile = new DietaryProfile(products, productConsumption);
 
     return {
         energy: dietaryProfile.energy(referenceDate),
