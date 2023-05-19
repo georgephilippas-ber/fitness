@@ -12,6 +12,8 @@ export function DietaryProfilePieChartCard({fundamental_nutrients}: {
     const options: Highcharts.Options = {
         chart: {
             borderWidth: 0,
+            plotBorderWidth: 0,
+            plotShadow: true,
             backgroundColor: "var(--ion-card-background)",
             style:
                 {
@@ -51,4 +53,3 @@ export function DietaryProfilePieChartCard({fundamental_nutrients}: {
         </IonCardContent>
     </IonCard>
 }
-
