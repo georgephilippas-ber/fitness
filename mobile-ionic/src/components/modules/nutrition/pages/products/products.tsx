@@ -23,7 +23,7 @@ export function ProductsPage()
 {
     const history = useHistory();
 
-    const [selectedTab, setSelectedTab] = useState('journal-tab');
+    const [selectedTab, setSelectedTab] = useState('search-tab');
 
     const handleTabChange = (e: any) =>
     {

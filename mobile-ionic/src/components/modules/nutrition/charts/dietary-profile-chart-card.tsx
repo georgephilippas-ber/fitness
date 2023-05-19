@@ -4,7 +4,6 @@ import {IonCard, IonCardContent} from "@ionic/react";
 import HighchartsReact from "highcharts-react-official";
 import React from "react";
 
-// --ion-card-background: #1c1c1d;
 export function DietaryProfilePieChartCard({fundamental_nutrients}: {
     fundamental_nutrients: fundamental_nutrients_type,
 })
@@ -50,12 +49,6 @@ export function DietaryProfilePieChartCard({fundamental_nutrients}: {
     return <>
         <IonCard>
             <IonCardContent>
-                <HighchartsReact highcharts={Highcharts} options={options}/>
-            </IonCardContent>
-        </IonCard>
-        <IonCard>
-            <IonCardContent style={{display: "flex", flexDirection: "column"}}>
-                <HighchartsReact highcharts={Highcharts} options={options}/>
                 <HighchartsReact highcharts={Highcharts} options={options}/>
             </IonCardContent>
         </IonCard>

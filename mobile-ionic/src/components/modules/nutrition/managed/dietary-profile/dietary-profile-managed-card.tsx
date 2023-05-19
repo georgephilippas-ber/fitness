@@ -3,7 +3,7 @@ import {fundamental_nutrients_type} from "@shared/common/schema/nutrition/nutrit
 import {getDietaryProfile} from "../../../../../model/nutrition/services/dietary-profile";
 import {DateTime} from "luxon";
 import {productConsumptionManager, productManager} from "../../../../../core/instances";
-import {DietaryProfilePieChartCard} from "../../atomic/charts/charts";
+import {DietaryProfilePieChartCard} from "../../charts/dietary-profile-chart-card";
 
 export function DietaryProfileManagedCard()
 {
@@ -22,6 +22,12 @@ export function DietaryProfileManagedCard()
             getDietaryProfile(DateTime.now().toMillis(), await productManager.all(), await productConsumptionManager.all()).then(value1 =>
                 set_dietaryProfile(value1));
         });
+
+        return () =>
+        {
+            productManager_subscription.unsubscribe();
+            productConsumptionManager_subscription.unsubscribe();
+        }
     }, [])
 
     return (

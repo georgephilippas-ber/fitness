@@ -19,15 +19,15 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import React from "react";
+import {Redirect, Route, useHistory} from "react-router-dom";
+import {IonReactRouter} from "@ionic/react-router";
 import {ProductsPage} from "./components/modules/nutrition/pages/products/products";
 import {NutritionDashboard} from "./components/modules/nutrition/pages/nutrition-dashboard/nutrition-dashboard";
-import {IonReactRouter} from "@ionic/react-router";
-import {Route} from "react-router";
-import {useHistory} from "react-router-dom";
+
 
 setupIonicReact();
 
-export function Home()
+export function NutritionHome()
 {
     const history = useHistory();
 
@@ -39,14 +39,16 @@ export function Home()
     )
 }
 
-
 function App()
 {
     return (
         <IonReactRouter>
             <IonRouterOutlet>
                 <Route exact={true} path={"/"}>
-                    <Home/>
+                    <Redirect to={"/nutrition-home"}/>
+                </Route>
+                <Route exact={true} path={"/nutrition-home"}>
+                    <NutritionHome/>
                 </Route>
                 <Route exact={true} path={"/products"}>
                     <ProductsPage/>
@@ -56,8 +58,6 @@ function App()
                 </Route>
             </IonRouterOutlet>
         </IonReactRouter>
-
-
     )
 }
 
