@@ -5,11 +5,9 @@ import {DateTime} from "luxon";
 import {productConsumptionManager, productManager} from "../../../../../core/instances";
 import {DietaryProfilePieChartCard} from "../../atomic/charts/charts";
 
-//TODO: making this component managed means it has to rely on actual data and not the managers
-export function DietaryProfile()
+export function DietaryProfileManagedCard()
 {
     const [dietaryProfile, set_dietaryProfile] = useState<fundamental_nutrients_type | undefined>(undefined);
-
 
     useEffect(() =>
     {
