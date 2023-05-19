@@ -7,7 +7,7 @@ import {
     product_quantity_units_type,
     product_type
 } from "@shared/common/schema/nutrition/nutrition";
-import {product_input_type} from "../../schema/schema";
+import {product_input_type} from "../schema/schema";
 import {faker} from "@faker-js/faker";
 
 function parseFiniteFloat(valueString: string): number | undefined {

@@ -16,7 +16,7 @@ import {NutriScore} from "../../../../../../assets/Nutri-Score/NutriScore";
 import {parseProduct} from "../../../../../../model/nutrition/controllers/nutrition";
 import {product_type} from "@shared/common/schema/nutrition/nutrition";
 import {ProductCard} from "../../../atomic/product-card/product-card";
-import {product_input_type} from "../../../../../../model/schema/schema";
+import {product_input_type} from "../../../../../../model/nutrition/schema/schema";
 
 
 export function ProductInputEdit({product_input, onProductInputChange}: {

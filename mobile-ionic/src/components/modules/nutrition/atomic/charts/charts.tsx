@@ -13,21 +13,27 @@ export function DietaryProfilePieChartCard({fundamental_nutrients}: {
         chart: {
             borderWidth: 0,
             backgroundColor: "var(--ion-card-background)",
-            type: 'pie',
-            options3d: {
-                enabled: true,
-                alpha: 45,
-                beta: 0
-            }
+            style:
+                {
+                    color: "var(--ion-color-dark)",
+                    fontFamily: "var(--ion-font-family)",
+                }
         },
         title: {
             floating: false,
-            text: '<h1 style="color: var(--ion-color-dark)">Dietary Profile</h1>',
-            useHTML: true
+            text: '<h1>Dietary Profile</h1>',
+            useHTML: true,
+            align: "center",
+            style: {
+                color: "var(--ion-color-dark)",
+                fontFamily: "var(--ion-font-family)",
+            },
+            margin: 25
         },
         series: [
             {
                 type: "pie",
+                size: "100%",
                 name: 'Quantity (g)',
                 data: [
                     {name: 'Protein', y: fundamental_nutrients.protein},
