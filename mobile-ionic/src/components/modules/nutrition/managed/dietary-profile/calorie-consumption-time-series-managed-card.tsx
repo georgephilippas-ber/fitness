@@ -35,6 +35,8 @@ export function CalorieConsumptionTimeSeriesManagedCard()
     }, [])
 
     return (
-        <CaloriesConsumptionTimeSeriesChartCard consumption_series={consumption_series}/>
+        consumption_series.length > 0 ?
+            <CaloriesConsumptionTimeSeriesChartCard consumption_series={consumption_series}/> :
+            <div>!consumption_series</div>
     )
 }

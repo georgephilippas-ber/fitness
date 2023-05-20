@@ -1,13 +1,4 @@
-import {
-    IonBackButton,
-    IonButton,
-    IonButtons,
-    IonFooter,
-    IonHeader,
-    IonPage,
-    IonSegment,
-    IonSegmentButton
-} from "@ionic/react";
+import {IonButton, IonPage, IonSegment, IonSegmentButton} from "@ionic/react";
 import {useEffect, useState} from "react";
 import {SearchSegment} from "./segments/search";
 import {productConsumptionManager, productManager} from "../../../../../core/instances";
@@ -18,6 +9,7 @@ import {DateTime} from "luxon";
 import {JournalSegment} from "./segments/journal";
 import {RegisterSegment} from "./segments/register";
 import {useHistory} from "react-router-dom";
+import {day_fromMillis} from "@shared/common/features/time/period/period";
 
 export function ProductsPage()
 {
@@ -46,6 +38,7 @@ export function ProductsPage()
                     productManager.all().then(value1 =>
                         {
                             set_available_products(value1);
+                            console.log('prds', value1);
                         }
                     );
             }
@@ -61,7 +54,7 @@ export function ProductsPage()
                 case "remove":
                     productConsumptionManager.all().then(value1 =>
                         {
-                            set_consumption(value1);
+                            set_consumption(value1.filter(value2 => value2.referenceDate >= day_fromMillis(DateTime.now().toMillis(), "beginning").toMillis()));
                         }
                     );
             }
@@ -104,7 +97,7 @@ export function ProductsPage()
                     Register
                 </IonSegmentButton>
             </IonSegment>
-            {selectedTab === "search-tab" && <SearchSegment add_handler={add_handler} products={available_products}/>}
+            {selectedTab === "search-tab" && available_products.length > 0 && <SearchSegment add_handler={add_handler} products={available_products}/>}
             {selectedTab === "journal-tab" &&
                 <JournalSegment product_consumption_array={consumption} products={available_products}/>}
             {selectedTab === "register-tab" && <RegisterSegment onRegisterProduct={onRegisterProduct}/>}

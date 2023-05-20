@@ -31,7 +31,7 @@ export function DietaryProfileManagedCard()
     }, [])
 
     return (
-        dietaryProfile ?
+        dietaryProfile && Object.values(dietaryProfile).some(value => value > 0) ?
             <DietaryProfilePieChartCard fundamental_nutrients={dietaryProfile}/> : null
     )
 }

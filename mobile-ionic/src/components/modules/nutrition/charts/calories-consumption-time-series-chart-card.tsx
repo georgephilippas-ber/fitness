@@ -28,7 +28,7 @@ export function CaloriesConsumptionTimeSeriesChartCard({consumption_series}: {
                 text: `${consumption_series.length} course(s) - ${(consumption_series.reduce((previousValue, currentValue) => previousValue + currentValue.value, 0.)).toFixed(2)} kCal`
             },
             xAxis: {
-                // type: 'datetime',
+                type: 'datetime',
                 min: day_fromMillis(DateTime.now().toMillis(), "beginning").toMillis(),
                 max: day_fromMillis(DateTime.now().toMillis(), "end").toMillis(),
                 tickInterval: 14_400 * 1000,

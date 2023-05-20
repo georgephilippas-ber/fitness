@@ -30,8 +30,8 @@ export function JournalSegment({products, product_consumption_array}: {
     }, []);
 
     return (<>
-            <div style={{display: "flex", alignItems: "center", gap: "1em", margin: "1em"}}>
-                {dietScore}
+            <div style={{fontSize: "2.75em", display: "flex", alignItems: "center", padding: "0.65em", margin: "auto"}}>
+                {dietScore && dietScore * 100.}
             </div>
             <IonContent>
                 {product_consumption_array.length ?
