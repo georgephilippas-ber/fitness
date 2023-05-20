@@ -1,15 +1,22 @@
 import Highcharts from "highcharts";
 import {IonCard, IonCardContent} from "@ionic/react";
 
-import React, {useEffect, useRef} from "react";
+import React, {useEffect, useMemo, useRef} from "react";
 import {day_fromMillis} from "@shared/common/features/time/period/period";
 import {DateTime} from "luxon";
 
 export function CaloriesConsumptionTimeSeriesChartCard({consumption_series}: {
     consumption_series: { referenceDate: number, value: number }[]
-})
-{
+}) {
     const container = useRef<HTMLDivElement>(null);
+
+    const cumulative_consumption_series = useMemo<{ referenceDate: number, value: number }[]>(() => {
+        return consumption_series.map((_, i, arr) => arr.slice(0, i + 1).reduce((a, b) => ({
+            referenceDate: b.referenceDate,
+            value: a.value + b.value
+        })));
+        ;
+    }, [consumption_series]);
 
     const options: any =
         {
@@ -33,8 +40,7 @@ export function CaloriesConsumptionTimeSeriesChartCard({consumption_series}: {
                 max: day_fromMillis(DateTime.now().toMillis(), "end").toMillis(),
                 tickInterval: 14_400 * 1000,
                 labels: {
-                    formatter: function (this: { value: number })
-                    {
+                    formatter: function (this: { value: number }) {
                         return Highcharts.dateFormat('%H:%M', this.value);
                     },
                 },
@@ -65,14 +71,12 @@ export function CaloriesConsumptionTimeSeriesChartCard({consumption_series}: {
             series: [{
                 name: 'Calories',
                 color: "#6A00A8",
-                data: consumption_series.map(value => ({x: value.referenceDate, y: value.value})) //consumption_series.slice(5).concat(consumption_series.slice(0, 5))
+                data: cumulative_consumption_series.map(value => ({x: value.referenceDate, y: value.value})) //consumption_series.slice(5).concat(consumption_series.slice(0, 5))
             }]
         };
 
-    useEffect(() =>
-    {
-        if (container.current)
-        {
+    useEffect(() => {
+        if (container.current) {
             Highcharts.chart(container.current, options);
         }
     }, [container]);
