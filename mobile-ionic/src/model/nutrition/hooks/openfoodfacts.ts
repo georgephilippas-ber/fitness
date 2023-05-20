@@ -41,7 +41,7 @@ function to_OpenFoodFacts_product(data: any): OpenFoodFacts_product_type | undef
             "carbohydrates_100g": data["product"]["nutriments"]["carbohydrates_100g"] || 0,
             "sodium_100g": data["product"]["nutriments"]["sodium_100g"] || 0,
             "fiber_100g": data["product"]["nutriments"]["fiber_100g"] || 0,
-            "energy_100g": data["product"]["nutriments"]["energy_100g"] || 0,
+            "energy_100g": (data["product"]["nutriments"]["energy_100g"] || 0) / 4.1868,
             "sugars_100g": data["product"]["nutriments"]["sugars_100g"] || 0,
             "serving_size": data["product"]["serving_size"] || "",
             "serving_quantity": data["product"]["serving_quantity"] || "",
