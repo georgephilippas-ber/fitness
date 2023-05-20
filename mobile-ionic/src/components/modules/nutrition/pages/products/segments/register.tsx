@@ -107,16 +107,16 @@ export function RegisterSegment({initialBarcode, onRegisterProduct}: {
     }, [initialBarcode])
 
     useEffect(() => {
-        if (product_input_OpenFoodFacts && parseProduct(product_input_OpenFoodFacts)) {
+        if (product_input_OpenFoodFacts)
+        {
             set_product_input(product_input_OpenFoodFacts);
-            set_product(parseProduct(product_input_OpenFoodFacts));
-        } else {
-            set_product_input({
-                product_evaluation: "",
-                product_designation: "",
-                serving: "",
-                fundamental_nutrients: ""
-            });
+
+            if (parseProduct(product_input_OpenFoodFacts))
+                set_product(parseProduct(product_input_OpenFoodFacts));
+        }
+        else
+        {
+            set_product_input({product_evaluation: "", fundamental_nutrients: "", serving: "", product_designation: ""});
             set_product(undefined);
         }
     }, [product_input_OpenFoodFacts]);
@@ -132,7 +132,7 @@ export function RegisterSegment({initialBarcode, onRegisterProduct}: {
                 <IonCard>
                     <IonCardHeader>
                         <IonCardSubtitle>
-                            NutriScore
+                            Product Found
                         </IonCardSubtitle>
                     </IonCardHeader>
                     <IonCardContent>
@@ -161,7 +161,7 @@ export function RegisterSegment({initialBarcode, onRegisterProduct}: {
             </IonCard>
             <IonToast
                 message={"registered " + product?.product_designation.name}
-                isOpen={!!registerProduct_toast}
+                isOpen={registerProduct_toast}
                 onDidDismiss={() => set_registerProduct_toast(false)} duration={1_750}/>
         </IonContent>
     )

@@ -1,15 +1,9 @@
-import {
-    fromScore,
-    nutriscore_categories_type,
-    product_consumption_type,
-    product_type
-} from "@shared/common/schema/nutrition/nutrition";
+import {product_consumption_type, product_type} from "@shared/common/schema/nutrition/nutrition";
 import {
     ProductConsumptionJournalList
 } from "../../../atomic/product-consumption-journal-list/product-consumption-journal-list";
 import {IonCard, IonCardContent, IonContent} from "@ionic/react";
 import {faker} from "@faker-js/faker";
-import {NutriScore} from "../../../../../../assets/Nutri-Score/NutriScore";
 import {useEffect, useState} from "react";
 import {getPairs} from "../../../atomic/product-consumption-journal-list/product-consumption-journal-list-controller";
 
