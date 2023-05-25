@@ -1,7 +1,6 @@
 import { IonButton } from "@ionic/react";
 import React, { useRef, useEffect, useState } from "react";
 
-
 import { BrowserMultiFormatReader, Result } from "@zxing/library"
 
 const browserMultiFormatReader = new BrowserMultiFormatReader();
@@ -60,6 +59,14 @@ export function Camera({ onBarcode }: { onBarcode: (barcode: string, referenceDa
 
         set_mediaStream(undefined);
     }
+
+    useEffect(() => {
+        return () =>
+        {
+            stop();
+        }
+    }, []);
+
 
     return (
         <div>
