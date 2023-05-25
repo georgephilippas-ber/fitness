@@ -1,6 +1,7 @@
 import { IonButton } from "@ionic/react";
 import React, { useRef, useEffect, useState } from "react";
 
+
 import { BrowserMultiFormatReader, Result } from "@zxing/library"
 
 const browserMultiFormatReader = new BrowserMultiFormatReader();
