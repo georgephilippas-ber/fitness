@@ -7450,3 +7450,4 @@ const foundation_string: string = `
 `;
 
 export const foundation_products: product_type[] = Object.freeze(JSON.parse(foundation_string));
+
