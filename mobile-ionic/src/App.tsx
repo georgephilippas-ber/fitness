@@ -25,7 +25,6 @@ import { ProductsPage } from "./components/modules/nutrition/pages/products/prod
 import { NutritionDashboard } from "./components/modules/nutrition/pages/nutrition-dashboard/nutrition-dashboard";
 import { Camera } from './components/modules/camera/camera';
 
-
 setupIonicReact();
 
 export function NutritionHome()
