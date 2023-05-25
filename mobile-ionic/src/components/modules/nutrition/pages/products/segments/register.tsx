@@ -19,6 +19,7 @@ import {ProductCard} from "../../../atomic/product-card/product-card";
 import {product_input_type} from "../../../../../../model/nutrition/schema/schema";
 
 
+
 export function ProductInputEdit({product_input, onProductInputChange}: {
     product_input: product_input_type,
     onProductInputChange: (product_input: product_input_type) => void
@@ -128,7 +129,7 @@ export function RegisterSegment({initialBarcode, onRegisterProduct}: {
     return (
         <IonContent>
             <BarcodeEntry initialValue={initialBarcode} onValidBarcode={barcode => set_barcodeState(barcode)}/>
-            {product_input_OpenFoodFacts ?
+             {product_input_OpenFoodFacts ?
                 <IonCard>
                     <IonCardHeader>
                         <IonCardSubtitle>

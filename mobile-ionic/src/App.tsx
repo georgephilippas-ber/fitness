@@ -1,4 +1,4 @@
-import {IonButton, IonPage, IonRouterOutlet, setupIonicReact} from '@ionic/react';
+import { IonButton, IonPage, IonRouterOutlet, setupIonicReact } from '@ionic/react';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -19,10 +19,11 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import React from "react";
-import {Redirect, Route, useHistory} from "react-router-dom";
-import {IonReactRouter} from "@ionic/react-router";
-import {ProductsPage} from "./components/modules/nutrition/pages/products/products";
-import {NutritionDashboard} from "./components/modules/nutrition/pages/nutrition-dashboard/nutrition-dashboard";
+import { Redirect, Route, useHistory } from "react-router-dom";
+import { IonReactRouter } from "@ionic/react-router";
+import { ProductsPage } from "./components/modules/nutrition/pages/products/products";
+import { NutritionDashboard } from "./components/modules/nutrition/pages/nutrition-dashboard/nutrition-dashboard";
+import { Camera } from './components/modules/camera/camera';
 
 
 setupIonicReact();
@@ -39,22 +40,33 @@ export function NutritionHome()
     )
 }
 
-function App()
+const test: boolean = false;
+
+function Test()
 {
     return (
+        <Camera onBarcode={(barcode: string, referenceDate: number) => {
+            console.log(barcode);
+        }} />
+    )
+}
+
+function App()
+{
+    return (test ? <Test /> :
         <IonReactRouter>
             <IonRouterOutlet>
                 <Route exact={true} path={"/"}>
-                    <Redirect to={"/nutrition-home"}/>
+                    <Redirect to={"/nutrition-home"} />
                 </Route>
                 <Route exact={true} path={"/nutrition-home"}>
-                    <NutritionHome/>
+                    <NutritionHome />
                 </Route>
                 <Route exact={true} path={"/products"}>
-                    <ProductsPage/>
+                    <ProductsPage />
                 </Route>
                 <Route exact={true} path={"/nutrition-dashboard"}>
-                    <NutritionDashboard/>
+                    <NutritionDashboard />
                 </Route>
             </IonRouterOutlet>
         </IonReactRouter>
