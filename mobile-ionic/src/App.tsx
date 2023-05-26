@@ -26,7 +26,6 @@ import { NutritionDashboard } from "./components/modules/nutrition/pages/nutriti
 import { Camera } from './components/modules/camera/camera';
 
 setupIonicReact();
-
 export function NutritionHome()
 {
     const history = useHistory();
