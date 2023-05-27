@@ -23,9 +23,9 @@ import {Redirect, Route, useHistory} from "react-router-dom";
 import {IonReactRouter} from "@ionic/react-router";
 import {ProductsPage} from "./components/modules/nutrition/pages/products/products";
 import {NutritionDashboard} from "./components/modules/nutrition/pages/nutrition-dashboard/nutrition-dashboard";
-import {Camera} from './components/modules/camera/camera';
 import {RunningCard} from './components/modules/aerobic/atomic/running-card/running-card';
 import {fake_running_activity} from "@shared/common/faker/activities";
+import {ActivitiesContent} from "./components/modules/aerobic/fetching/activities-content/activities-content";
 
 setupIonicReact();
 
@@ -44,7 +44,10 @@ const test: boolean = true;
 
 function Test() {
     return (
-        <RunningCard running_interface_={fake_running_activity()}/>
+        <>
+            test
+        <ActivitiesContent/>
+        </>
     )
 }
 
