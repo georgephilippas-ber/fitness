@@ -16,7 +16,7 @@ import {ActivitiesRandom, ActivityRandom, WeightRandom} from "../../activity/inc
 import {StatisticsService} from "../../activity/services/statistics/statistics-service";
 import {SeriesUpdateGeneric} from "../../activity/services/update/series-update-generic";
 import {ManagersTimeSeries} from "./managers-time-series";
-import {client_aspect_type, clients_type, provider_type} from "../../activity/schema/schema";
+import {client_aspect_type, clients_type, provider_type} from "@sprinter-common/schema/activities/activities";
 
 export class ClientsTimeSeries
 {

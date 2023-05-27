@@ -24,7 +24,7 @@ function main() {
         });
         if (yield databaseProvider.hasCollection("Nutrition"))
             yield databaseProvider.dropCollection("Nutrition");
-        const nutrition = JSON.parse((0, fs_1.readFileSync)(path_1.default.join(__dirname, "..", "..", "..", "python", "flask-backend", "nutrition", "nutrition.json"), "utf-8"));
+        const nutrition = JSON.parse((0, fs_1.readFileSync)(path_1.default.join(__dirname, "..", "..", "..", "python", "flask-backend", "icons", "icons.json"), "utf-8"));
         yield databaseProvider.db().collection(collection_name).insertMany(nutrition);
         yield databaseProvider.close();
     });

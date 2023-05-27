@@ -3,7 +3,7 @@ import {day_fromMillis, global_beginning, Period} from "@sprinter-common/feature
 
 import {TimeSeriesUpdate} from "../../../base/time-series/time-series-update";
 import {TimeSeriesManager} from "../../../base/time-series/manager-time-series-base";
-import {client_aspect_type} from "../../schema/schema";
+import {client_aspect_type} from "@sprinter-common/schema/activities/activities";
 
 export class SeriesUpdateGeneric<T extends { user_id: number, referenceDate: number }> extends TimeSeriesUpdate<T>
 {

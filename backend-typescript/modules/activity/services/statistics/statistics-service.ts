@@ -3,7 +3,7 @@ import {global_beginning, Period} from "@sprinter-common/features/time/period/pe
 
 import {WeightManager} from "../../managers/weight/weight-manager";
 import {DateTime} from "luxon";
-import {activity_name_type, activity_statistics_type, weight_statistics_type} from "../../schema/schema";
+import {activity_name_type, activity_statistics_type, weight_statistics_type} from "@sprinter-common/schema/activities/activities";
 
 export class StatisticsService
 {

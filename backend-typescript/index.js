@@ -20,16 +20,18 @@ const authentication_service_1 = require("./model/services/authentication/authen
 const registry_1 = require("./core/registry/registry");
 const users_page_1 = require("./model/pages/users-page");
 const authorization_1 = require("./core/features/authorization/authorization");
-const activities_router_1 = require("./modules/activity/router/activities-router");
+const activities_router_1 = require("./modules/activity/routers/activities-router");
 const statistics_service_1 = require("./modules/activity/services/statistics/statistics-service");
 const location_1 = require("./configuration/servers/location");
-const activity_router_1 = require("./modules/activity/router/activity-router");
-const weight_router_1 = require("./modules/activity/router/weight-router");
-const update_router_1 = require("./modules/activity/router/update-router");
+const activity_router_1 = require("./modules/activity/routers/activity-router");
+const weight_router_1 = require("./modules/activity/routers/weight-router");
+const update_router_1 = require("./modules/activity/routers/update-router");
 const clients_time_series_1 = require("./modules/base/collections/clients-time-series");
 const user_information_1 = require("./modules/activity/managers/user-information/user-information");
 const seed_1 = require("./executables/seed/seed");
 const managers_time_series_1 = require("./modules/base/collections/managers-time-series");
+const product_manager_1 = require("./modules/nutrition/managers/product-manager");
+const product_router_1 = require("./modules/nutrition/routers/product-router");
 const databaseProvider = new database_provider_1.DatabaseProvider({
     uri: location_1.servers.mongodb.url,
     db: "corporate"
@@ -52,7 +54,9 @@ const activitiesRouter = new activities_router_1.ActivitiesRouter(timeSeriesMana
 const activityRouter = new activity_router_1.ActivityRouter(timeSeriesManagers.getManager("activity"), authenticationFeature);
 const weightRouter = new weight_router_1.WeightRouter(timeSeriesManagers.getManager("weight"), statisticsService, authenticationFeature);
 const updateRouter = new update_router_1.UpdateRouter(clients, timeSeriesManagers, activityUserInformationManager, authenticationFeature);
-const customRouters = [activitiesRouter, activityRouter, weightRouter, updateRouter];
+const productManager = new product_manager_1.ProductManager(databaseProvider);
+const productRouter = new product_router_1.ProductRouter(productManager);
+const customRouters = [activitiesRouter, activityRouter, weightRouter, updateRouter, productRouter];
 const drop = (managers) => __awaiter(void 0, void 0, void 0, function* () {
     yield Promise.all(managers.map(value => value.drop()));
 });

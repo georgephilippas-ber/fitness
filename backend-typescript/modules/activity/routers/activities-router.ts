@@ -4,7 +4,7 @@ import {StatisticsService} from "../services/statistics/statistics-service";
 import {StatusCodes} from "http-status-codes";
 import {Period} from "@sprinter-common/features/time/period/period";
 import {AuthenticationFeature} from "../../../core/features/authentication/authentication-feature";
-import {activity_statistics_request_type, time_series_request_base_interface} from "../schema/schema";
+import {activity_statistics_request_type, time_series_request_base_interface} from "@sprinter-common/schema/activities/activities";
 
 export class ActivitiesRouter extends Router
 {

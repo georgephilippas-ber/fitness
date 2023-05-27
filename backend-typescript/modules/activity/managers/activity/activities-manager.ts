@@ -1,7 +1,8 @@
 import {DatabaseProvider} from "../../../../core/database-provider/database-provider";
 import {Period} from "@sprinter-common/features/time/period/period";
 import {TimeSeriesManager} from "../../../base/time-series/manager-time-series-base";
-import {activity_interface_base} from "../../schema/schema";
+
+import {activity_interface_base} from "@sprinter-common/schema/activities/activities";
 
 export class ActivitiesManager extends TimeSeriesManager<activity_interface_base>
 {

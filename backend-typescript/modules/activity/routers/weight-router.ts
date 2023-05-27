@@ -4,7 +4,7 @@ import {AuthenticationFeature} from "../../../core/features/authentication/authe
 import {Period} from "@sprinter-common/features/time/period/period";
 import {StatusCodes} from "http-status-codes";
 import {StatisticsService} from "../services/statistics/statistics-service";
-import {time_series_request_base_interface} from "../schema/schema";
+import {time_series_request_base_interface} from "@sprinter-common/schema/activities/activities";
 
 export class WeightRouter extends Router
 {

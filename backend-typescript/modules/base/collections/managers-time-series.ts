@@ -3,7 +3,7 @@ import {DatabaseProvider} from "../../../core/database-provider/database-provide
 import {WeightManager} from "../../activity/managers/weight/weight-manager";
 import {ActivityManager} from "../../activity/managers/activity/activity-manager";
 import {ActivitiesManager} from "../../activity/managers/activity/activities-manager";
-import {client_aspect_type} from "../../activity/schema/schema";
+import {client_aspect_type} from "@sprinter-common/schema/activities/activities";
 
 export class ManagersTimeSeries
 {

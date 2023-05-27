@@ -2,7 +2,7 @@ import {WithingsClient} from "../../clients/withings/withings";
 import {ClientTimeSeriesBase} from "../../../../base/time-series/client-time-series-base";
 
 import {Period} from "@sprinter-common/features/time/period/period";
-import {client_aspect_type, weight_interface} from "../../../schema/schema";
+import {client_aspect_type, weight_interface} from "@sprinter-common/schema/activities/activities";
 
 export class Weight_TimeSeriesClient_Withings extends ClientTimeSeriesBase
 {

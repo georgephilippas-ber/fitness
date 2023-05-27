@@ -6,7 +6,7 @@ import {
     client_aspect_type,
     daily_activity_type,
     weight_interface
-} from "../../../schema/schema";
+} from "@sprinter-common/schema/activities/activities";
 
 export class ActivitiesRandom extends ClientTimeSeriesBase
 {

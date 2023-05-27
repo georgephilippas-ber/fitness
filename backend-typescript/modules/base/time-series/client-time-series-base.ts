@@ -1,5 +1,5 @@
 import {Period} from "@sprinter-common/features/time/period/period";
-import {client_aspect_type} from "../../activity/schema/schema";
+import {client_aspect_type} from "@sprinter-common/schema/activities/activities";
 
 export abstract class ClientTimeSeriesBase
 {

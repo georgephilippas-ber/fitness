@@ -4,7 +4,7 @@ import {DateTime} from "luxon";
 import {AuthorizationManager, AuthorizationService} from "../../../../../core/features/authorization/authorization";
 import {Period} from "@sprinter-common/features/time/period/period";
 import {UserManager} from "../../../../../model/managers/user/user-manager";
-import {weight_interface} from "../../../schema/schema";
+import {weight_interface} from "@sprinter-common/schema/activities/activities";
 
 type measure_type = { value: number, type: number, unit: number, algo: number, fm: number };
 

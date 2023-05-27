@@ -1,7 +1,7 @@
 import {ClientTimeSeriesBase} from "../../../../base/time-series/client-time-series-base";
 import {FitbitClient} from "../../clients/fitbit/fitbit";
 import {Period} from "@sprinter-common/features/time/period/period";
-import {activity_interface_base, client_aspect_type} from "../../../schema/schema";
+import {activity_interface_base, client_aspect_type} from "@sprinter-common/schema/activities/activities";
 
 export class Activities_TimeSeriesClient_Fitbit extends ClientTimeSeriesBase
 {

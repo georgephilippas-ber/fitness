@@ -2,7 +2,7 @@
   "compilerOptions": {
     "paths": {
       "@sprinter-common/*":
-              ["../sprinter-shared/common/*"]
+              ["../shared/common/*"]
     },
     /* Visit https://aka.ms/tsconfig to read more about this file */
 

@@ -13,14 +13,12 @@ import {
     daily_activity_type,
     other_activity_interface,
     running_interface
-} from "../../../schema/schema";
+} from "@sprinter-common/schema/activities/activities";
 
 type fitbit_activity_name_type = "Walk" | "Bike" | "Run" | string;
 
-function to_global_activity_name(fitbitActivityName: fitbit_activity_name_type): activity_name_type
-{
-    switch (fitbitActivityName)
-    {
+function to_global_activity_name(fitbitActivityName: fitbit_activity_name_type): activity_name_type {
+    switch (fitbitActivityName) {
         case "Walk":
             return "walking";
         case "Run":
@@ -32,8 +30,7 @@ function to_global_activity_name(fitbitActivityName: fitbit_activity_name_type):
     }
 }
 
-interface raw_activity_base
-{
+interface raw_activity_base {
     logId: number;
     activityName: fitbit_activity_name_type;
     lastModified: string;
@@ -50,15 +47,13 @@ interface raw_activity_base
         }
 }
 
-interface raw_activity_running_interface extends raw_activity_base
-{
+interface raw_activity_running_interface extends raw_activity_base {
     pace: number;
     speed: number;
     steps: number;
 }
 
-interface raw_activity_cycling_interface extends raw_activity_running_interface
-{
+interface raw_activity_cycling_interface extends raw_activity_running_interface {
     // equal
 }
 
@@ -76,8 +71,7 @@ type activities_response_type =
             }
     }
 
-function to_global_cycling_activity(user_id: number, raw_activity: raw_activity_base): cycling_bike_interface | null
-{
+function to_global_cycling_activity(user_id: number, raw_activity: raw_activity_base): cycling_bike_interface | null {
     if (!(["cycling-bike"] as activity_name_type[]).includes(to_global_activity_name(raw_activity.activityName)))
         return null;
 
@@ -98,8 +92,7 @@ function to_global_cycling_activity(user_id: number, raw_activity: raw_activity_
     }
 }
 
-function to_other(user_id: number, raw_activity: raw_activity_base): other_activity_interface
-{
+function to_other(user_id: number, raw_activity: raw_activity_base): other_activity_interface {
     return {
         user_id,
         raw_name: raw_activity?.activityName?.toLowerCase(),
@@ -114,8 +107,7 @@ function to_other(user_id: number, raw_activity: raw_activity_base): other_activ
     }
 }
 
-function to_global_running_activity(user_id: number, raw_activity: raw_activity_base): running_interface | null
-{
+function to_global_running_activity(user_id: number, raw_activity: raw_activity_base): running_interface | null {
     if (!(["running", "walking"] as activity_name_type[]).includes(to_global_activity_name(raw_activity.activityName)))
         return null;
 
@@ -161,23 +153,18 @@ resource_paths = ["calories", "distance", "active-zone-minutes"];
 type resource_response_type =
     { [resource in string]: { dateTime: string; value: any }[] }
 
-export class FitbitClient
-{
-    constructor(private authorizationService: AuthorizationService, private authorizationManager: AuthorizationManager)
-    {
+export class FitbitClient {
+    constructor(private authorizationService: AuthorizationService, private authorizationManager: AuthorizationManager) {
     }
 
-    async getActivityTimeSeries_singleSource(user_id: number, period: Period, resource_path: resource_path_type): Promise<resource_response_type>
-    {
-        return new Promise<resource_response_type>(async (resolve, reject) =>
-        {
+    async getActivityTimeSeries_singleSource(user_id: number, period: Period, resource_path: resource_path_type): Promise<resource_response_type> {
+        return new Promise<resource_response_type>(async (resolve, reject) => {
             const accessToken = await this.authorizationManager.getAccessToken(user_id, "fitbit");
 
             let start_date_: string | null = DateTime.fromMillis(period.hasFiniteBeginning() ? period.getBeginning() : global_beginning.toMillis()).toSQLDate();
             let end_date_: string | null = period.hasFiniteEnd() ? day_fromMillis(period.getEnd(), "end").toSQLDate() : today("end").toSQLDate();
 
-            try
-            {
+            try {
                 const get_res_ = await axios.get<resource_response_type>(`https://api.fitbit.com/1/user/-/activities/${resource_path}/date/${start_date_}/${end_date_}.json`, {
                     headers:
                         {
@@ -188,9 +175,7 @@ export class FitbitClient
                 });
 
                 resolve(get_res_.data);
-            }
-            catch (err)
-            {
+            } catch (err) {
                 console.log("ERROR", this.getActivityTimeSeries_singleSource.name, resource_path, (err as AxiosError).code);
 
                 reject(err);
@@ -198,14 +183,11 @@ export class FitbitClient
         });
     }
 
-    async getActivityTimeSeries(user_id: number, period: Period): Promise<daily_activity_type[]>
-    {
-        return new Promise<daily_activity_type[]>(async (resolve, reject) =>
-        {
+    async getActivityTimeSeries(user_id: number, period: Period): Promise<daily_activity_type[]> {
+        return new Promise<daily_activity_type[]>(async (resolve, reject) => {
             const accessToken = await this.authorizationManager.getAccessToken(user_id, "fitbit");
 
-            try
-            {
+            try {
                 const series_ = await Promise.all(resource_paths.map(value => this.getActivityTimeSeries_singleSource(user_id, period, value)));
 
                 const series_processed_: any = {};
@@ -224,8 +206,7 @@ export class FitbitClient
                         ...series_processed_[value["dateTime"]],
                         active_zone_minutes: value["value"]
                     });
-                const daily_activity_series_ = Object.keys(series_processed_).map((value, index) =>
-                {
+                const daily_activity_series_ = Object.keys(series_processed_).map((value, index) => {
                     return {
                         user_id,
                         calories: parseFloat(series_processed_[value]?.["calories"]),
@@ -247,9 +228,7 @@ export class FitbitClient
                 }) as daily_activity_type[];
 
                 resolve(daily_activity_series_);
-            }
-            catch (e)
-            {
+            } catch (e) {
                 console.log(this.getActivityTimeSeries.name);
                 console.log((e as Error).message);
 
@@ -258,14 +237,11 @@ export class FitbitClient
         });
     }
 
-    private async getActivities(user_id: number, period: Period): Promise<raw_activity_base[]>
-    {
-        return new Promise<raw_activity_base[]>(async (resolve, reject) =>
-        {
+    private async getActivities(user_id: number, period: Period): Promise<raw_activity_base[]> {
+        return new Promise<raw_activity_base[]>(async (resolve, reject) => {
             const accessToken = await this.authorizationManager.getAccessToken(user_id, "fitbit");
 
-            try
-            {
+            try {
                 let afterDate: string | null = period.hasFiniteBeginning() ? day_fromMillis(period.getBeginning(), "beginning").toSQLDate() : global_beginning.toSQLDate();
 
                 const get_res_ = await axios.get<activities_response_type>("https://api.fitbit.com/1/user/-/activities/list.json", {
@@ -283,19 +259,15 @@ export class FitbitClient
                         },
                 });
 
-                if (get_res_.data.activities && Array.isArray(get_res_.data.activities))
-                {
+                if (get_res_.data.activities && Array.isArray(get_res_.data.activities)) {
                     console.log("fitbit request", user_id, get_res_.data.activities.length, "activities", period.readable());
 
                     const array_: raw_activity_base[] = (get_res_.data.activities as raw_activity_base[]).filter(value => value.duration > 60);
 
                     resolve(array_);
-                }
-                else
+                } else
                     reject("");
-            }
-            catch (err)
-            {
+            } catch (err) {
                 reject(err);
 
                 console.log(this.getActivities.name, accessToken);
@@ -304,14 +276,10 @@ export class FitbitClient
         });
     }
 
-    public async getActivities_global(user_id: number, period: Period): Promise<activity_interface_base[]>
-    {
-        function convert(rawActivity_common: raw_activity_base[]): activity_interface_base[]
-        {
-            return rawActivity_common.map(value =>
-            {
-                switch (to_global_activity_name(value.activityName))
-                {
+    public async getActivities_global(user_id: number, period: Period): Promise<activity_interface_base[]> {
+        function convert(rawActivity_common: raw_activity_base[]): activity_interface_base[] {
+            return rawActivity_common.map(value => {
+                switch (to_global_activity_name(value.activityName)) {
                     case "running":
                     case "walking":
                         return to_global_running_activity(user_id, value);
@@ -323,28 +291,21 @@ export class FitbitClient
             }).filter(value => !!value) as activity_interface_base[];
         }
 
-        return new Promise<activity_interface_base[]>(async (resolve, reject) =>
-        {
+        return new Promise<activity_interface_base[]>(async (resolve, reject) => {
             let rawActivity_common: raw_activity_base[] = [];
 
-            try
-            {
+            try {
                 rawActivity_common = await this.getActivities(user_id, period);
 
                 resolve(convert(rawActivity_common));
-            }
-            catch (err)
-            {
-                try
-                {
+            } catch (err) {
+                try {
                     console.log("refresh", await this.authorizationService.refresh(user_id, "fitbit"));
 
                     rawActivity_common = await this.getActivities(user_id, period);
 
                     resolve(convert(rawActivity_common));
-                }
-                catch (err)
-                {
+                } catch (err) {
                     console.log("fitbit requires authorization");
 
                     reject(err);

@@ -1,6 +1,6 @@
 import {Manager} from "../../../../core/base/managers/manager";
 import {DatabaseProvider} from "../../../../core/database-provider/database-provider";
-import {client_aspect_type, provider_type} from "../../schema/schema";
+import {client_aspect_type, provider_type} from "@sprinter-common/schema/activities/activities";
 
 export type activity_user_information_type =
     {

@@ -3,7 +3,7 @@ import {SeriesUpdateGeneric} from "../services/update/series-update-generic";
 import {Socket} from "socket.io";
 import {DateTime} from "luxon";
 import {AuthenticationFeature} from "../../../core/features/authentication/authentication-feature";
-import {client_aspect_type} from "../schema/schema";
+import {client_aspect_type} from "@sprinter-common/schema/activities/activities";
 
 
 type connectedClient_type =

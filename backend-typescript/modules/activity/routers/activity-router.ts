@@ -3,7 +3,7 @@ import {StatusCodes} from "http-status-codes";
 import {Router} from "../../../core/base/routers/router";
 import {ActivityManager} from "../managers/activity/activity-manager";
 import {AuthenticationFeature} from "../../../core/features/authentication/authentication-feature";
-import {time_series_request_base_interface} from "../schema/schema";
+import {time_series_request_base_interface} from "@sprinter-common/schema/activities/activities";
 
 export class ActivityRouter extends Router
 {
