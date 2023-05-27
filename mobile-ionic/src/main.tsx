@@ -3,11 +3,7 @@ import {createRoot} from 'react-dom/client';
 import App from './App';
 import axios from "axios";
 
-axios.defaults.headers.common["authenticated-user"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjotMiwicm9sZSI6InVzZXIiLCJpYXQiOjE2ODUxODkwMjEsImV4cCI6MTY4NTE5NjIyMX0.-cymR6_MJ7SbSOcNl3VJVicsdpL7QKLWDfLzy2W-55U";
-
-axios.post("http://localhost:4096/activities/all").then(value => {
-    console.log(value.data);
-})
+axios.defaults.headers.common["authenticated-user"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjotMiwicm9sZSI6InVzZXIiLCJpYXQiOjE2ODUyMTc1NjAsImV4cCI6MTY4NTIyNDc2MH0.3FUFa_G1Sc49YWoyu1Jo7tVAkSnVBBA-e6M3Whn2N2A";
 
 const container = document.getElementById('root');
 const root = createRoot(container!);

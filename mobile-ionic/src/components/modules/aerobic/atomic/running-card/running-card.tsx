@@ -43,7 +43,7 @@ export function RunningCard({running_interface_}: { running_interface_: running_
                             Average HR
                         </div>
                         <div className={"grid-element-content"}>
-                            {running_interface_.calories} BPM
+                            {running_interface_.averageHeartRate} BPM
                         </div>
                     </div>
                 </IonCardContent>
