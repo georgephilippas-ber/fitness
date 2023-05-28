@@ -1,5 +1,6 @@
-import {fundamental_nutrients_type} from "@shared/common/schema/nutrition/nutrition";
 import Highcharts from "highcharts";
+
+import {fundamental_nutrients_type} from "@shared/common/schema/nutrition/nutrition";
 import {IonCard, IonCardContent} from "@ionic/react";
 import HighchartsReact from "highcharts-react-official";
 import React from "react";

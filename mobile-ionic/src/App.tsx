@@ -24,6 +24,7 @@ import {IonReactRouter} from "@ionic/react-router";
 import {ProductsPage} from "./components/modules/nutrition/pages/products/products";
 import {NutritionDashboard} from "./components/modules/nutrition/pages/nutrition-dashboard/nutrition-dashboard";
 import {ActivitiesContent} from "./components/modules/aerobic/fetching/activities-content/activities-content";
+import {Expenditure} from "./components/modules/aerobic/charts/expenditure/expenditure";
 
 setupIonicReact();
 
@@ -43,7 +44,8 @@ const test: boolean = true;
 function Test() {
     return (
         <IonPage>
-            <ActivitiesContent/>
+            {/*<ActivitiesContent/>*/}
+            <Expenditure/>
         </IonPage>
     )
 }
