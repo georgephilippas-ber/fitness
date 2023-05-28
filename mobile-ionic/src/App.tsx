@@ -1,4 +1,4 @@
-import {IonButton, IonContent, IonPage, IonRouterOutlet, setupIonicReact} from '@ionic/react';
+import {IonButton, IonPage, IonRouterOutlet, setupIonicReact} from '@ionic/react';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -24,8 +24,7 @@ import {IonReactRouter} from "@ionic/react-router";
 import {ProductsPage} from "./components/modules/nutrition/pages/products/products";
 import {NutritionDashboard} from "./components/modules/nutrition/pages/nutrition-dashboard/nutrition-dashboard";
 import {ActivitiesContent} from "./components/modules/aerobic/fetching/activities-content/activities-content";
-import {DailyActivity} from "./components/modules/aerobic/charts/daily-activity/daily-activity";
-import {fake_daily_activity, fake_running_activity} from "@shared/common/faker/activities";
+import {fake_running_activity} from "@shared/common/faker/activities";
 import {
     DailyActivityContent
 } from "./components/modules/aerobic/fetching/daily-activity-content/daily-activity-content";
