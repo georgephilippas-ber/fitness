@@ -3,13 +3,16 @@ import {createRoot} from 'react-dom/client';
 import App from './App';
 import axios from "axios";
 import {DateTime} from "luxon";
+import {day_fromMillis} from "@shared/common/features/time/period/period";
 
-axios.defaults.headers.common["authenticated-user"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjotMiwicm9sZSI6InVzZXIiLCJpYXQiOjE2ODUyMjM2NzksImV4cCI6MTY4NTIzMDg3OX0.0xq4SLPsQ9XwuJ3x4NVBy-itGlWwicPkxTtEdksXRGg";
+axios.defaults.headers.common["authenticated-user"] = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VyX2lkIjotMiwicm9sZSI6InVzZXIiLCJpYXQiOjE2ODUyNDgxODgsImV4cCI6MTY4NTUwNzM4OH0.TztaAV12HZzXZV3TImt5qA-TUZ72ZSKrMD74whbf6io";
 
 axios.post("http://localhost:4096/activity/latest").then(value => {
-    console.log(DateTime.fromMillis(value.data.referenceDate).toLocaleString(DateTime.DATE_HUGE));
-    console.log((value.data.referenceDate));
-    console.log((value.data));
+    console.log(DateTime.fromMillis(value.data.referenceDate).toLocaleString(DateTime.DATETIME_HUGE_WITH_SECONDS));
+    console.log(value.data.referenceDate === day_fromMillis(DateTime.now().toMillis(), "beginning").toMillis());
+
+    console.log(day_fromMillis(DateTime.now().toMillis(), "beginning").toMillis());
+    console.log(value.data.referenceDate);
 });
 
 const container = document.getElementById('root');

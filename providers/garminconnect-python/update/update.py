@@ -7,7 +7,7 @@ from database_manager.database_manager import ManagerType
 from datetime import datetime, timedelta
 from features.time_feature.time_feature import day, When
 
-global_beginning = day(datetime.now().replace(day=8), When.BEGINNING)
+global_beginning = day(datetime.now().replace(day=1), When.BEGINNING)
 
 
 class Update:
@@ -41,6 +41,7 @@ class Update:
     def update_activities(self, user_id: int) -> int:
         latest_date_candidate = self.__database_manager.get_latest_date(user_id,
                                                                         ManagerType.DailyActivity)
+        print(latest_date_candidate)
 
         latest_date = max(latest_date_candidate,
                           global_beginning) if latest_date_candidate is not None else global_beginning

@@ -10,6 +10,8 @@ from schema.activities import ActivityInterfaceBase
 from schema.daily_activity import DailyActivityType
 from features.time_feature.time_feature import day, When
 
+from pytz import utc
+
 mongodb_atlas_username: str = "georgephilippas-ber"
 mongodb_atlas_password: str = "85D3qpDm5Ycfq4f6"
 mongodb_atlas_cluster_name: str = "cluster0"
@@ -64,6 +66,6 @@ class DatabaseManager:
             [("referenceDate", DESCENDING)]).limit(1))
 
         if documents_:
-            return datetime.fromtimestamp(documents_[0].get("referenceDate") / 1.e3)
+            return datetime.fromtimestamp(documents_[0].get("referenceDate") / 1.e3, tz=utc)
         else:
             return None
