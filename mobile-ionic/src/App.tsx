@@ -50,10 +50,8 @@ fake_running_activity()
 function Test() {
     return (
         <IonPage>
-            <IonContent>
-                {/*<ActivitiesContent/>*/}
-                <DailyActivityContent/>
-            </IonContent>
+            <DailyActivityContent/>
+            <ActivitiesContent/>
         </IonPage>
     )
 }
