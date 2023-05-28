@@ -1,0 +1,13 @@
+.container {
+    margin-bottom: 1em;
+}
+
+.container .title {
+    text-align: center;
+    font-size: 1.35em;
+}
+
+.container .data {
+    font-size: 4em;
+    text-align: center;
+}
