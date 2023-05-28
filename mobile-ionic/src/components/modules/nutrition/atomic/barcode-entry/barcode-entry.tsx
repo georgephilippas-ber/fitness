@@ -1,7 +1,7 @@
 import { IonCard, IonCardContent, IonCardHeader, IonCardTitle, IonInput } from "@ionic/react";
 import { useEffect, useState } from "react";
 
-import { Camera } from "../../../camera/camera";
+import { Camera } from "../../camera/camera";
 
 
 export function BarcodeEntry({ initialValue, onValidBarcode }: {

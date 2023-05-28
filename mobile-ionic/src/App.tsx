@@ -20,11 +20,11 @@ import '@ionic/react/css/display.css';
 import './theme/variables.css';
 import React from "react";
 import {Redirect, Route, useHistory} from "react-router-dom";
+
 import {IonReactRouter} from "@ionic/react-router";
 import {ProductsPage} from "./components/modules/nutrition/pages/products/products";
 import {NutritionDashboard} from "./components/modules/nutrition/pages/nutrition-dashboard/nutrition-dashboard";
 import {ActivitiesContent} from "./components/modules/aerobic/fetching/activities-content/activities-content";
-import {fake_running_activity} from "@shared/common/faker/activities";
 import {
     DailyActivityContent
 } from "./components/modules/aerobic/fetching/daily-activity-content/daily-activity-content";
@@ -43,8 +43,6 @@ export function NutritionHome() {
 }
 
 const test: boolean = true;
-
-fake_running_activity()
 
 function Test() {
     return (
