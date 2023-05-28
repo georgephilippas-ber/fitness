@@ -9,7 +9,7 @@ export function DailyActivityContent() {
     }, []);
 
     return (
-        <IonContent>
+        <IonContent style={{height: "80%"}}>
             <DailyActivity daily_activity={fake_daily_activity()}/>
         </IonContent>
     )
