@@ -14,9 +14,9 @@ export function DailyActivityContent() {
     }, []);
 
     return (
-        daily_activity ?
-            <IonContent>
-                <DailyActivity daily_activity={daily_activity}/>
-            </IonContent> : null
-    )
+        <IonContent>
+            {daily_activity ?
+                <DailyActivity daily_activity={daily_activity}/> : null}
+        </IonContent>
+    );
 }
