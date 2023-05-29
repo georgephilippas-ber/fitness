@@ -28,7 +28,6 @@ import {AerobicDashboard} from "./components/modules/aerobic/pages/dashboard/aer
 
 setupIonicReact();
 
-
 export function MainHome() {
     const history = useHistory();
 
