@@ -19,46 +19,53 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 import './theme/variables.css';
 import React from "react";
-import {Redirect, Route, useHistory} from "react-router-dom";
+import {Route, useHistory} from "react-router-dom";
 
 import {IonReactRouter} from "@ionic/react-router";
 import {ProductsPage} from "./components/modules/nutrition/pages/products/products";
 import {NutritionDashboard} from "./components/modules/nutrition/pages/nutrition-dashboard/nutrition-dashboard";
-import {ActivitiesContent} from "./components/modules/aerobic/fetching/activities-content/activities-content";
-import {
-    DailyActivityContent
-} from "./components/modules/aerobic/fetching/daily-activity-content/daily-activity-content";
+import {AerobicDashboard} from "./components/modules/aerobic/pages/dashboard/aerobic-dashboard";
 
 setupIonicReact();
+
+export function MainHome() {
+    const history = useHistory();
+
+    return (
+        <IonPage>
+            <IonButton onClick={() => history.push("/nutrition-home")}>Nutrition</IonButton>
+            <IonButton onClick={() => history.push("/aerobic-home")}>Aerobic</IonButton>
+        </IonPage>
+    )
+}
 
 export function NutritionHome() {
     const history = useHistory();
 
     return (
         <IonPage>
+            <IonButton onClick={() => history.push("/")}>Main</IonButton>
             <IonButton onClick={() => history.push("/products")}>Products</IonButton>
             <IonButton onClick={() => history.push("/nutrition-dashboard")}>Dashboard</IonButton>
         </IonPage>
-    )
+    );
 }
 
-const test: boolean = true;
+const test: boolean = false;
 
 function Test() {
     return (
-        <IonPage>
-            <DailyActivityContent/>
-            <ActivitiesContent/>
-        </IonPage>
+        <AerobicDashboard/>
     )
 }
+
 
 function App() {
     return (test ? <Test/> :
             <IonReactRouter>
                 <IonRouterOutlet>
                     <Route exact={true} path={"/"}>
-                        <Redirect to={"/nutrition-home"}/>
+                        <MainHome/>
                     </Route>
                     <Route exact={true} path={"/nutrition-home"}>
                         <NutritionHome/>
@@ -68,6 +75,9 @@ function App() {
                     </Route>
                     <Route exact={true} path={"/nutrition-dashboard"}>
                         <NutritionDashboard/>
+                    </Route>
+                    <Route exact={true} path={"/aerobic-home"}>
+                        <AerobicDashboard/>
                     </Route>
                 </IonRouterOutlet>
             </IonReactRouter>
