@@ -6,7 +6,6 @@ export type instructions_type =
         tips: string[];
     };
 
-
 export type set_type =
     {
         time?: number;
