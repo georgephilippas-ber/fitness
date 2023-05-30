@@ -64,3 +64,4 @@ def duration(running_activities_: List[RunningInterface]):
 if __name__ == "__main__":
     print(distance(running_activities(-2)))
     print(duration(running_activities(-2)))
+
