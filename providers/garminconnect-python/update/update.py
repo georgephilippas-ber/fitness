@@ -7,7 +7,7 @@ from database_manager.database_manager import ManagerType
 from datetime import datetime, timedelta
 from features.time_feature.time_feature import day, When
 
-global_beginning = day(datetime.now().replace(day=1), When.BEGINNING)
+global_beginning = day(datetime.now().replace(day=1), When.BEGINNING_OF_CURRENT_DAY)
 
 
 class Update:
@@ -27,7 +27,7 @@ class Update:
 
         current = latest_date
         counter = 0
-        while current <= day(datetime.now(), When.END):
+        while current <= day(datetime.now(), When.END_OF_CURRENT_DAY):
             activity_ = self.__garmin_connect.daily_activity_dataclass(user_id, current)
 
             if activity_:
@@ -46,7 +46,7 @@ class Update:
         latest_date = max(latest_date_candidate,
                           global_beginning) if latest_date_candidate is not None else global_beginning
 
-        activities = self.__garmin_connect.activities_period_dataclass(user_id, day(latest_date, When.BEGINNING))
+        activities = self.__garmin_connect.activities_period_dataclass(user_id, day(latest_date, When.BEGINNING_OF_CURRENT_DAY))
 
         if activities is not None:
             self.__database_manager.update_activities(activities)

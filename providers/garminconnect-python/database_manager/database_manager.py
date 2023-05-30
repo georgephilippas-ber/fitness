@@ -40,7 +40,7 @@ class DatabaseManager:
 
     def update_daily_activity(self, daily_activity: DailyActivityType) -> bool:
         daily_activity.referenceDate = int(
-            day(datetime.fromtimestamp(daily_activity.referenceDate / 1.e3), When.BEGINNING).timestamp() * 1.e3)
+            day(datetime.fromtimestamp(daily_activity.referenceDate / 1.e3), When.BEGINNING_OF_CURRENT_DAY).timestamp() * 1.e3)
 
         update_result = self.get_collection("ActivityManager").update_one(
             {"referenceDate": daily_activity.referenceDate, "user_id": daily_activity.user_id},
