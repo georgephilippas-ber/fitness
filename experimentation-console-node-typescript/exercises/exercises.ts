@@ -1,5 +1,3 @@
-export type muscle_type = "rectus-abdominis" | "";
-
 export type instructions_type =
     {
         steps: string[];
